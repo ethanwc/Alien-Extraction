@@ -59,7 +59,7 @@ Background.prototype.update = function () {
 
 // UFO
 function Ufo(game, spritesheet) {
-    this.animation = new Animation(spritesheet, 56, 39, 6, .025, 12, true, 3);
+    this.animation = new Animation(spritesheet, 56, 39, 6, .02, 12, true, 3);
     this.speed = 350;
     this.ctx = game.ctx;
     //250 is height that it is displayed at (y)
@@ -104,8 +104,60 @@ Ufo_beam.prototype.draw = function () {
     Entity.prototype.draw.call(this);
 }
 
+//Magnet
+function Magnet(game, spritesheet) {
+    // function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
+    this.animation = new Animation(spritesheet, 56, 102, 4, .2, 8, true, 1);
+    this.speed = 350;
+    this.ctx = game.ctx;
+    //250 is height that it is displayed at (y)
+    Entity.call(this, game, 0, 170);
+}
+
+Magnet.prototype = new Entity();
+Magnet.prototype.constructor = Magnet;
+
+Magnet.prototype.update = function () {
+    this.x += this.game.clockTick * this.speed;
+    if (this.x >1000) this.x = -230;
+    Entity.prototype.update.call(this);
+}
+
+Magnet.prototype.draw = function () {
+    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+    Entity.prototype.draw.call(this);
+}
+
+//Blackhole
+
+function Blackhole(game, spritesheet) {
+    // function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
+    this.animation = new Animation(spritesheet, 512, 512, 6, .1, 36, true, 1);
+    this.speed = 350;
+    this.ctx = game.ctx;
+    //250 is height that it is displayed at (y)
+    Entity.call(this, game, 0, 170);
+}
+
+Blackhole.prototype = new Entity();
+Blackhole.prototype.constructor = Blackhole;
+
+Blackhole.prototype.update = function () {
+    this.x += this.game.clockTick * this.speed;
+    if (this.x >1000) this.x = -230;
+    Entity.prototype.update.call(this);
+}
+
+Blackhole.prototype.draw = function () {
+    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+    Entity.prototype.draw.call(this);
+}
 
 
+
+
+AM.queueDownload("./img/magnet.png");
+AM.queueDownload("./img/blackhole.png");
 AM.queueDownload("./img/ufo.png");
 AM.queueDownload("./img/ufo_beam.png");
 AM.queueDownload("./img/background_space.png");
@@ -119,7 +171,8 @@ AM.downloadAll(function () {
     gameEngine.start();
 
     gameEngine.addEntity(new Background(gameEngine, AM.getAsset("./img/background_space.png")));
-
+    gameEngine.addEntity(new Magnet(gameEngine, AM.getAsset("./img/magnet.png")));
+    gameEngine.addEntity(new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png")));
     gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
     gameEngine.addEntity(new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png")));
 
