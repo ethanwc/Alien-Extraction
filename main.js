@@ -60,7 +60,7 @@ Animation.prototype.isDone = function () {
 // UFO
 function Ufo(game, spritesheet) {
     this.animation = new Animation(spritesheet, 56, 39, 6, .02, 12, true, 3);
-    this.speed = 350;
+    this.speed = 400;
     this.ctx = game.ctx;
     //250 is height that it is displayed at (y)
     Entity.call(this, game, 0, 250);
@@ -71,7 +71,7 @@ Ufo.prototype.constructor = Ufo;
 
 Ufo.prototype.update = function () {
     this.x += this.game.clockTick * this.speed;
-    if (this.x >1000) this.x = -230;
+    if (this.x > 1000) this.x = -230;
     Entity.prototype.update.call(this);
 }
 
@@ -79,6 +79,14 @@ Ufo.prototype.draw = function () {
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
 }
+
+
+
+
+
+
+
+
 
 //UFO_Beam
 function Ufo_beam(game, spritesheet) {
@@ -170,66 +178,94 @@ AM.downloadAll(function () {
 
 
 
-    // var gameEngine = new GameEngine();
-    // gameEngine.init(ctx);
+    var gameEngine = new GameEngine();
+    gameEngine.init(ctx);
 
-    // gameEngine.start();
+    var u = new Ufo(gameEngine, AM.getAsset("./img/ufo.png"));
+
+    gameEngine.addEntity(u);
+
+    gameEngine.start();
+
+    Ufo.prototype.x = 200;
 
     // canvas.addEventListener("mousemove", updateDisplay, false);
 
-function printMousePos(event) {
+// function printMousePos(event) {
 
-    var x = event.clientX;
-    var y = event.clientY;
-       // var my_gradient = ctx.createLinearGradient(y, -x, -y, x);
-
-
-           var a = 222;
-
-              var my_gradient = ctx.createLinearGradient(-(y-a)+a, x, y, -(x-a)+a);
+//     var x = event.clientX;
+//     var y = event.clientY;
+//        // var my_gradient = ctx.createLinearGradient(y, -x, -y, x);
 
 
-    // var my_gradient = ctx.createLinearGradient(400, 0, 0, 400);
-    my_gradient.addColorStop(0, "#00e600");
-    my_gradient.addColorStop(.4, "#66ff66");
-    my_gradient.addColorStop(.5, "#b3ffb3");
-    my_gradient.addColorStop(.6, "#66ff66");
-    my_gradient.addColorStop(1, "#00e600");
+//            var a = 222;
 
-    my_gradient.stroke = "butt";
-    ctx.fillStyle = my_gradient;
+//               var my_gradient = ctx.createLinearGradient(-(y-a)+a, x, y, -(x-a)+a);
 
 
-    ctx.beginPath();
-    ctx.moveTo(a,a);
-    ctx.lineTo(x,y);
-    ctx.lineCap = "round";
-    ctx.lineWidth = 60;
-    ctx.strokeStyle = my_gradient;
-    ctx.stroke();
-    // var b = 500;
+//     // var my_gradient = ctx.createLinearGradient(400, 0, 0, 400);
+//     my_gradient.addColorStop(0, "#00e600");
+//     my_gradient.addColorStop(.4, "#66ff66");
+//     my_gradient.addColorStop(.5, "#b3ffb3");
+//     my_gradient.addColorStop(.6, "#66ff66");
+//     my_gradient.addColorStop(1, "#00e600");
 
-    // ctx.fillRect(b,b,x-b,y-b);
-    ctx.shadowBlur = 10;
-    ctx.shadowColor = "#008000";
-
-    // fxCtx.shadowBlur = 10;
-    // fxCtx.shadowColor = '#FD0100';
-
-}
-//mousemove
-canvas.addEventListener("mousemove", printMousePos);
+//     my_gradient.stroke = "butt";
+//     ctx.fillStyle = my_gradient;
 
 
-    // gameEngine.addEntity(new Magnet(gameEngine, AM.getAsset("./img/magnet.png")));
-    // gameEngine.addEntity(new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png")));
-    // gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
-    // gameEngine.addEntity(new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png")));
+//     ctx.beginPath();
+//     ctx.moveTo(a,a);
+//     ctx.lineTo(x,y);
+//     ctx.lineCap = "round";
+//     ctx.lineWidth = 60;
+//     ctx.strokeStyle = my_gradient;
+//     ctx.stroke();
+//     // var b = 500;
+
+//     // ctx.fillRect(b,b,x-b,y-b);
+//     ctx.shadowBlur = 10;
+//     ctx.shadowColor = "#008000";
+
+//     // fxCtx.shadowBlur = 10;
+//     // fxCtx.shadowColor = '#FD0100';
+
+// }
+// //mousemove
+// canvas.addEventListener("mousemove", printMousePos);
+document.onkeydown = function(e) {
+    switch (e.keyCode) {
+        case 37:
+        //LEFT
+       Ufo.speed = 0;
+            break;
+        case 38:
+        //UP
+            break;
+        case 39:
+        //RIGHT
+        Ufo.speed = 400;
+            break;
+        case 40:
+        //DOWN
+            break;
+    }
+};
 
 
 
 
 
-    console.log("All Done!");
+
+//     // gameEngine.addEntity(new Magnet(gameEngine, AM.getAsset("./img/magnet.png")));
+//     // gameEngine.addEntity(new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png")));
+//     // gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
+//     // gameEngine.addEntity(new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png")));
+
+
+
+
+
+//     console.log("All Done!");
 });
 
