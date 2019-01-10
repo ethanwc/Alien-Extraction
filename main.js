@@ -40,22 +40,22 @@ Animation.prototype.isDone = function () {
     return (this.elapsedTime >= this.totalTime);
 }
 
-function Background(game, spritesheet) {
-    this.x = 0;
-    this.y = 0;
-    this.spritesheet = spritesheet;
-    this.game = game;
-    this.ctx = game.ctx;
-};
+// function Background(game, spritesheet) {
+//     this.x = 0;
+//     this.y = 0;
+//     this.spritesheet = spritesheet;
+//     this.game = game;
+//     this.ctx = game.ctx;
+// };
 
-Background.prototype.draw = function () {
-    this.ctx.drawImage(this.spritesheet,
-                   this.x, this.y);
-};
+// Background.prototype.draw = function () {
+//     this.ctx.drawImage(this.spritesheet,
+//                    this.x, this.y);
+// };
 
-Background.prototype.update = function () {
+// Background.prototype.update = function () {
 
-};
+// };
 
 // UFO
 function Ufo(game, spritesheet) {
@@ -160,23 +160,76 @@ AM.queueDownload("./img/magnet.png");
 AM.queueDownload("./img/blackhole.png");
 AM.queueDownload("./img/ufo.png");
 AM.queueDownload("./img/ufo_beam.png");
-AM.queueDownload("./img/background_space.png");
 
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
     var ctx = canvas.getContext("2d");
 
-    var gameEngine = new GameEngine();
-    gameEngine.init(ctx);
-    gameEngine.start();
+    // canvas.addEventListener("click", myFunction);
+    // canvas.addEventListener("click", getClickPosition, false);
 
-    gameEngine.addEntity(new Background(gameEngine, AM.getAsset("./img/background_space.png")));
-    gameEngine.addEntity(new Magnet(gameEngine, AM.getAsset("./img/magnet.png")));
-    gameEngine.addEntity(new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png")));
-    gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
-    gameEngine.addEntity(new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png")));
+
+
+    // var gameEngine = new GameEngine();
+    // gameEngine.init(ctx);
+
+    // gameEngine.start();
+
+    // canvas.addEventListener("mousemove", updateDisplay, false);
+
+function printMousePos(event) {
+
+    var x = event.clientX;
+    var y = event.clientY;
+       // var my_gradient = ctx.createLinearGradient(y, -x, -y, x);
+
+
+           var a = 222;
+
+              var my_gradient = ctx.createLinearGradient(-(y-a)+a, x, y, -(x-a)+a);
+
+
+    // var my_gradient = ctx.createLinearGradient(400, 0, 0, 400);
+    my_gradient.addColorStop(0, "#00e600");
+    my_gradient.addColorStop(.4, "#66ff66");
+    my_gradient.addColorStop(.5, "#b3ffb3");
+    my_gradient.addColorStop(.6, "#66ff66");
+    my_gradient.addColorStop(1, "#00e600");
+
+    my_gradient.stroke = "butt";
+    ctx.fillStyle = my_gradient;
+
+
+    ctx.beginPath();
+    ctx.moveTo(a,a);
+    ctx.lineTo(x,y);
+    ctx.lineCap = "round";
+    ctx.lineWidth = 60;
+    ctx.strokeStyle = my_gradient;
+    ctx.stroke();
+    // var b = 500;
+
+    // ctx.fillRect(b,b,x-b,y-b);
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "#008000";
+
+    // fxCtx.shadowBlur = 10;
+    // fxCtx.shadowColor = '#FD0100';
+
+}
+//mousemove
+canvas.addEventListener("mousemove", printMousePos);
+
+
+    // gameEngine.addEntity(new Magnet(gameEngine, AM.getAsset("./img/magnet.png")));
+    // gameEngine.addEntity(new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png")));
+    // gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
+    // gameEngine.addEntity(new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png")));
+
+
 
 
 
     console.log("All Done!");
 });
+
