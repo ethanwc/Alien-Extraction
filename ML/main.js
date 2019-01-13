@@ -84,18 +84,14 @@ Ufo.prototype.draw = function () {
 
 
 
-
-
-
-
 //UFO_Beam
 function Ufo_beam(game, spritesheet) {
     // function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
-    this.animation = new Animation(spritesheet, 56, 39, 6, .2, 6, true, 3);
-    this.speed = 350;
+    this.animation = new Animation(spritesheet, 56, 39, 1, .2, 2, true, 3);
+    this.speed = 400;
     this.ctx = game.ctx;
     //250 is height that it is displayed at (y)
-    Entity.call(this, game, 0, 340);
+    Entity.call(this, game, 0, 330);
 }
 
 Ufo_beam.prototype = new Entity();
@@ -164,10 +160,11 @@ Blackhole.prototype.draw = function () {
 
 
 
+
 AM.queueDownload("./img/magnet.png");
 AM.queueDownload("./img/blackhole.png");
 AM.queueDownload("./img/ufo.png");
-AM.queueDownload("./img/ufo_beam.png");
+AM.queueDownload("./img/ufo_beam2.png");
 
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
@@ -178,79 +175,63 @@ AM.downloadAll(function () {
 
 
 
+//start game engine
+
     var gameEngine = new GameEngine();
     gameEngine.init(ctx);
-
-    var u = new Ufo(gameEngine, AM.getAsset("./img/ufo.png"));
-
-    gameEngine.addEntity(u);
-
     gameEngine.start();
 
-    Ufo.prototype.x = 200;
-
-    // canvas.addEventListener("mousemove", updateDisplay, false);
-
-// function printMousePos(event) {
-
-//     var x = event.clientX;
-//     var y = event.clientY;
-//        // var my_gradient = ctx.createLinearGradient(y, -x, -y, x);
 
 
-//            var a = 222;
-
-//               var my_gradient = ctx.createLinearGradient(-(y-a)+a, x, y, -(x-a)+a);
+    canvas.addEventListener("click", drawBeam);
 
 
-//     // var my_gradient = ctx.createLinearGradient(400, 0, 0, 400);
-//     my_gradient.addColorStop(0, "#00e600");
-//     my_gradient.addColorStop(.4, "#66ff66");
-//     my_gradient.addColorStop(.5, "#b3ffb3");
-//     my_gradient.addColorStop(.6, "#66ff66");
-//     my_gradient.addColorStop(1, "#00e600");
 
-//     my_gradient.stroke = "butt";
-//     ctx.fillStyle = my_gradient;
+function drawBeam(event) {
+
+    var x = event.clientX;
+    var y = event.clientY;
+
+    // var my_gradient = ctx.createLinearGradient(y, -x, -y, x);
+
+    //draw from Ufo's position
+
+    // a is x origin
+    // b is y origin
+    var a = Ufo.x;
+    var b = Ufo.y
+
+    var my_gradient = ctx.createLinearGradient(-(y-b)+b, x, y, -(x-a)+a);
 
 
-//     ctx.beginPath();
-//     ctx.moveTo(a,a);
-//     ctx.lineTo(x,y);
-//     ctx.lineCap = "round";
-//     ctx.lineWidth = 60;
-//     ctx.strokeStyle = my_gradient;
-//     ctx.stroke();
-//     // var b = 500;
+    my_gradient.addColorStop(0, "#00e600");
+    my_gradient.addColorStop(.4, "#66ff66");
+    my_gradient.addColorStop(.5, "#b3ffb3");
+    my_gradient.addColorStop(.6, "#66ff66");
+    my_gradient.addColorStop(1, "#00e600");
 
-//     // ctx.fillRect(b,b,x-b,y-b);
-//     ctx.shadowBlur = 10;
-//     ctx.shadowColor = "#008000";
+    my_gradient.stroke = "butt";
+    ctx.fillStyle = my_gradient;
 
-//     // fxCtx.shadowBlur = 10;
-//     // fxCtx.shadowColor = '#FD0100';
 
-// }
-// //mousemove
-// canvas.addEventListener("mousemove", printMousePos);
-document.onkeydown = function(e) {
-    switch (e.keyCode) {
-        case 37:
-        //LEFT
-       Ufo.speed = 0;
-            break;
-        case 38:
-        //UP
-            break;
-        case 39:
-        //RIGHT
-        Ufo.speed = 400;
-            break;
-        case 40:
-        //DOWN
-            break;
-    }
-};
+    ctx.beginPath();
+    ctx.moveTo(a,b);
+    ctx.lineTo(x,y);
+    ctx.lineCap = "round";
+    ctx.lineWidth = 60;
+    ctx.strokeStyle = my_gradient;
+    ctx.stroke();
+    // var b = 500;
+
+    // ctx.fillRect(b,b,x-b,y-b);
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "#008000";
+
+    // fxCtx.shadowBlur = 10;
+    // fxCtx.shadowColor = '#FD0100';
+
+}
+//mousemove
 
 
 
@@ -259,13 +240,46 @@ document.onkeydown = function(e) {
 
 //     // gameEngine.addEntity(new Magnet(gameEngine, AM.getAsset("./img/magnet.png")));
 //     // gameEngine.addEntity(new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png")));
-//     // gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
-//     // gameEngine.addEntity(new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png")));
+//     gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
 
+    var b = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam2.png"));
+    var u = new Ufo(gameEngine, AM.getAsset("./img/ufo.png"));
 
+    gameEngine.addEntity(u);
+    gameEngine.addEntity(b);
+    u.speed = 0;
+    b.speed = 0;
 
+    document.onkeydown = function(e) {
+        switch (e.keyCode) {
+            case 37:
+                //LEFT
+                // Ufo.speed = 400;
+                u.x -= 10;
+                b.x -= 10;
 
+                break;
+            case 38:
+                //UP
+                u.y-=10;
+                b.y-=10;
 
-//     console.log("All Done!");
+                break;
+            case 39:
+                //RIGHT
+                // Ufo.speed = 400;
+                u.x += 10;
+                b.x+=10;
+                break;
+            case 40:
+                u.y += 10;
+                b.y+=10;
+                //DOWN
+                break;
+        }
+    };
+
+    console.log("All Done!");
 });
+
 
