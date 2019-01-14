@@ -99,7 +99,7 @@ Ufo.prototype.constructor = Ufo;
 
 Ufo.prototype.update = function () {
     this.x += this.game.clockTick * this.speed;
-    if (this.x > 1000) this.x = -230;
+    // if (this.x > 1000) this.x = -230;
     Entity.prototype.update.call(this);
 }
 
@@ -127,7 +127,7 @@ Ufo_beam.prototype.constructor = Ufo_beam;
 
 Ufo_beam.prototype.update = function () {
     this.x += this.game.clockTick * this.speed;
-    if (this.x >1000) this.x = -230;
+    // if (this.x >1000) this.x = -230;
     Entity.prototype.update.call(this);
 }
 
@@ -285,8 +285,8 @@ function drawBeam(event) {
 //     // gameEngine.addEntity(new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png")));
 //     gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
 
-    // var b = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam2.png"));
-    // var u = new Ufo(gameEngine, AM.getAsset("./img/ufo.png"));
+    var b = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam2.png"));
+    var u = new Ufo(gameEngine, AM.getAsset("./img/ufo.png"));
     // var n1 = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
 
     var worldWidth = 60;
@@ -412,12 +412,12 @@ function drawBeam(event) {
         }
     }
 
-    // gameEngine.addEntity(u);
-    // gameEngine.addEntity(b);
+    gameEngine.addEntity(u);
+    gameEngine.addEntity(b);
 
 
-    // u.speed = 0;
-    // b.speed = 0;
+    u.speed = 0;
+    b.speed = 0;
 
 
     document.onkeydown = function(e) {
@@ -425,25 +425,25 @@ function drawBeam(event) {
             case 37:
                 //LEFT
                 // Ufo.speed = 400;
-                u.x -= 10;
-                b.x -= 10;
+                u.x -= 20;
+                b.x -= 20;
 
                 break;
             case 38:
                 //UP
-                u.y-=10;
-                b.y-=10;
+                u.y-=20;
+                b.y-=20;
 
                 break;
             case 39:
                 //RIGHT
                 // Ufo.speed = 400;
-                u.x += 10;
-                b.x+=10;
+                u.x += 20;
+                b.x+=20;
                 break;
             case 40:
-                u.y += 10;
-                b.y+=10;
+                u.y += 20;
+                b.y+=20;
                 //DOWN
                 break;
         }
