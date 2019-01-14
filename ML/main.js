@@ -57,6 +57,32 @@ Animation.prototype.isDone = function () {
 
 // };
 
+// function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
+
+//TILE
+function Tile(game, spritesheet) {
+    this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, .25);
+    this.speed = 400;
+    this.ctx = game.ctx;
+    //250 is height that it is displayed at (y)
+    Entity.call(this, game, 0, 250);
+}
+
+Tile.prototype = new Entity();
+Tile.prototype.constructor = Tile;
+
+Tile.prototype.update = function () {
+    this.x += this.game.clockTick * this.speed;
+    // if (this.x > 1000) this.x = -230;
+    Entity.prototype.update.call(this);
+}
+
+Tile.prototype.draw = function () {
+    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+    Entity.prototype.draw.call(this);
+}
+
+
 // UFO
 function Ufo(game, spritesheet) {
     this.animation = new Animation(spritesheet, 56, 39, 6, .02, 12, true, 3);
@@ -165,6 +191,13 @@ AM.queueDownload("./img/magnet.png");
 AM.queueDownload("./img/blackhole.png");
 AM.queueDownload("./img/ufo.png");
 AM.queueDownload("./img/ufo_beam2.png");
+AM.queueDownload("./img/grass.jpg");
+AM.queueDownload("./img/dirt.png");
+AM.queueDownload("./img/stone.png");
+AM.queueDownload("./img/stone_ore.png");
+AM.queueDownload("./img/gold_ore.png");
+
+
 
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
@@ -242,13 +275,78 @@ function drawBeam(event) {
 //     // gameEngine.addEntity(new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png")));
 //     gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
 
-    var b = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam2.png"));
-    var u = new Ufo(gameEngine, AM.getAsset("./img/ufo.png"));
+    // var b = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam2.png"));
+    // var u = new Ufo(gameEngine, AM.getAsset("./img/ufo.png"));
+    // var n1 = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
 
-    gameEngine.addEntity(u);
-    gameEngine.addEntity(b);
-    u.speed = 0;
-    b.speed = 0;
+    var worldWidth = 40;
+    var worldHeight = 40;
+
+
+    //Generate World
+    //TODO: Randomize spawning for 'ground' layers.
+
+    var x, y;
+
+    for (x = 0; x < worldWidth; x++) {
+        for (y = 0; y < worldHeight; y++) {
+            if (y === 0) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth/4) * x;
+                t.y = 0;
+                gameEngine.addEntity(t);
+            }
+            else if (y < 10) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/dirt.png"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth/4) * x;
+                t.y = (t.animation.frameHeight/4) * y;
+                gameEngine.addEntity(t);
+            }
+
+            else if (y < 20) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/stone.png"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth/4) * x;
+                t.y = (t.animation.frameHeight/4) * y;
+                gameEngine.addEntity(t);
+            }
+
+            else if (y < 40) {
+                var t;
+
+                var r = ((Math.random() * 100) + 1);
+
+                if (r < 70) {
+                    t = new Tile(gameEngine, AM.getAsset("./img/stone.png"));
+                }
+                else if (r < 95) {
+                    t = new Tile(gameEngine, AM.getAsset("./img/stone_ore.png"));
+                }
+                else {
+                    t = new Tile(gameEngine, AM.getAsset("./img/gold_ore.png"));
+                }
+
+                t.speed = 0;
+                t.x = (t.animation.frameWidth/4) * x;
+                t.y = (t.animation.frameHeight/4) * y;
+                gameEngine.addEntity(t);
+            }
+
+            AM.queueDownload("./img/stone.png");
+            AM.queueDownload("./img/stone_ore.png");
+            AM.queueDownload("./img/gold_ore.png");
+        }
+    }
+
+    // gameEngine.addEntity(u);
+    // gameEngine.addEntity(b);
+
+
+    // u.speed = 0;
+    // b.speed = 0;
+
 
     document.onkeydown = function(e) {
         switch (e.keyCode) {
