@@ -190,6 +190,10 @@ Blackhole.prototype.draw = function () {
 
 
 AM.queueDownload("./img/magnet.png");
+AM.queueDownload("./img/sky.jpg");
+AM.queueDownload("./img/sky_2.png");
+AM.queueDownload("./img/sky_3.png");
+AM.queueDownload("./img/stars.jpg");
 AM.queueDownload("./img/blackhole.png");
 AM.queueDownload("./img/ufo.png");
 AM.queueDownload("./img/ufo_beam2.png");
@@ -197,7 +201,11 @@ AM.queueDownload("./img/grass.jpg");
 AM.queueDownload("./img/dirt.png");
 AM.queueDownload("./img/stone.png");
 AM.queueDownload("./img/stone_ore.png");
+AM.queueDownload("./img/stone_black.jpg");
 AM.queueDownload("./img/gold_ore.png");
+AM.queueDownload("./img/ore_crystal_blue.png");
+AM.queueDownload("./img/ore_crystal_large.png");
+
 
 
 
@@ -282,7 +290,7 @@ function drawBeam(event) {
     // var n1 = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
 
     var worldWidth = 60;
-    var worldHeight = 150;
+    var worldHeight = 300;
 
 
     //Generate World
@@ -292,22 +300,59 @@ function drawBeam(event) {
 
     for (x = 0; x < worldWidth; x++) {
         for (y = 0; y < worldHeight; y++) {
-            if (y === 0) {
-                var t = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
+            if (y < 5) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/stars.jpg"));
                 t.speed = 0;
                 t.x = (t.animation.frameWidth * scale) * x;
-                t.y = 0;
+                t.y = (t.animation.frameHeight * scale) * y;
                 gameEngine.addEntity(t);
             }
             else if (y < 10) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/sky_3.png"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+            else if (y < 15) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/sky_2.png"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+            else if (y < 20) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/sky.jpg"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+            else if (y === 20) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+            else if (y < 30) {
                 var t = new Tile(gameEngine, AM.getAsset("./img/dirt.png"));
                 t.speed = 0;
                 t.x = (t.animation.frameWidth * scale) * x;
                 t.y = (t.animation.frameHeight * scale) * y;
                 gameEngine.addEntity(t);
             }
+            else if (y < 35) {
+                var t;
 
-            else if (y < 15) {
+                t = new Tile(gameEngine, AM.getAsset("./img/stone_black.jpg"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+
+            else if (y < 45) {
                 var t = new Tile(gameEngine, AM.getAsset("./img/stone.png"));
                 t.speed = 0;
                 t.x = (t.animation.frameWidth * scale) * x;
@@ -315,15 +360,15 @@ function drawBeam(event) {
                 gameEngine.addEntity(t);
             }
 
-            else if (y < 200) {
+            else if (y < 80) {
                 var t;
 
                 var r = ((Math.random() * 100) + 1);
 
-                if (r < 70) {
+                if (r < 94) {
                     t = new Tile(gameEngine, AM.getAsset("./img/stone.png"));
                 }
-                else if (r < 95) {
+                else if (r < 97) {
                     t = new Tile(gameEngine, AM.getAsset("./img/stone_ore.png"));
                 }
                 else {
@@ -336,9 +381,34 @@ function drawBeam(event) {
                 gameEngine.addEntity(t);
             }
 
-            AM.queueDownload("./img/stone.png");
-            AM.queueDownload("./img/stone_ore.png");
-            AM.queueDownload("./img/gold_ore.png");
+            else if (y < 100) {
+                var t;
+
+                var r = ((Math.random() * 100) + 1);
+
+                if (r < 94) {
+                    t = new Tile(gameEngine, AM.getAsset("./img/stone.png"));
+                }
+                else if (r < 96) {
+                    t = new Tile(gameEngine, AM.getAsset("./img/stone_ore.png"));
+                }
+                else if (r < 98) {
+                    t = new Tile(gameEngine, AM.getAsset("./img/gold_ore.png"));
+                }
+
+                else if (r < 99) {
+                    t = new Tile(gameEngine, AM.getAsset("./img/ore_crystal_blue.png"));
+                }
+
+                else {
+                    t = new Tile(gameEngine, AM.getAsset("./img/ore_crystal_large.png"));
+                }
+
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
         }
     }
 
