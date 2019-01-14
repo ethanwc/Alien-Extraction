@@ -115,7 +115,9 @@ Ufo.prototype.draw = function () {
 //UFO_Beam
 function Ufo_beam(game, spritesheet) {
     // function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
-    this.animation = new Animation(spritesheet, 56, 39, 1, .2, 2, true, 3);
+    // this.animation = new Animation(spritesheet, 56, 39, 1, .2, 2, true, 3);
+    this.animation = new Animation(spritesheet, 56, 56, 6, .2, 6, true, 3);
+
     this.speed = 400;
     this.ctx = game.ctx;
     //250 is height that it is displayed at (y)
@@ -195,8 +197,8 @@ AM.queueDownload("./img/sky_2.png");
 AM.queueDownload("./img/sky_3.png");
 AM.queueDownload("./img/stars.jpg");
 AM.queueDownload("./img/blackhole.png");
-AM.queueDownload("./img/ufo.png");
-AM.queueDownload("./img/ufo_beam2.png");
+AM.queueDownload("./img/ship2.png");
+AM.queueDownload("./img/ufo_beam.png");
 AM.queueDownload("./img/grass.jpg");
 AM.queueDownload("./img/dirt.png");
 AM.queueDownload("./img/stone.png");
@@ -285,8 +287,8 @@ function drawBeam(event) {
 //     // gameEngine.addEntity(new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png")));
 //     gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
 
-    var b = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam2.png"));
-    var u = new Ufo(gameEngine, AM.getAsset("./img/ufo.png"));
+    var b = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png"));
+    var u = new Ufo(gameEngine, AM.getAsset("./img/ship2.png"));
     // var n1 = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
 
     var worldWidth = 60;
