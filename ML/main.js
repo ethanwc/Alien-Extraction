@@ -1,5 +1,7 @@
 var AM = new AssetManager();
 
+var scale = 1/8;
+
 function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
     this.spriteSheet = spriteSheet;
     this.frameWidth = frameWidth;
@@ -61,7 +63,7 @@ Animation.prototype.isDone = function () {
 
 //TILE
 function Tile(game, spritesheet) {
-    this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, .25);
+    this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, scale);
     this.speed = 400;
     this.ctx = game.ctx;
     //250 is height that it is displayed at (y)
@@ -279,8 +281,8 @@ function drawBeam(event) {
     // var u = new Ufo(gameEngine, AM.getAsset("./img/ufo.png"));
     // var n1 = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
 
-    var worldWidth = 40;
-    var worldHeight = 40;
+    var worldWidth = 60;
+    var worldHeight = 150;
 
 
     //Generate World
@@ -293,27 +295,27 @@ function drawBeam(event) {
             if (y === 0) {
                 var t = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
                 t.speed = 0;
-                t.x = (t.animation.frameWidth/4) * x;
+                t.x = (t.animation.frameWidth * scale) * x;
                 t.y = 0;
                 gameEngine.addEntity(t);
             }
             else if (y < 10) {
                 var t = new Tile(gameEngine, AM.getAsset("./img/dirt.png"));
                 t.speed = 0;
-                t.x = (t.animation.frameWidth/4) * x;
-                t.y = (t.animation.frameHeight/4) * y;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
                 gameEngine.addEntity(t);
             }
 
-            else if (y < 20) {
+            else if (y < 15) {
                 var t = new Tile(gameEngine, AM.getAsset("./img/stone.png"));
                 t.speed = 0;
-                t.x = (t.animation.frameWidth/4) * x;
-                t.y = (t.animation.frameHeight/4) * y;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
                 gameEngine.addEntity(t);
             }
 
-            else if (y < 40) {
+            else if (y < 200) {
                 var t;
 
                 var r = ((Math.random() * 100) + 1);
@@ -329,8 +331,8 @@ function drawBeam(event) {
                 }
 
                 t.speed = 0;
-                t.x = (t.animation.frameWidth/4) * x;
-                t.y = (t.animation.frameHeight/4) * y;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
                 gameEngine.addEntity(t);
             }
 
