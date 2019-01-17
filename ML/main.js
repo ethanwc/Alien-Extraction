@@ -1,6 +1,7 @@
 var AM = new AssetManager();
 
-var drawscale = 1/2;
+var scale = 1/16;
+var ufoscale = 3;
 
 function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
     this.spriteSheet = spriteSheet;
@@ -27,13 +28,13 @@ Animation.prototype.drawFrame = function (tick, ctx, x, y) {
     yindex = Math.floor(frame / this.sheetWidth);
 
     ctx.drawImage(this.spriteSheet,
-                 xindex * this.frameWidth, yindex * this.frameHeight,  // source from sheet
-                 this.frameWidth, this.frameHeight,
-                 x, y,
-                 this.frameWidth,
-                 this.frameHeight);
-    // this.frameWidth * this.scale,
-    // this.frameHeight * this.scale);
+        xindex * this.frameWidth, yindex * this.frameHeight,  // source from sheet
+        this.frameWidth, this.frameHeight,
+        x, y,
+        // this.frameWidth,
+        // this.frameHeight);
+        this.frameWidth * this.scale,
+        this.frameHeight * this.scale);
 };
 
 Animation.prototype.currentFrame = function () {
@@ -65,7 +66,7 @@ Animation.prototype.isDone = function () {
 
 //TILE
 function Tile(game, spritesheet) {
-    this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, 1);
+    this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, scale);
     this.speed = 400;
     this.ctx = game.ctx;
     //250 is height that it is displayed at (y)
@@ -168,7 +169,7 @@ Blackhole.prototype.draw = function () {
 
 // UFO
 function Ufo(game, spritesheet) {
-    this.animation = new Animation(spritesheet, 56, 39, 6, .02, 12, true, 1);
+    this.animation = new Animation(spritesheet, 56, 39, 6, .02, 12, true, ufoscale);
     this.speed = 400;
     this.ctx = game.ctx;
     //250 is height that it is displayed at (y)
@@ -180,39 +181,46 @@ Ufo.prototype.constructor = Ufo;
 
 Ufo.prototype.update = function () {
     this.x += this.game.clockTick * this.speed;
-    if (this.x > 1000) this.x = -230;
+    // if (this.x > 1000) this.x = -230;
     Entity.prototype.update.call(this);
 
     for (var i = 0; i < this.game.entities.length; i++) {
         var ent = this.game.entities[i];
-            // if (ent instanceof Tile) {
-                if (this.collideBottom(ent) && this.collideLeft(ent) && this.collideRight(ent)) {
-                    this.collide();
-                    ent.x = -100;
-                    ent.y = -100;
-                    // ent.removeFromWorld = true;
-                }
+
+        //what the fuck is this
+        if (ent instanceof Tile) {
+            var l = this.collideLeft(ent), r = this.collideRight(ent), t = this.collideTop(ent),
+                b = this.collideBottom(ent), e = this.collideEncompass(ent);
+            // if (l || r || b || t) {
+
+            if ((b && (r || l)) || (t && (r || l)) || (e && (t || b)) || (e && (l || r))) {
+                this.collide();
+                ent.x = -100;
+                ent.y = -100;
+                // ent.removeFromWorld = true;
+            }
         }
-    };
+    }
+};
 
-    Ufo.prototype.draw = function () {
-        this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-        Entity.prototype.draw.call(this);
-    };
-    Ufo.prototype.collide = function() {
-        // this.y = 0;
-        // this.x = 0;
-        // b.y = 350;
-        // alert('collision detected');
-    };
+Ufo.prototype.draw = function () {
+    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+    Entity.prototype.draw.call(this);
+};
+Ufo.prototype.collide = function() {
+    // this.y = 0;
+    // this.x = 0;
+    // b.y = 350;
+    // alert('collision detected');
+};
 
 
-    //doesnt account for the ufo scale size
+//doesnt account for the ufo scale size
 
 Ufo.prototype.collideBottom = function(other) {
     if (other instanceof Tile) {
-         return (((this.y + this.animation.frameHeight) > other.y) &&
-        ((this.y + this.animation.frameHeight) < (other.y + other.animation.frameHeight)));
+        return (((this.y + (this.animation.frameHeight * ufoscale)) > other.y) &&
+            ((this.y + (this.animation.frameHeight * ufoscale)) < (other.y + (other.animation.frameHeight * scale))));
     }
     else return false;
 };
@@ -220,7 +228,7 @@ Ufo.prototype.collideBottom = function(other) {
 Ufo.prototype.collideTop = function(other) {
     if (other instanceof Tile) {
         return ((this.y > other.y) &&
-            (this.y < (other.y + other.animation.frameHeight)));
+            (this.y < (other.y + (other.animation.frameHeight * scale))));
     }
 
     else return false;
@@ -229,7 +237,7 @@ Ufo.prototype.collideTop = function(other) {
 Ufo.prototype.collideLeft = function(other) {
     if (other instanceof Tile) {
         return ((this.x > other.x) &&
-            (this.x < (other.x + other.animation.frameWidth)));
+            (this.x < (other.x + (other.animation.frameWidth * scale))));
     }
 
     else return false;
@@ -237,13 +245,20 @@ Ufo.prototype.collideLeft = function(other) {
 
 Ufo.prototype.collideRight = function(other) {
     if (other instanceof Tile) {
-        return (((this.x + this.animation.frameWidth) > other.x) &&
-            ((this.x + this.animation.frameWidth) < (other.x + other.animation.frameWidth)));
+
+        return (((this.x + (this.animation.frameWidth * ufoscale)) > other.x) &&
+            ((this.x + (this.animation.frameWidth * ufoscale)) < (other.x + (other.animation.frameWidth * scale))));
     }
 
     else return false;
 };
+Ufo.prototype.collideEncompass = function(other) {
+    if (other instanceof Tile) {
+        return ((this.x < other.x) && ((this.x + (this.animation.frameWidth * ufoscale)) > (other.x + (other.animation.frameWidth * scale)))) ||
+            ((this.y < other.y) && ((this.y + (this.animation.frameHeight * ufoscale)) > (other.y + (other.animation.frameHeight * scale))));
 
+    }
+}
 
 
 
@@ -253,7 +268,7 @@ AM.queueDownload("./img/sky_2.png");
 AM.queueDownload("./img/sky_3.png");
 AM.queueDownload("./img/stars.jpg");
 AM.queueDownload("./img/blackhole.png");
-AM.queueDownload("./img/ufo2.png");
+AM.queueDownload("./img/ship2.png");
 AM.queueDownload("./img/ufo_beam.png");
 AM.queueDownload("./img/grass.jpg");
 AM.queueDownload("./img/dirt.png");
@@ -288,50 +303,50 @@ AM.downloadAll(function () {
 
 
 
-function drawBeam(event) {
+    function drawBeam(event) {
 
-    var x = event.clientX;
-    var y = event.clientY;
+        var x = event.clientX;
+        var y = event.clientY;
 
-    // var my_gradient = ctx.createLinearGradient(y, -x, -y, x);
+        // var my_gradient = ctx.createLinearGradient(y, -x, -y, x);
 
-    //draw from Ufo's position
+        //draw from Ufo's position
 
-    // a is x origin
-    // b is y origin
-    var a = Ufo.x;
-    var b = Ufo.y;
+        // a is x origin
+        // b is y origin
+        var a = Ufo.x;
+        var b = Ufo.y;
 
-    var my_gradient = ctx.createLinearGradient(-(y-b)+b, x, y, -(x-a)+a);
-
-
-    my_gradient.addColorStop(0, "#00e600");
-    my_gradient.addColorStop(.4, "#66ff66");
-    my_gradient.addColorStop(.5, "#b3ffb3");
-    my_gradient.addColorStop(.6, "#66ff66");
-    my_gradient.addColorStop(1, "#00e600");
-
-    my_gradient.stroke = "butt";
-    ctx.fillStyle = my_gradient;
+        var my_gradient = ctx.createLinearGradient(-(y-b)+b, x, y, -(x-a)+a);
 
 
-    ctx.beginPath();
-    ctx.moveTo(a,b);
-    ctx.lineTo(x,y);
-    ctx.lineCap = "round";
-    ctx.lineWidth = 60;
-    ctx.strokeStyle = my_gradient;
-    ctx.stroke();
-    // var b = 500;
+        my_gradient.addColorStop(0, "#00e600");
+        my_gradient.addColorStop(.4, "#66ff66");
+        my_gradient.addColorStop(.5, "#b3ffb3");
+        my_gradient.addColorStop(.6, "#66ff66");
+        my_gradient.addColorStop(1, "#00e600");
 
-    // ctx.fillRect(b,b,x-b,y-b);
-    ctx.shadowBlur = 10;
-    ctx.shadowColor = "#008000";
+        my_gradient.stroke = "butt";
+        ctx.fillStyle = my_gradient;
 
-    // fxCtx.shadowBlur = 10;
-    // fxCtx.shadowColor = '#FD0100';
 
-}
+        ctx.beginPath();
+        ctx.moveTo(a,b);
+        ctx.lineTo(x,y);
+        ctx.lineCap = "round";
+        ctx.lineWidth = 60;
+        ctx.strokeStyle = my_gradient;
+        ctx.stroke();
+        // var b = 500;
+
+        // ctx.fillRect(b,b,x-b,y-b);
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "#008000";
+
+        // fxCtx.shadowBlur = 10;
+        // fxCtx.shadowColor = '#FD0100';
+
+    }
 //mousemove
 
 
@@ -344,11 +359,11 @@ function drawBeam(event) {
 //     gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
 
     var b = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png"));
-    var u = new Ufo(gameEngine, AM.getAsset("./img/ufo2.png"));
+    var u = new Ufo(gameEngine, AM.getAsset("./img/ship2.png"));
     // var n1 = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
 
     var worldWidth = 60;
-    var worldHeight = 100;
+    var worldHeight = 200;
 
 
     //Generate World
@@ -358,120 +373,120 @@ function drawBeam(event) {
 
     for (x = 0; x < worldWidth; x++) {
         for (y = 0; y < worldHeight; y++) {
-            if (y > 3) {
+            if (y < 5) {
                 var t = new Tile(gameEngine, AM.getAsset("./img/stars.jpg"));
                 t.speed = 0;
-                t.x = (t.animation.frameWidth * drawscale) * x;
-                t.y = (t.animation.frameHeight * drawscale) * y;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
                 gameEngine.addEntity(t);
             }
-            // else if (y < 10) {
-            //     var t = new Tile(gameEngine, AM.getAsset("./img/sky_3.png"));
-            //     t.speed = 0;
-            //     t.x = (t.animation.frameWidth * scale) * x;
-            //     t.y = (t.animation.frameHeight * scale) * y;
-            //     gameEngine.addEntity(t);
-            // }
-            // else if (y < 15) {
-            //     var t = new Tile(gameEngine, AM.getAsset("./img/sky_2.png"));
-            //     t.speed = 0;
-            //     t.x = (t.animation.frameWidth * scale) * x;
-            //     t.y = (t.animation.frameHeight * scale) * y;
-            //     gameEngine.addEntity(t);
-            // }
-            // else if (y < 20) {
-            //     var t = new Tile(gameEngine, AM.getAsset("./img/sky.jpg"));
-            //     t.speed = 0;
-            //     t.x = (t.animation.frameWidth * scale) * x;
-            //     t.y = (t.animation.frameHeight * scale) * y;
-            //     gameEngine.addEntity(t);
-            // }
-            // else if (y === 20) {
-            //     var t = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
-            //     t.speed = 0;
-            //     t.x = (t.animation.frameWidth * scale) * x;
-            //     t.y = (t.animation.frameHeight * scale) * y;
-            //     gameEngine.addEntity(t);
-            // }
-            // else if (y < 30) {
-            //     var t = new Tile(gameEngine, AM.getAsset("./img/dirt.png"));
-            //     t.speed = 0;
-            //     t.x = (t.animation.frameWidth * scale) * x;
-            //     t.y = (t.animation.frameHeight * scale) * y;
-            //     gameEngine.addEntity(t);
-            // }
-            // else if (y < 35) {
-            //     var t;
-            //
-            //     t = new Tile(gameEngine, AM.getAsset("./img/stone_black.jpg"));
-            //     t.speed = 0;
-            //     t.x = (t.animation.frameWidth * scale) * x;
-            //     t.y = (t.animation.frameHeight * scale) * y;
-            //     gameEngine.addEntity(t);
-            // }
-            //
-            // else if (y < 45) {
-            //     var t = new Tile(gameEngine, AM.getAsset("./img/stone.png"));
-            //     t.speed = 0;
-            //     t.x = (t.animation.frameWidth * scale) * x;
-            //     t.y = (t.animation.frameHeight * scale) * y;
-            //     gameEngine.addEntity(t);
-            // }
-            //
-            // else if (y < 80) {
-            //     var t;
-            //
-            //     var r = ((Math.random() * 100) + 1);
-            //
-            //     if (r < 94) {
-            //         t = new Tile(gameEngine, AM.getAsset("./img/stone.png"));
-            //     }
-            //     else if (r < 97) {
-            //         t = new Tile(gameEngine, AM.getAsset("./img/stone_ore.png"));
-            //     }
-            //     else {
-            //         t = new Tile(gameEngine, AM.getAsset("./img/gold_ore.png"));
-            //     }
-            //
-            //     t.speed = 0;
-            //     t.x = (t.animation.frameWidth * scale) * x;
-            //     t.y = (t.animation.frameHeight * scale) * y;
-            //     gameEngine.addEntity(t);
-            // }
-            //
-            // else if (y < 100) {
-            //     var t;
-            //
-            //     var r = ((Math.random() * 100) + 1);
-            //
-            //     if (r < 94) {
-            //         t = new Tile(gameEngine, AM.getAsset("./img/stone.png"));
-            //     }
-            //     else if (r < 96) {
-            //         t = new Tile(gameEngine, AM.getAsset("./img/stone_ore.png"));
-            //     }
-            //     else if (r < 98) {
-            //         t = new Tile(gameEngine, AM.getAsset("./img/gold_ore.png"));
-            //     }
-            //
-            //     else if (r < 99) {
-            //         t = new Tile(gameEngine, AM.getAsset("./img/ore_crystal_blue.png"));
-            //     }
-            //
-            //     else {
-            //         t = new Tile(gameEngine, AM.getAsset("./img/ore_crystal_large.png"));
-            //     }
-            //
-            //     t.speed = 0;
-            //     t.x = (t.animation.frameWidth * scale) * x;
-            //     t.y = (t.animation.frameHeight * scale) * y;
-            //     gameEngine.addEntity(t);
-            // }
+            else if (y < 10) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/sky_3.png"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+            else if (y < 15) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/sky_2.png"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+            else if (y < 20) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/sky.jpg"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+            else if (y === 20) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+            else if (y < 30) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/dirt.png"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+            else if (y < 35) {
+                var t;
+
+                t = new Tile(gameEngine, AM.getAsset("./img/stone_black.jpg"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+
+            else if (y < 45) {
+                var t = new Tile(gameEngine, AM.getAsset("./img/stone.png"));
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+
+            else if (y < 80) {
+                var t;
+
+                var r = ((Math.random() * 100) + 1);
+
+                if (r < 94) {
+                    t = new Tile(gameEngine, AM.getAsset("./img/stone.png"));
+                }
+                else if (r < 97) {
+                    t = new Tile(gameEngine, AM.getAsset("./img/stone_ore.png"));
+                }
+                else {
+                    t = new Tile(gameEngine, AM.getAsset("./img/gold_ore.png"));
+                }
+
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
+
+            else if (y < 100) {
+                var t;
+
+                var r = ((Math.random() * 100) + 1);
+
+                if (r < 94) {
+                    t = new Tile(gameEngine, AM.getAsset("./img/stone.png"));
+                }
+                else if (r < 96) {
+                    t = new Tile(gameEngine, AM.getAsset("./img/stone_ore.png"));
+                }
+                else if (r < 98) {
+                    t = new Tile(gameEngine, AM.getAsset("./img/gold_ore.png"));
+                }
+
+                else if (r < 99) {
+                    t = new Tile(gameEngine, AM.getAsset("./img/ore_crystal_blue.png"));
+                }
+
+                else {
+                    t = new Tile(gameEngine, AM.getAsset("./img/ore_crystal_large.png"));
+                }
+
+                t.speed = 0;
+                t.x = (t.animation.frameWidth * scale) * x;
+                t.y = (t.animation.frameHeight * scale) * y;
+                gameEngine.addEntity(t);
+            }
         }
     }
 
     gameEngine.addEntity(u);
-    gameEngine.addEntity(b);
+    // gameEngine.addEntity(b);
 
 
     u.speed = 0;
