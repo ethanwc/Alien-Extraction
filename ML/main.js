@@ -1,7 +1,9 @@
 var AM = new AssetManager();
 
-var scale = 1/16;
+var scale = 1/8;
 var ufoscale = 3;
+var u;
+var mousex = 0, mousey = 0;
 
 function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
     this.spriteSheet = spriteSheet;
@@ -45,6 +47,59 @@ Animation.prototype.isDone = function () {
     return (this.elapsedTime >= this.totalTime);
 };
 
+//draw laser beam, give it context
+
+function Laser(game) {
+    // this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, scale);
+    this.speed = 0;
+    this.ctx = game.ctx;
+//250 is height that it is displayed at (y)
+    Entity.call(this, game, 0, 0);
+}
+
+Laser.prototype = new Entity();
+Laser.prototype.constructor = Laser;
+
+Laser.prototype.update = function () {
+    // this.x += this.game.clockTick * this.speed;
+    // if (this.x > 1000) this.x = -230;
+    Entity.prototype.update.call(this);
+};
+
+Laser.prototype.draw = function () {
+    // this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+    // Entity.prototype.draw.call(this);
+
+    var x = u.x + 28 * ufoscale, y = u.y + 37 * ufoscale;
+
+    var a = mousex, b = mousey;
+
+    //x:28,y:33
+
+    var my_gradient = this.ctx.createLinearGradient(-(y-b)+b, x, y, -(x-a)+a);
+
+
+    my_gradient.addColorStop(0, "#00e600");
+    my_gradient.addColorStop(.4, "#66ff66");
+    my_gradient.addColorStop(.5, "#b3ffb3");
+    my_gradient.addColorStop(.6, "#66ff66");
+    my_gradient.addColorStop(1, "#00e600");
+
+    my_gradient.stroke = "butt";
+    this.ctx.fillStyle = my_gradient;
+
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(a,b);
+    this.ctx.lineTo(x,y);
+    this.ctx.lineCap = "round";
+    this.ctx.lineWidth = 60;
+    this.ctx.strokeStyle = my_gradient;
+    this.ctx.stroke();
+
+
+
+};
 // function Background(game, spritesheet) {
 //     this.x = 0;
 //     this.y = 0;
@@ -67,10 +122,10 @@ Animation.prototype.isDone = function () {
 //TILE
 function Tile(game, spritesheet) {
     this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, scale);
-    this.speed = 400;
-    this.ctx = game.ctx;
-    //250 is height that it is displayed at (y)
-    Entity.call(this, game, 0, 250);
+this.speed = 400;
+this.ctx = game.ctx;
+//250 is height that it is displayed at (y)
+Entity.call(this, game, 0, 250);
 }
 
 Tile.prototype = new Entity();
@@ -299,10 +354,12 @@ AM.downloadAll(function () {
 
 
 
-    canvas.addEventListener("click", drawBeam);
+    canvas.addEventListener("click", updateCoords);
 
-
-
+    function updateCoords(event) {
+        mousex = event.clientX;
+        mousey = event.clientY;
+    }
     function drawBeam(event) {
 
         var x = event.clientX;
@@ -359,10 +416,15 @@ AM.downloadAll(function () {
 //     gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
 
     var b = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png"));
-    var u = new Ufo(gameEngine, AM.getAsset("./img/ship2.png"));
+    u = new Ufo(gameEngine, AM.getAsset("./img/ship2.png"));
     // var n1 = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
+    var z = new Laser(gameEngine);
+    gameEngine.addEntity(u);
+    // gameEngine.addEntity(b);
+    gameEngine.addEntity(z);
 
-    var worldWidth = 60;
+
+    var worldWidth = 100;
     var worldHeight = 200;
 
 
@@ -485,8 +547,7 @@ AM.downloadAll(function () {
         }
     }
 
-    gameEngine.addEntity(u);
-    // gameEngine.addEntity(b);
+
 
 
     u.speed = 0;
