@@ -373,7 +373,11 @@ AM.downloadAll(function () {
     function updateCoords(event) {
         mousex = event.clientX;
         mousey = event.clientY;
+        gameEngine.addEntity(new Laser(gameEngine));
+
     }
+
+
     function drawBeam(event) {
 
         var x = event.clientX;
@@ -437,7 +441,7 @@ AM.downloadAll(function () {
     // gameEngine.addEntity(b);
     gameEngine.addEntity(z);
 
-    u.removeFromWorld = true;
+    // u.removeFromWorld = true;
 
     var worldWidth = 100;
     var worldHeight = 200;
