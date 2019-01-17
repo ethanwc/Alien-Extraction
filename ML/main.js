@@ -53,7 +53,7 @@ Animation.prototype.isDone = function () {
 function Laser(game) {
     // this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, scale);
     this.speed = 0;
-    this.viewTime = 5;
+    this.viewTime = .1;
     this.initTime = gameEngine.timer.gameTime;
     this.ctx = game.ctx;
 //250 is height that it is displayed at (y)
@@ -70,7 +70,7 @@ Laser.prototype.update = function () {
 
 };
 
-Laser.prototype.draw = function () {
+Laser.prototype.draw = function (event) {
     // this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     // Entity.prototype.draw.call(this);
 
@@ -83,13 +83,13 @@ Laser.prototype.draw = function () {
     var my_gradient = this.ctx.createLinearGradient(-(y - b) + b, x, y, -(x - a) + a);
 
 
-    my_gradient.addColorStop(0, "#00e600");
+    my_gradient.addColorStop(0, "#ffffff");
     // my_gradient.addColorStop(.4, "#66ff66");
-    my_gradient.addColorStop(.5, "#b3ffb3");
+    my_gradient.addColorStop(.5, "#66ff66");
     // my_gradient.addColorStop(.6, "#66ff66");
-    my_gradient.addColorStop(1, "#00e600");
+    my_gradient.addColorStop(1, "#ffffff");
 
-    my_gradient.stroke = "butt";
+    // my_gradient.stroke = "butt";
     this.ctx.fillStyle = my_gradient;
 
 
@@ -101,15 +101,18 @@ Laser.prototype.draw = function () {
     this.ctx.strokeStyle = my_gradient;
     this.ctx.stroke();
 
+    this.ctx.shadowBlur = 10;
+    this.ctx.shadowColor = "#008000";
+
     var currentTime = gameEngine.timer.gameTime;
 
-    // if ((currentTime - this.initTime) > this.viewTime) {
+    if ((currentTime - this.initTime) > this.viewTime) {
         // this.ctx.moveTo(100, 100);
         // this.ctx.lineTo(400, 400);
         // this.ctx.stroke();
         this.removeFromWorld = true;
 
-    // }
+    }
 
     // alert(gameEngine.timer.gameTime);
 
@@ -266,9 +269,9 @@ Ufo.prototype.update = function () {
 
             if ((b && (r || l)) || (t && (r || l)) || (e && (t || b)) || (e && (l || r))) {
                 this.collide();
-                ent.x = -100;
-                ent.y = -100;
-                // ent.removeFromWorld = true;
+                // ent.x = -100;
+                // ent.y = -100;
+                ent.removeFromWorld = true;
             }
         }
     }
@@ -376,53 +379,6 @@ AM.downloadAll(function () {
         gameEngine.addEntity(new Laser(gameEngine));
 
     }
-
-
-    function drawBeam(event) {
-
-        var x = event.clientX;
-        var y = event.clientY;
-
-        // var my_gradient = ctx.createLinearGradient(y, -x, -y, x);
-
-        //draw from Ufo's position
-
-        // a is x origin
-        // b is y origin
-        var a = Ufo.x;
-        var b = Ufo.y;
-
-        var my_gradient = ctx.createLinearGradient(-(y-b)+b, x, y, -(x-a)+a);
-
-
-        my_gradient.addColorStop(0, "#00e600");
-        my_gradient.addColorStop(.4, "#66ff66");
-        my_gradient.addColorStop(.5, "#b3ffb3");
-        my_gradient.addColorStop(.6, "#66ff66");
-        my_gradient.addColorStop(1, "#00e600");
-
-        my_gradient.stroke = "butt";
-        ctx.fillStyle = my_gradient;
-
-
-        ctx.beginPath();
-        ctx.moveTo(a,b);
-        ctx.lineTo(x,y);
-        ctx.lineCap = "round";
-        ctx.lineWidth = 60;
-        ctx.strokeStyle = my_gradient;
-        ctx.stroke();
-        // var b = 500;
-
-        // ctx.fillRect(b,b,x-b,y-b);
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = "#008000";
-
-        // fxCtx.shadowBlur = 10;
-        // fxCtx.shadowColor = '#FD0100';
-
-    }
-//mousemove
 
 
 
