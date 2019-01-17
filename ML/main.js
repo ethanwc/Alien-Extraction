@@ -1,6 +1,6 @@
 var AM = new AssetManager();
 
-var scale = 1/8;
+var drawscale = 1/2;
 
 function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
     this.spriteSheet = spriteSheet;
@@ -30,8 +30,10 @@ Animation.prototype.drawFrame = function (tick, ctx, x, y) {
                  xindex * this.frameWidth, yindex * this.frameHeight,  // source from sheet
                  this.frameWidth, this.frameHeight,
                  x, y,
-                 this.frameWidth * this.scale,
-                 this.frameHeight * this.scale);
+                 this.frameWidth,
+                 this.frameHeight);
+    // this.frameWidth * this.scale,
+    // this.frameHeight * this.scale);
 };
 
 Animation.prototype.currentFrame = function () {
@@ -63,7 +65,7 @@ Animation.prototype.isDone = function () {
 
 //TILE
 function Tile(game, spritesheet) {
-    this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, scale);
+    this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, 1);
     this.speed = 400;
     this.ctx = game.ctx;
     //250 is height that it is displayed at (y)
@@ -184,8 +186,11 @@ Ufo.prototype.update = function () {
     for (var i = 0; i < this.game.entities.length; i++) {
         var ent = this.game.entities[i];
             // if (ent instanceof Tile) {
-                if (this.collideBottom(ent)) {
+                if (this.collideBottom(ent) && this.collideLeft(ent) && this.collideRight(ent)) {
                     this.collide();
+                    ent.x = -100;
+                    ent.y = -100;
+                    // ent.removeFromWorld = true;
                 }
         }
     };
@@ -195,7 +200,7 @@ Ufo.prototype.update = function () {
         Entity.prototype.draw.call(this);
     };
     Ufo.prototype.collide = function() {
-        this.y = 0;
+        // this.y = 0;
         // this.x = 0;
         // b.y = 350;
         // alert('collision detected');
@@ -204,13 +209,40 @@ Ufo.prototype.update = function () {
 
     //doesnt account for the ufo scale size
 
-    Ufo.prototype.collideBottom = function(other) {
-        return (this.y > other.y) &&
-            ((this.y ) < (other.y + other.animation.frameHeight * scale));
-    };
+Ufo.prototype.collideBottom = function(other) {
+    if (other instanceof Tile) {
+         return (((this.y + this.animation.frameHeight) > other.y) &&
+        ((this.y + this.animation.frameHeight) < (other.y + other.animation.frameHeight)));
+    }
+    else return false;
+};
 
+Ufo.prototype.collideTop = function(other) {
+    if (other instanceof Tile) {
+        return ((this.y > other.y) &&
+            (this.y < (other.y + other.animation.frameHeight)));
+    }
 
+    else return false;
+};
 
+Ufo.prototype.collideLeft = function(other) {
+    if (other instanceof Tile) {
+        return ((this.x > other.x) &&
+            (this.x < (other.x + other.animation.frameWidth)));
+    }
+
+    else return false;
+};
+
+Ufo.prototype.collideRight = function(other) {
+    if (other instanceof Tile) {
+        return (((this.x + this.animation.frameWidth) > other.x) &&
+            ((this.x + this.animation.frameWidth) < (other.x + other.animation.frameWidth)));
+    }
+
+    else return false;
+};
 
 
 
@@ -221,7 +253,7 @@ AM.queueDownload("./img/sky_2.png");
 AM.queueDownload("./img/sky_3.png");
 AM.queueDownload("./img/stars.jpg");
 AM.queueDownload("./img/blackhole.png");
-AM.queueDownload("./img/ship2.png");
+AM.queueDownload("./img/ufo2.png");
 AM.queueDownload("./img/ufo_beam.png");
 AM.queueDownload("./img/grass.jpg");
 AM.queueDownload("./img/dirt.png");
@@ -312,7 +344,7 @@ function drawBeam(event) {
 //     gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
 
     var b = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png"));
-    var u = new Ufo(gameEngine, AM.getAsset("./img/ship2.png"));
+    var u = new Ufo(gameEngine, AM.getAsset("./img/ufo2.png"));
     // var n1 = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
 
     var worldWidth = 60;
@@ -326,11 +358,11 @@ function drawBeam(event) {
 
     for (x = 0; x < worldWidth; x++) {
         for (y = 0; y < worldHeight; y++) {
-            if (y > 15) {
+            if (y > 3) {
                 var t = new Tile(gameEngine, AM.getAsset("./img/stars.jpg"));
                 t.speed = 0;
-                t.x = (t.animation.frameWidth * scale) * x;
-                t.y = (t.animation.frameHeight * scale) * y;
+                t.x = (t.animation.frameWidth * drawscale) * x;
+                t.y = (t.animation.frameHeight * drawscale) * y;
                 gameEngine.addEntity(t);
             }
             // else if (y < 10) {
