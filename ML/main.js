@@ -73,47 +73,51 @@ Laser.prototype.update = function () {
 Laser.prototype.draw = function (event) {
     // this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     // Entity.prototype.draw.call(this);
-
-    var a = u.x + 28 * ufoscale, b = u.y + 37 * ufoscale;
-
-    var x = mousex, y = mousey;
-
-    //x:28,y:33
-
-    var my_gradient = this.ctx.createLinearGradient(-(y - b) + b, x, y, -(x - a) + a);
-
-
-    my_gradient.addColorStop(0, "#ffffff");
-    // my_gradient.addColorStop(.4, "#66ff66");
-    my_gradient.addColorStop(.5, "#66ff66");
-    // my_gradient.addColorStop(.6, "#66ff66");
-    my_gradient.addColorStop(1, "#ffffff");
-
-    // my_gradient.stroke = "butt";
-    this.ctx.fillStyle = my_gradient;
-
-
-    this.ctx.beginPath();
-    this.ctx.moveTo(a, b);
-    this.ctx.lineTo(x, y);
-    this.ctx.lineCap = "round";
-    this.ctx.lineWidth = 60;
-    this.ctx.strokeStyle = my_gradient;
-    this.ctx.stroke();
-
-    this.ctx.shadowBlur = 10;
-    this.ctx.shadowColor = "#008000";
-
-    var currentTime = gameEngine.timer.gameTime;
-
-    if ((currentTime - this.initTime) > this.viewTime) {
-        // this.ctx.moveTo(100, 100);
-        // this.ctx.lineTo(400, 400);
-        // this.ctx.stroke();
-        this.removeFromWorld = true;
-
-    }
-
+    //
+    // var a = u.x + 28 * ufoscale, b = u.y + 37 * ufoscale;
+    //
+    // var x = mousex, y = mousey;
+    //
+    //
+    //
+    // //x:28,y:33
+    //
+    // var my_gradient = this.ctx.createLinearGradient(-(y - b) + b, x, y, -(x - a) + a);
+    //
+    //
+    // my_gradient.addColorStop(0, "#ffffff");
+    // // my_gradient.addColorStop(.4, "#66ff66");
+    // my_gradient.addColorStop(.5, "#66ff66");
+    // // my_gradient.addColorStop(.6, "#66ff66");
+    // my_gradient.addColorStop(1, "#ffffff");
+    //
+    // // my_gradient.stroke = "butt";
+    // this.ctx.fillStyle = my_gradient;
+    //
+    //
+    // this.ctx.beginPath();
+    // this.ctx.moveTo(a, b);
+    // this.ctx.lineTo(x, y);
+    // this.ctx.lineCap = "round";
+    // this.ctx.lineWidth = 60;
+    // this.ctx.strokeStyle = my_gradient;
+    // this.ctx.fillRect(a,b,x,y);
+    // this.ctx.
+    // this.ctx.stroke();
+    //
+    // // this.ctx.shadowBlur = 10;
+    // // this.ctx.shadowColor = "#008000";
+    //
+    // var currentTime = gameEngine.timer.gameTime;
+    //
+    // if ((currentTime - this.initTime) > this.viewTime) {
+    //     // this.ctx.moveTo(100, 100);
+    //     // this.ctx.lineTo(400, 400);
+    //     // this.ctx.stroke();
+    //     this.removeFromWorld = true;
+    //
+    // }
+    //
     // alert(gameEngine.timer.gameTime);
 
 
@@ -244,8 +248,18 @@ Blackhole.prototype.draw = function () {
 // UFO
 function Ufo(game, spritesheet) {
     this.animation = new Animation(spritesheet, 56, 39, 6, .02, 12, true, ufoscale);
-    this.speed = 400;
+    // this.speed = 400;//velocity
+    this.horizontalVelocity = 200;
+    this.verticalVelocity = 200;
+    this.verticalAcceleration = 0;
+    this.horizontalAcceleration = 0;
+    this.maxAcceleration = 50;
+    this.maxVelocity = 400;
     this.ctx = game.ctx;
+    this.dt = 0.001;//time between updates
+    this.x = 200;
+    this.y = 200;
+    this.lastUpdateTime = 0;
     //250 is height that it is displayed at (y)
     Entity.call(this, game, 0, 250);
 }
@@ -254,8 +268,42 @@ Ufo.prototype = new Entity();
 Ufo.prototype.constructor = Ufo;
 
 Ufo.prototype.update = function () {
-    this.x += this.game.clockTick * this.speed;
-    // if (this.x > 1000) this.x = -230;
+
+    this.dt = gameEngine.timer.gameTime - this.lastUpdateTime;
+
+    this.updateTime = gameEngine.timer.gameTime;
+
+
+// var currentTime = gameEngine.timer.gameTime;
+    //
+    // if ((currentTime - this.initTime) > this.viewTime) {
+    //     // this.ctx.moveTo(100, 100);
+    //     // this.ctx.lineTo(400, 400);
+    //     // this.ctx.stroke();
+    //     this.removeFromWorld = true;
+    //
+    // }
+
+    this.horizontalVelocity += this.game.clockTick * this.horizontalAcceleration;
+    this.verticalVelocity += this.game.clockTick * this.verticalAcceleration;
+
+    this.x += this.game.clockTick * this.horizontalVelocity;
+    this.y += this.game.clockTick * this.verticalVelocity;
+
+    if (this.verticalAcceleration > this.maxAcceleration) this.verticalAcceleration = this.maxAcceleration;
+    if (this.horizontalAcceleration > this.maxAcceleration) this.horizontalAcceleration = this.maxAcceleration;
+
+    if (this.horizontalVelocity > this.maxVelocity) this.horizontalVelocity = this.maxVelocity;
+    if (this.verticalVelocity > this.maxVelocity) this.verticalVelocity = this.maxVelocity;
+
+    u.horizontalAcceleration = 0;
+    u.verticalAcceleration = 0;
+
+    // this.y += this.game.clockTick * this.speed;
+    if (this.x > 4000) this.x = -230;
+    if (this. x < -230) this.x = 4000;
+    if (this.y > 4000) this.y = -230;
+    if (this. y < -230) this.y = 4000;
     Entity.prototype.update.call(this);
 
     for (var i = 0; i < this.game.entities.length; i++) {
@@ -371,13 +419,12 @@ AM.downloadAll(function () {
     gameEngine.init(ctx);
     gameEngine.start();
 
-    canvas.addEventListener("click", updateCoords);
+    // canvas.addEventListener("click", updateCoords);
 
     function updateCoords(event) {
         mousex = event.clientX;
         mousey = event.clientY;
         gameEngine.addEntity(new Laser(gameEngine));
-
     }
 
 
@@ -392,14 +439,14 @@ AM.downloadAll(function () {
     var b = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png"));
     u = new Ufo(gameEngine, AM.getAsset("./img/ship2.png"));
     // var n1 = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
-    var z = new Laser(gameEngine);
+    // var z = new Laser(gameEngine);
     gameEngine.addEntity(u);
     // gameEngine.addEntity(b);
-    gameEngine.addEntity(z);
+    // gameEngine.addEntity(z);
 
     // u.removeFromWorld = true;
 
-    var worldWidth = 100;
+    var worldWidth = 60;
     var worldHeight = 200;
 
 
@@ -534,25 +581,29 @@ AM.downloadAll(function () {
             case 37:
                 //LEFT
                 // Ufo.speed = 400;
-                u.x -= 20;
-                b.x -= 20;
+                // u.x -= 20;
+                // b.x -= 20;
+                u.horizontalAcceleration-=20;
 
                 break;
             case 38:
                 //UP
-                u.y-=20;
-                b.y-=20;
+                // u.y-=20;
+                // b.y-=20;
+                u.verticalAcceleration -=20;
 
                 break;
             case 39:
                 //RIGHT
                 // Ufo.speed = 400;
-                u.x += 20;
-                b.x+=20;
+                // u.x += 20;
+                // b.x+=20;
+                u.horizontalAcceleration +=20;
                 break;
             case 40:
-                u.y += 10;
-                b.y+=10;
+                // u.y += 10;
+                // b.y+=10;
+                u.verticalAcceleration +=20;
                 //DOWN
                 break;
         }
@@ -563,3 +614,10 @@ AM.downloadAll(function () {
 });
 
 
+function distance(a, b) {
+    var difX = a.x - b.x;
+    var difY = a.y - b.y;
+    return Math.sqrt(difX * difX + difY * difY);
+}
+
+// function

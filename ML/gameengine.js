@@ -91,6 +91,7 @@ function Entity(game, x, y) {
     this.game = game;
     this.x = x;
     this.y = y;
+    // this.acceleration = 0;
     this.removeFromWorld = false;
 }
 
