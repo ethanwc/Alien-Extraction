@@ -31,13 +31,9 @@ Animation.prototype.drawFrame = function (tick, ctx, x, y) {
     yindex = Math.floor(frame / this.sheetWidth);
 
     ctx.drawImage(this.spriteSheet,
-        xindex * this.frameWidth, yindex * this.frameHeight,  // source from sheet
+        xindex * this.frameWidth, yindex * this.frameHeight,
         this.frameWidth, this.frameHeight,
-        x, y,
-        // this.frameWidth,
-        // this.frameHeight);
-        this.frameWidth * this.scale,
-        this.frameHeight * this.scale);
+        x, y, this.frameWidth * this.scale, this.frameHeight * this.scale);
 };
 
 Animation.prototype.currentFrame = function () {
@@ -47,8 +43,6 @@ Animation.prototype.currentFrame = function () {
 Animation.prototype.isDone = function () {
     return (this.elapsedTime >= this.totalTime);
 };
-
-//draw laser beam, give it context
 
 function Laser(game) {
     // this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, scale);
@@ -64,83 +58,49 @@ Laser.prototype = new Entity();
 Laser.prototype.constructor = Laser;
 
 Laser.prototype.update = function () {
-    // this.x += this.game.clockTick * this.speed;
-    // if (this.x > 1000) this.x = -230;
     Entity.prototype.update.call(this);
 
 };
 
 Laser.prototype.draw = function (event) {
-    // this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-    // Entity.prototype.draw.call(this);
-    //
-    // var a = u.x + 28 * ufoscale, b = u.y + 37 * ufoscale;
-    //
-    // var x = mousex, y = mousey;
-    //
-    //
-    //
-    // //x:28,y:33
-    //
-    // var my_gradient = this.ctx.createLinearGradient(-(y - b) + b, x, y, -(x - a) + a);
-    //
-    //
-    // my_gradient.addColorStop(0, "#ffffff");
-    // // my_gradient.addColorStop(.4, "#66ff66");
-    // my_gradient.addColorStop(.5, "#66ff66");
-    // // my_gradient.addColorStop(.6, "#66ff66");
-    // my_gradient.addColorStop(1, "#ffffff");
-    //
-    // // my_gradient.stroke = "butt";
-    // this.ctx.fillStyle = my_gradient;
-    //
-    //
-    // this.ctx.beginPath();
-    // this.ctx.moveTo(a, b);
-    // this.ctx.lineTo(x, y);
-    // this.ctx.lineCap = "round";
-    // this.ctx.lineWidth = 60;
-    // this.ctx.strokeStyle = my_gradient;
+    Entity.prototype.draw.call(this);
+
+    var a = u.x + 28 * ufoscale, b = u.y + 37 * ufoscale;
+    var x = mousex, y = mousey;
+
+    //x:28,y:33
+
+    var my_gradient = this.ctx.createLinearGradient(-(y - b) + b, x, y, -(x - a) + a);
+
+
+    my_gradient.addColorStop(0, "#ffffff");
+    // my_gradient.addColorStop(.4, "#66ff66");
+    my_gradient.addColorStop(.5, "#66ff66");
+    // my_gradient.addColorStop(.6, "#66ff66");
+    my_gradient.addColorStop(1, "#ffffff");
+
+    // my_gradient.stroke = "butt";
+    this.ctx.fillStyle = my_gradient;
+
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(a, b);
+    this.ctx.lineTo(x, y);
+    this.ctx.lineCap = "round";
+    this.ctx.lineWidth = 60;
+    this.ctx.strokeStyle = my_gradient;
     // this.ctx.fillRect(a,b,x,y);
-    // this.ctx.
-    // this.ctx.stroke();
-    //
-    // // this.ctx.shadowBlur = 10;
-    // // this.ctx.shadowColor = "#008000";
-    //
-    // var currentTime = gameEngine.timer.gameTime;
-    //
-    // if ((currentTime - this.initTime) > this.viewTime) {
-    //     // this.ctx.moveTo(100, 100);
-    //     // this.ctx.lineTo(400, 400);
-    //     // this.ctx.stroke();
-    //     this.removeFromWorld = true;
-    //
-    // }
-    //
-    // alert(gameEngine.timer.gameTime);
+    this.ctx.stroke();
 
+    // this.ctx.shadowBlur = 10;
+    // this.ctx.shadowColor = "#008000";
 
+    var currentTime = gameEngine.timer.gameTime;
 
+    if ((currentTime - this.initTime) > this.viewTime) {
+        this.removeFromWorld = true;
+    }
 };
-// function Background(game, spritesheet) {
-//     this.x = 0;
-//     this.y = 0;
-//     this.spritesheet = spritesheet;
-//     this.game = game;
-//     this.ctx = game.ctx;
-// };
-
-// Background.prototype.draw = function () {
-//     this.ctx.drawImage(this.spritesheet,
-//                    this.x, this.y);
-// };
-
-// Background.prototype.update = function () {
-
-// };
-
-// function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
 
 //TILE
 function Tile(game, spritesheet) {
@@ -164,9 +124,6 @@ Tile.prototype.draw = function () {
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
 };
-
-
-
 
 
 //UFO_Beam
@@ -195,34 +152,9 @@ Ufo_beam.prototype.draw = function () {
     Entity.prototype.draw.call(this);
 };
 
-//Magnet
-function Magnet(game, spritesheet) {
-    // function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
-    this.animation = new Animation(spritesheet, 56, 102, 4, .2, 8, true, 1);
-    this.speed = 350;
-    this.ctx = game.ctx;
-    //250 is height that it is displayed at (y)
-    Entity.call(this, game, 0, 170);
-}
-
-Magnet.prototype = new Entity();
-Magnet.prototype.constructor = Magnet;
-
-Magnet.prototype.update = function () {
-    this.x += this.game.clockTick * this.speed;
-    if (this.x >1000) this.x = -230;
-    Entity.prototype.update.call(this);
-};
-
-Magnet.prototype.draw = function () {
-    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-    Entity.prototype.draw.call(this);
-};
 
 //Blackhole
-
 function Blackhole(game, spritesheet) {
-    // function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
     this.animation = new Animation(spritesheet, 512, 512, 6, .1, 36, true, 1);
     this.speed = 350;
     this.ctx = game.ctx;
@@ -248,19 +180,15 @@ Blackhole.prototype.draw = function () {
 // UFO
 function Ufo(game, spritesheet) {
     this.animation = new Animation(spritesheet, 56, 39, 6, .02, 12, true, ufoscale);
-    // this.speed = 400;//velocity
     this.horizontalVelocity = 200;
     this.verticalVelocity = 200;
     this.verticalAcceleration = 0;
     this.horizontalAcceleration = 0;
-    this.maxAcceleration = 600;
-    this.maxVelocity = 1000;
+    this.maxAcceleration = 200;
+    this.maxVelocity = 600;
     this.ctx = game.ctx;
-    this.dt = 0.001;//time between updates
     this.x = 200;
     this.y = 200;
-    this.lastUpdateTime = 0;
-    //250 is height that it is displayed at (y)
     Entity.call(this, game, 0, 250);
 }
 
@@ -269,26 +197,13 @@ Ufo.prototype.constructor = Ufo;
 
 Ufo.prototype.update = function () {
 
-    // this.dt = gameEngine.timer.gameTime - this.lastUpdateTime;
-
-    // this.updateTime = gameEngine.timer.gameTime;
-
-
-// var currentTime = gameEngine.timer.gameTime;
-    //
-    // if ((currentTime - this.initTime) > this.viewTime) {
-    //     // this.ctx.moveTo(100, 100);
-    //     // this.ctx.lineTo(400, 400);
-    //     // this.ctx.stroke();
-    //     this.removeFromWorld = true;
-    //
-    // }
-
     this.horizontalVelocity += this.game.clockTick * this.horizontalAcceleration;
     this.verticalVelocity += this.game.clockTick * this.verticalAcceleration;
 
     this.x += this.game.clockTick * this.horizontalVelocity;
     this.y += this.game.clockTick * this.verticalVelocity;
+
+    //check if max accel or velocity exceeded
 
     if (this.verticalAcceleration > this.maxAcceleration) this.verticalAcceleration = this.maxAcceleration;
     if (this.horizontalAcceleration > this.maxAcceleration) this.horizontalAcceleration = this.maxAcceleration;
@@ -296,10 +211,7 @@ Ufo.prototype.update = function () {
     if (this.horizontalVelocity > this.maxVelocity) this.horizontalVelocity = this.maxVelocity;
     if (this.verticalVelocity > this.maxVelocity) this.verticalVelocity = this.maxVelocity;
 
-    // u.horizontalAcceleration = 0;
-    // u.verticalAcceleration = 0;
-
-    // this.y += this.game.clockTick * this.speed;
+    //temp bounds fix
     if (this.x > 4000) this.x = -230;
     if (this. x < -230) this.x = 4000;
     if (this.y > 4000) this.y = -230;
@@ -313,13 +225,9 @@ Ufo.prototype.update = function () {
         if (ent instanceof Tile) {
             var l = this.collideLeft(ent), r = this.collideRight(ent), t = this.collideTop(ent),
                 b = this.collideBottom(ent), e = this.collideEncompass(ent);
-            // if (l || r || b || t) {
 
             if ((b && (r || l)) || (t && (r || l)) || (e && (t || b)) || (e && (l || r))) {
-                this.collide();
-                // ent.x = -100;
-                // ent.y = -100;
-                ent.removeFromWorld = true;
+                this.collide(ent);
             }
         }
     }
@@ -329,15 +237,12 @@ Ufo.prototype.draw = function () {
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
 };
-Ufo.prototype.collide = function() {
-    // this.y = 0;
-    // this.x = 0;
-    // b.y = 350;
+Ufo.prototype.collide = function(entity) {
+    entity.removeFromWorld = true;
     // alert('collision detected');
 };
 
 
-//doesnt account for the ufo scale size
 
 Ufo.prototype.collideBottom = function(other) {
     if (other instanceof Tile) {
@@ -400,26 +305,18 @@ AM.queueDownload("./img/stone_black.jpg");
 AM.queueDownload("./img/gold_ore.png");
 AM.queueDownload("./img/ore_crystal_blue.png");
 AM.queueDownload("./img/ore_crystal_large.png");
-
-
-
+AM.queueDownload("./sound/laser.mp3");
 
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
     var ctx = canvas.getContext("2d");
 
-    // canvas.addEventListener("click", myFunction);
-    // canvas.addEventListener("click", getClickPosition, false);
-
-
-
-//start game engine
 
     gameEngine = new GameEngine();
     gameEngine.init(ctx);
     gameEngine.start();
 
-    // canvas.addEventListener("click", updateCoords);
+    canvas.addEventListener("click", updateCoords);
 
     function updateCoords(event) {
         mousex = event.clientX;
@@ -427,32 +324,16 @@ AM.downloadAll(function () {
         gameEngine.addEntity(new Laser(gameEngine));
     }
 
-
-
-
-
-
-//     // gameEngine.addEntity(new Magnet(gameEngine, AM.getAsset("./img/magnet.png")));
-//     // gameEngine.addEntity(new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png")));
-//     gameEngine.addEntity(new Ufo(gameEngine, AM.getAsset("./img/ufo.png")));
-
-    var b = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png"));
     u = new Ufo(gameEngine, AM.getAsset("./img/ship2.png"));
-    // var n1 = new Tile(gameEngine, AM.getAsset("./img/grass.jpg"));
-    // var z = new Laser(gameEngine);
     gameEngine.addEntity(u);
-    // gameEngine.addEntity(b);
-    // gameEngine.addEntity(z);
-
-    // u.removeFromWorld = true;
+    var z = new Laser(gameEngine);
+    gameEngine.addEntity(z);
 
     var worldWidth = 60;
     var worldHeight = 200;
 
 
     //Generate World
-    //TODO: Randomize spawning for 'ground' layers.
-
     var x, y;
 
     for (x = 0; x < worldWidth; x++) {
@@ -569,12 +450,6 @@ AM.downloadAll(function () {
         }
     }
 
-
-
-
-    u.speed = 0;
-    b.speed = 0;
-
     document.onkeydown = function(e) {
         switch (e.keyCode) {
             case 37:
@@ -582,14 +457,14 @@ AM.downloadAll(function () {
                 // Ufo.speed = 400;
                 // u.x -= 20;
                 // b.x -= 20;
-                u.horizontalAcceleration-=20;
+                u.horizontalAcceleration-=50;
 
                 break;
             case 38:
                 //UP
                 // u.y-=20;
                 // b.y-=20;
-                u.verticalAcceleration -=20;
+                u.verticalAcceleration -=50;
 
                 break;
             case 39:
@@ -597,13 +472,13 @@ AM.downloadAll(function () {
                 // Ufo.speed = 400;
                 // u.x += 20;
                 // b.x+=20;
-                u.horizontalAcceleration +=20;
+                u.horizontalAcceleration +=50;
                 console.log('start right accel');
                 break;
             case 40:
                 // u.y += 10;
                 // b.y+=10;
-                u.verticalAcceleration +=20;
+                u.verticalAcceleration +=50;
                 //DOWN
                 break;
         }
@@ -641,14 +516,9 @@ AM.downloadAll(function () {
                 //DOWN
                 break;
         }
-
-
-        console.log("All Done!");
     };
-
-
-    console.log("All Done!");
 });
+
 
 
 function distance(a, b) {
@@ -657,4 +527,3 @@ function distance(a, b) {
     return Math.sqrt(difX * difX + difY * difY);
 }
 
-// function
