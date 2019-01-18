@@ -253,8 +253,8 @@ function Ufo(game, spritesheet) {
     this.verticalVelocity = 200;
     this.verticalAcceleration = 0;
     this.horizontalAcceleration = 0;
-    this.maxAcceleration = 50;
-    this.maxVelocity = 400;
+    this.maxAcceleration = 600;
+    this.maxVelocity = 1000;
     this.ctx = game.ctx;
     this.dt = 0.001;//time between updates
     this.x = 200;
@@ -269,9 +269,9 @@ Ufo.prototype.constructor = Ufo;
 
 Ufo.prototype.update = function () {
 
-    this.dt = gameEngine.timer.gameTime - this.lastUpdateTime;
+    // this.dt = gameEngine.timer.gameTime - this.lastUpdateTime;
 
-    this.updateTime = gameEngine.timer.gameTime;
+    // this.updateTime = gameEngine.timer.gameTime;
 
 
 // var currentTime = gameEngine.timer.gameTime;
@@ -296,8 +296,8 @@ Ufo.prototype.update = function () {
     if (this.horizontalVelocity > this.maxVelocity) this.horizontalVelocity = this.maxVelocity;
     if (this.verticalVelocity > this.maxVelocity) this.verticalVelocity = this.maxVelocity;
 
-    u.horizontalAcceleration = 0;
-    u.verticalAcceleration = 0;
+    // u.horizontalAcceleration = 0;
+    // u.verticalAcceleration = 0;
 
     // this.y += this.game.clockTick * this.speed;
     if (this.x > 4000) this.x = -230;
@@ -575,7 +575,6 @@ AM.downloadAll(function () {
     u.speed = 0;
     b.speed = 0;
 
-
     document.onkeydown = function(e) {
         switch (e.keyCode) {
             case 37:
@@ -599,6 +598,7 @@ AM.downloadAll(function () {
                 // u.x += 20;
                 // b.x+=20;
                 u.horizontalAcceleration +=20;
+                console.log('start right accel');
                 break;
             case 40:
                 // u.y += 10;
@@ -607,6 +607,43 @@ AM.downloadAll(function () {
                 //DOWN
                 break;
         }
+    };
+    document.onkeyup = function(e) {
+        switch (e.keyCode) {
+            case 37:
+                //LEFT
+                // Ufo.speed = 400;
+                // u.x -= 20;
+                // b.x -= 20;
+                u.horizontalAcceleration=0;
+
+                break;
+            case 38:
+                //UP
+                // u.y-=20;
+                // b.y-=20;
+                u.verticalAcceleration = 0;
+
+                break;
+            case 39:
+                //RIGHT
+                // Ufo.speed = 400;
+                // u.x += 20;
+                // b.x+=20;
+                u.horizontalAcceleration =0;
+                console.log('stop right accel');
+
+                break;
+            case 40:
+                // u.y += 10;
+                // b.y+=10;
+                u.verticalAcceleration =0;
+                //DOWN
+                break;
+        }
+
+
+        console.log("All Done!");
     };
 
 
