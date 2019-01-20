@@ -205,11 +205,25 @@ Ufo.prototype.update = function () {
 
     //check if max accel or velocity exceeded
 
-    if (this.verticalAcceleration > this.maxAcceleration) this.verticalAcceleration = this.maxAcceleration;
-    if (this.horizontalAcceleration > this.maxAcceleration) this.horizontalAcceleration = this.maxAcceleration;
 
-    if (this.horizontalVelocity > this.maxVelocity) this.horizontalVelocity = this.maxVelocity;
-    if (this.verticalVelocity > this.maxVelocity) this.verticalVelocity = this.maxVelocity;
+    if (Math.abs(this.verticalAcceleration) > this.maxAcceleration) {
+        if (this.verticalAcceleration > 0) this.verticalAcceleration = this.maxAcceleration;
+        else this.verticalAcceleration = -this.maxAcceleration;
+    }
+
+    if (Math.abs(this.horizontalAcceleration) > this.maxAcceleration) {
+        if (this.horizontalAcceleration > 0) this.horizontalAcceleration = this.maxAcceleration;
+        else this.horizontalAcceleration = -this.maxAcceleration;
+
+    if (Math.abs(this.horizontalVelocity) > this.maxVelocity) {
+        if (this.horizontalVelocity >0) this.horizontalVelocity = this.maxVelocity;
+        else this.horizontalVelocity = -this.maxVelocity;
+    }
+
+    if (Math.abs(this.verticalVelocity) > this.maxVelocity) {
+        if (this.verticalVelocity > 0) this.verticalVelocity = this.maxVelocity;
+        else this.verticalVelocity = -this.maxVelocity;
+    }
 
     //temp bounds fix
     if (this.x > 4000) this.x = -230;
