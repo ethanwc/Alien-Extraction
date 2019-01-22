@@ -299,8 +299,33 @@ Ufo.prototype.collideEncompass = function(other) {
             ((this.y < other.y) && ((this.y + (this.animation.frameHeight * ufoscale)) > (other.y + (other.animation.frameHeight * scale))));
 
     }
-}
+};
 
+//CAMERA
+    function Camera(game, spritesheet) {
+        this.speed = 350;
+        this.ctx = game.ctx;
+        this.x = 0;
+        this.y = 0;
+        this.width = 0;
+        this.height = 0;
+        this.zoom = 1; //default zoom ratio
+        Entity.call(this, game, 0, 170);
+    }
+
+    Camera.prototype = new Entity();
+    Camera.prototype.constructor = Camera;
+
+    Camera.prototype.update = function () {
+
+    }
+        Entity.prototype.update.call(this);
+    };
+
+    Camera.prototype.draw = function () {
+        this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+        Entity.prototype.draw.call(this);
+    };
 
 
 AM.queueDownload("./img/magnet.png");
