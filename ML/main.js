@@ -197,11 +197,29 @@ Ufo.prototype.constructor = Ufo;
 
 Ufo.prototype.update = function () {
 
+    // this.dt = gameEngine.timer.gameTime - this.lastUpdateTime;
+
+    // this.updateTime = gameEngine.timer.gameTime;
+
+
+// var currentTime = gameEngine.timer.gameTime;
+    //
+    // if ((currentTime - this.initTime) > this.viewTime) {
+    //     // this.ctx.moveTo(100, 100);
+    //     // this.ctx.lineTo(400, 400);
+    //     // this.ctx.stroke();
+    //     this.removeFromWorld = true;
+    //
+    // }
+
     this.horizontalVelocity += this.game.clockTick * this.horizontalAcceleration;
     this.verticalVelocity += this.game.clockTick * this.verticalAcceleration;
 
     this.x += this.game.clockTick * this.horizontalVelocity;
     this.y += this.game.clockTick * this.verticalVelocity;
+
+    //a
+
 
     //check if max accel or velocity exceeded
 
@@ -214,23 +232,30 @@ Ufo.prototype.update = function () {
     if (Math.abs(this.horizontalAcceleration) > this.maxAcceleration) {
         if (this.horizontalAcceleration > 0) this.horizontalAcceleration = this.maxAcceleration;
         else this.horizontalAcceleration = -this.maxAcceleration;
-
-    if (Math.abs(this.horizontalVelocity) > this.maxVelocity) {
-        if (this.horizontalVelocity >0) this.horizontalVelocity = this.maxVelocity;
-        else this.horizontalVelocity = -this.maxVelocity;
     }
 
-    if (Math.abs(this.verticalVelocity) > this.maxVelocity) {
-        if (this.verticalVelocity > 0) this.verticalVelocity = this.maxVelocity;
-        else this.verticalVelocity = -this.maxVelocity;
-    }
+        if (Math.abs(this.horizontalVelocity) > this.maxVelocity) {
+            if (this.horizontalVelocity >0) this.horizontalVelocity = this.maxVelocity;
+            else this.horizontalVelocity = -this.maxVelocity;
+        }
 
-    //temp bounds fix
-    if (this.x > 4000) this.x = -230;
-    if (this. x < -230) this.x = 4000;
-    if (this.y > 4000) this.y = -230;
-    if (this. y < -230) this.y = 4000;
-    Entity.prototype.update.call(this);
+        if (Math.abs(this.verticalVelocity) > this.maxVelocity) {
+            if (this.verticalVelocity > 0) this.verticalVelocity = this.maxVelocity;
+            else this.verticalVelocity = -this.maxVelocity;
+        }
+
+        //temp bounds fix
+        if (this.x > 4000) this.x = -230;
+        if (this. x < -230) this.x = 4000;
+        if (this.y > 4000) this.y = -230;
+        if (this. y < -230) this.y = 4000;
+        Entity.prototype.update.call(this);
+    //b
+
+
+    // u.horizontalAcceleration = 0;
+    // u.verticalAcceleration = 0;
+
 
     for (var i = 0; i < this.game.entities.length; i++) {
         var ent = this.game.entities[i];
@@ -239,9 +264,13 @@ Ufo.prototype.update = function () {
         if (ent instanceof Tile) {
             var l = this.collideLeft(ent), r = this.collideRight(ent), t = this.collideTop(ent),
                 b = this.collideBottom(ent), e = this.collideEncompass(ent);
+            // if (l || r || b || t) {
 
             if ((b && (r || l)) || (t && (r || l)) || (e && (t || b)) || (e && (l || r))) {
-                this.collide(ent);
+                this.collide();
+                // ent.x = -100;
+                // ent.y = -100;
+                ent.removeFromWorld = true;
             }
         }
     }
@@ -252,7 +281,7 @@ Ufo.prototype.draw = function () {
     Entity.prototype.draw.call(this);
 };
 Ufo.prototype.collide = function(entity) {
-    entity.removeFromWorld = true;
+    // entity.removeFromWorld = true;
     // alert('collision detected');
 };
 
@@ -302,30 +331,30 @@ Ufo.prototype.collideEncompass = function(other) {
 };
 
 //CAMERA
-    function Camera(game, spritesheet) {
-        this.speed = 350;
-        this.ctx = game.ctx;
-        this.x = 0;
-        this.y = 0;
-        this.width = 0;
-        this.height = 0;
-        this.zoom = 1; //default zoom ratio
-        Entity.call(this, game, 0, 170);
-    }
-
-    Camera.prototype = new Entity();
-    Camera.prototype.constructor = Camera;
-
-    Camera.prototype.update = function () {
-
-    }
-        Entity.prototype.update.call(this);
-    };
-
-    Camera.prototype.draw = function () {
-        this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-        Entity.prototype.draw.call(this);
-    };
+//     function Camera(game, spritesheet) {
+//         this.speed = 350;
+//         this.ctx = game.ctx;
+//         this.x = 0;
+//         this.y = 0;
+//         this.width = 0;
+//         this.height = 0;
+//         this.zoom = 1; //default zoom ratio
+//         Entity.call(this, game, 0, 170);
+//     }
+//
+//     Camera.prototype = new Entity();
+//     Camera.prototype.constructor = Camera;
+//
+//     Camera.prototype.update = function () {
+//
+//     }
+//         Entity.prototype.update.call(this);
+//     };
+//
+//     Camera.prototype.draw = function () {
+//         this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+//         Entity.prototype.draw.call(this);
+//     };
 
 
 AM.queueDownload("./img/magnet.png");
