@@ -83,14 +83,16 @@ Laser.prototype.update = function () {
             var top =    lineLine(x1,y1,x2,y2, rx,ry, rx+rw,ry);
             var bottom = lineLine(x1,y1,x2,y2, rx,ry+rh, rx+rw,ry+rh);
 
-            if (left || right || top || bottom)
+            //TODO: use tile coords and w/h to draw particle effect
+
+            if (left || right || top || bottom) {
                 ent.removeFromWorld = true;
-
+                // var explosion = new Explosion(gameEngine, AM.getAsset("./img/boom.png"));
+                // gameEngine.addEntity(explosion);
             }
+
         }
-
-
-
+    }
 };
 
 // LINE/LINE
@@ -107,7 +109,6 @@ function lineLine(x1, y1, x2, y2, x3, y3, x4, y4) {
         // optionally, draw a circle where the lines meet
         // var intersectionX = x1 + (uA * (x2-x1));
         // var intersectionY = y1 + (uA * (y2-y1));
-
         // fill(255,0,0);
         // noStroke();
         // ellipse(intersectionX, intersectionY, 20, 20);
@@ -156,6 +157,31 @@ Laser.prototype.draw = function (event) {
         this.removeFromWorld = true;
     }
 };
+
+
+//EXPLOSION
+function Explosion(game, spritesheet) {
+    this.animation = new Animation(spritesheet, 256, 256, 8, .05, 32, false, scale);
+    this.speed = 0;
+    this.ctx = game.ctx;
+//250 is height that it is displayed at (y)
+    Entity.call(this, game, 0, 250);
+}
+
+Explosion.prototype = new Entity();
+Explosion.prototype.constructor = Explosion;
+
+Explosion.prototype.update = function () {
+    // this.x += this.game.clockTick * this.speed;
+    // if (this.x > 1000) this.x = -230;
+    Entity.prototype.update.call(this);
+};
+
+Explosion.prototype.draw = function (x,y) {
+    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+    Entity.prototype.draw.call(this);
+};
+
 
 //TILE
 function Tile(game, spritesheet) {
