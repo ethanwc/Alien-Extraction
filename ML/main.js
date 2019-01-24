@@ -1,6 +1,6 @@
 var AM = new AssetManager();
 
-var scale = 1/16;
+var scale = 1/8;
 var ufoscale = 3;
 var u;
 var mousex = 0, mousey = 0;
@@ -62,11 +62,12 @@ Laser.prototype.update = function () {
 
     //Detect Laser collision with tiles
     //Reference: http://www.jeffreythompson.org/collision-detection/line-rect.php
-
+        var uu;
     for (var i = 0; i < this.game.entities.length; i++) {
         var ent = this.game.entities[i];
 
         if (ent instanceof Tile) {
+
 
 
             var x1 = u.x + 28 * ufoscale, y1 = u.y + 37 * ufoscale;
@@ -86,13 +87,20 @@ Laser.prototype.update = function () {
             //TODO: use tile coords and w/h to draw particle effect
 
             if (left || right || top || bottom) {
-                ent.removeFromWorld = true;
+                if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3"))
+
+                    ent.removeFromWorld = true;
                 // var explosion = new Explosion(gameEngine, AM.getAsset("./img/boom.png"));
                 // gameEngine.addEntity(explosion);
             }
 
         }
+
+
+
     }
+
+
 };
 
 // LINE/LINE
@@ -188,6 +196,7 @@ function Tile(game, spritesheet) {
     this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, scale);
     this.speed = 400;
     this.ctx = game.ctx;
+    this.type = "unset";
 //250 is height that it is displayed at (y)
     Entity.call(this, game, 0, 250);
 }
@@ -265,8 +274,8 @@ function Ufo(game, spritesheet) {
     this.verticalVelocity = 200;
     this.verticalAcceleration = 0;
     this.horizontalAcceleration = 0;
-    this.maxAcceleration = 200;
-    this.maxVelocity = 600;
+    this.maxAcceleration = 1500;
+    this.maxVelocity = 1000;
     this.ctx = game.ctx;
     this.x = 200;
     this.y = 200;
@@ -351,6 +360,7 @@ Ufo.prototype.update = function () {
                 this.collide();
                 // ent.x = -100;
                 // ent.y = -100;
+                if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3"))
                 ent.removeFromWorld = true;
             }
         }
@@ -492,6 +502,7 @@ AM.downloadAll(function () {
                 t.speed = 0;
                 t.x = (t.animation.frameWidth * scale) * x;
                 t.y = (t.animation.frameHeight * scale) * y;
+                t.type = "stars";
                 gameEngine.addEntity(t);
             }
             else if (y < 10) {
@@ -499,6 +510,7 @@ AM.downloadAll(function () {
                 t.speed = 0;
                 t.x = (t.animation.frameWidth * scale) * x;
                 t.y = (t.animation.frameHeight * scale) * y;
+                t.type = "sky3";
                 gameEngine.addEntity(t);
             }
             else if (y < 15) {
@@ -506,6 +518,7 @@ AM.downloadAll(function () {
                 t.speed = 0;
                 t.x = (t.animation.frameWidth * scale) * x;
                 t.y = (t.animation.frameHeight * scale) * y;
+                t.type = "sky2";
                 gameEngine.addEntity(t);
             }
             else if (y < 20) {
@@ -513,6 +526,7 @@ AM.downloadAll(function () {
                 t.speed = 0;
                 t.x = (t.animation.frameWidth * scale) * x;
                 t.y = (t.animation.frameHeight * scale) * y;
+                t.type = "sky";
                 gameEngine.addEntity(t);
             }
             else if (y === 20) {
