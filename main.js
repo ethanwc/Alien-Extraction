@@ -1,3 +1,23 @@
+//https://medium.com/techtrument/multithreading-javascript-46156179cf9a
+//one thread for just collision detection?
+
+//TODO:
+/*
+MUTLTITHREADING COLLISION DETECTION
+FUEL STATION
+UPGRADE STATION
+CAMERA
+RENDERING ORDER
+INFO DISPLAY (IN CAMERA)
+RESOURCES FROM TEXTURES
+FUEL MODEL. ECONOMY MODEL.
+UFO PHYSICS spin faster bsaed on speed, reverse spin
+ufo landing animation?
+pause game while in upgrade menu
+upgrade menu
+scoring system
+determine distance of each colloding entity for order of destruction, use x,y plus 1/2 w 1/2 h * scale
+ */
 var AM = new AssetManager();
 
 var scale = 1/8;
@@ -68,8 +88,7 @@ Laser.prototype.update = function () {
 
         if (ent instanceof Tile) {
 
-
-
+            
             var x1 = u.x + 28 * ufoscale, y1 = u.y + 37 * ufoscale;
             var x2 = mousex, y2 = mousey;
 
@@ -112,6 +131,8 @@ function lineLine(x1, y1, x2, y2, x3, y3, x4, y4) {
 
     // if uA and uB are between 0-1, lines are colliding
     if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
+
+
 
 
         // optionally, draw a circle where the lines meet
@@ -196,6 +217,7 @@ function Tile(game, spritesheet) {
     this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, scale);
     this.speed = 400;
     this.ctx = game.ctx;
+    this.health = 100;
     this.type = "unset";
 //250 is height that it is displayed at (y)
     Entity.call(this, game, 0, 250);
