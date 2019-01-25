@@ -20,7 +20,7 @@ determine distance of each colloding entity for order of destruction, use x,y pl
  */
 var AM = new AssetManager();
 
-var scale = 1/8;
+var scale = 1/32;
 var ufoscale = 3;
 var u;
 var mousex = 0, mousey = 0;
