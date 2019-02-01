@@ -3,7 +3,9 @@
 
 //TODO:
 /*
-MUTLTITHREADING COLLISION DETECTION
+MUTLTITHREADING COLLISION DETECTION???
+
+
 FUEL STATION
 UPGRADE STATION
 CAMERA
@@ -20,11 +22,12 @@ determine distance of each colloding entity for order of destruction, use x,y pl
  */
 var AM = new AssetManager();
 
-var scale = 1/32;
+var scale = 1/16;
 var ufoscale = 3;
 var u;
 var mousex = 0, mousey = 0;
 var gameEngine;
+var ufobeam;
 
 function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
     this.spriteSheet = spriteSheet;
@@ -106,9 +109,29 @@ Laser.prototype.update = function () {
             //TODO: use tile coords and w/h to draw particle effect
 
             if (left || right || top || bottom) {
-                if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3"))
+                if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3")) {
+                    var explosion = new Explosion(gameEngine, AM.getAsset("./img/boom.png"));
+                    explosion.x = ent.x;
+                    explosion.y = ent.y;
+
+                    gameEngine.addEntity(explosion);
 
                     ent.removeFromWorld = true;
+                }
+
+                    // var explosion = new Explosion(gameEngine, AM.getAsset("./img/boom.png"));
+                // explosion.x = 400;
+                // explosion.y = 400;
+                // explosion.animation.frameWidth = ent.animation.frameWidth;
+                // explosion.animation.frameHeight = ent.animation.frameHeight;
+                // gameEngine.addEntity(explosion);
+
+
+                // explosion.animation.frameWidth = ent.animation.frameWidth;
+                // explosion.animation.frameHeight = ent.animation.frameHeight;
+
+
+                    // ent.removeFromWorld = true;
                 // var explosion = new Explosion(gameEngine, AM.getAsset("./img/boom.png"));
                 // gameEngine.addEntity(explosion);
             }
@@ -190,9 +213,20 @@ Laser.prototype.draw = function (event) {
 
 //EXPLOSION
 function Explosion(game, spritesheet) {
-    this.animation = new Animation(spritesheet, 256, 256, 8, .05, 32, false, scale);
+    // function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
+
+    // this.animation = new Animation(spritesheet, 56, 56, 6, .2, 6, true, 3);
+
+    this.animation = new Animation(spritesheet, 256, 256, 8, .05, 32, false, 1);
     this.speed = 0;
     this.ctx = game.ctx;
+    this.x = 0;
+    this.y = 0;
+
+    // this.x = 200;
+    // this.y = 200;
+    // this.x = 200;
+    // this.y = 200;
 //250 is height that it is displayed at (y)
     Entity.call(this, game, 0, 250);
 }
@@ -309,20 +343,9 @@ Ufo.prototype.constructor = Ufo;
 
 Ufo.prototype.update = function () {
 
-    // this.dt = gameEngine.timer.gameTime - this.lastUpdateTime;
+    ufobeam.x = this.x - 9;
+    ufobeam.y = this.y + 83;
 
-    // this.updateTime = gameEngine.timer.gameTime;
-
-
-// var currentTime = gameEngine.timer.gameTime;
-    //
-    // if ((currentTime - this.initTime) > this.viewTime) {
-    //     // this.ctx.moveTo(100, 100);
-    //     // this.ctx.lineTo(400, 400);
-    //     // this.ctx.stroke();
-    //     this.removeFromWorld = true;
-    //
-    // }
 
     this.horizontalVelocity += this.game.clockTick * this.horizontalAcceleration;
     this.verticalVelocity += this.game.clockTick * this.verticalAcceleration;
@@ -382,7 +405,10 @@ Ufo.prototype.update = function () {
                 this.collide();
                 // ent.x = -100;
                 // ent.y = -100;
-                if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3"))
+                // if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3")) {
+
+                // }
+
                 ent.removeFromWorld = true;
             }
         }
@@ -443,33 +469,42 @@ Ufo.prototype.collideEncompass = function(other) {
     }
 };
 
-//CAMERA
-//     function Camera(game, spritesheet) {
-//         this.speed = 350;
-//         this.ctx = game.ctx;
-//         this.x = 0;
-//         this.y = 0;
-//         this.width = 0;
-//         this.height = 0;
-//         this.zoom = 1; //default zoom ratio
-//         Entity.call(this, game, 0, 170);
-//     }
-//
-//     Camera.prototype = new Entity();
-//     Camera.prototype.constructor = Camera;
-//
-//     Camera.prototype.update = function () {
-//
-//     }
-//         Entity.prototype.update.call(this);
-//     };
-//
-//     Camera.prototype.draw = function () {
-//         this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-//         Entity.prototype.draw.call(this);
-//     };
+// CAMERA
+    function Camera(game, spritesheet) {
+        this.ctx = game.ctx;
+        this.x = 0;
+        this.y = 0;
+        this.width = 0;
+        this.height = 0;
+        this.zoom = 1; //default zoom ratio
+        Entity.call(this, game, 0, 170);
+    }
+
+    Camera.prototype = new Entity();
+    Camera.prototype.constructor = Camera;
+
+    Camera.prototype.update = function () {
+
+        for (var i = 0; i < this.game.entities.length; i++) {
+            var ent = this.game.entities[i];
 
 
+            if (!(ent instanceof Ufo)) {
+                ent.removeFromWorld = true;
+            }
+        }
+
+
+    };
+        Entity.prototype.update.call(this);
+
+
+    Camera.prototype.draw = function () {
+        this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+        Entity.prototype.draw.call(this);
+    };
+//
+//
 AM.queueDownload("./img/magnet.png");
 AM.queueDownload("./img/sky.jpg");
 AM.queueDownload("./img/sky_2.png");
@@ -487,6 +522,8 @@ AM.queueDownload("./img/gold_ore.png");
 AM.queueDownload("./img/ore_crystal_blue.png");
 AM.queueDownload("./img/ore_crystal_large.png");
 AM.queueDownload("./sound/laser.mp3");
+AM.queueDownload("./img/boom.png");
+
 
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
@@ -500,17 +537,26 @@ AM.downloadAll(function () {
     canvas.addEventListener("click", updateCoords);
 
     function updateCoords(event) {
+        // mousex = event.clientX - ctx.canvas.getBoundingClientRect().left;
+        // mousey = event.clientY - ctx.canvas.getBoundingClientRect().top;
         mousex = event.clientX;
         mousey = event.clientY;
         gameEngine.addEntity(new Laser(gameEngine));
     }
+
+    // var r = new Explosion(gameEngine, AM.getAsset("./img/boom.png"));
+    // gameEngine.addEntity(r);
 
     u = new Ufo(gameEngine, AM.getAsset("./img/ship2.png"));
     gameEngine.addEntity(u);
     var z = new Laser(gameEngine);
     gameEngine.addEntity(z);
 
-    var worldWidth = 60;
+    ufobeam = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png"));
+
+    gameEngine.addEntity(ufobeam);
+
+    var worldWidth = 140;
     var worldHeight = 200;
 
 
