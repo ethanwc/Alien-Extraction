@@ -29,6 +29,8 @@ var mousex = 0, mousey = 0;
 var gameEngine;
 var ufobeam;
 
+var blackhole;
+
 function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
     this.spriteSheet = spriteSheet;
     this.frameWidth = frameWidth;
@@ -301,8 +303,8 @@ Ufo_beam.prototype.draw = function () {
 
 //Blackhole
 function Blackhole(game, spritesheet) {
-    this.animation = new Animation(spritesheet, 512, 512, 6, .1, 36, true, 1);
-    this.speed = 350;
+    this.animation = new Animation(spritesheet, 512, 512, 6, .1, 36, true, .25);
+    // this.speed = 350;
     this.ctx = game.ctx;
     //250 is height that it is displayed at (y)
     Entity.call(this, game, 0, 170);
@@ -312,8 +314,8 @@ Blackhole.prototype = new Entity();
 Blackhole.prototype.constructor = Blackhole;
 
 Blackhole.prototype.update = function () {
-    this.x += this.game.clockTick * this.speed;
-    if (this.x >1000) this.x = -230;
+    // this.x += this.game.clockTick * this.speed;
+    // if (this.x >1000) this.x = -230;
     Entity.prototype.update.call(this);
 };
 
@@ -345,6 +347,9 @@ Ufo.prototype.update = function () {
 
     ufobeam.x = this.x - 9;
     ufobeam.y = this.y + 83;
+
+    blackhole.x = this.x +30;
+    blackhole.y = this.y - 50;
 
 
     this.horizontalVelocity += this.game.clockTick * this.horizontalAcceleration;
@@ -493,8 +498,6 @@ Ufo.prototype.collideEncompass = function(other) {
                 ent.removeFromWorld = true;
             }
         }
-
-
     };
         Entity.prototype.update.call(this);
 
@@ -555,6 +558,10 @@ AM.downloadAll(function () {
     ufobeam = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png"));
 
     gameEngine.addEntity(ufobeam);
+
+    blackhole = new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png"));
+
+    gameEngine.addEntity(blackhole);
 
     var worldWidth = 140;
     var worldHeight = 200;
