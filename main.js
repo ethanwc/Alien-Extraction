@@ -479,12 +479,12 @@ Tile.prototype.draw = function () {
 };
 
 // CAMERA
-    function Camera(game, spritesheet) {
+    function Camera(game) {
         this.ctx = game.ctx;
         this.x = 0;
         this.y = 0;
-        this.width = 0;
-        this.height = 0;
+        this.width = 600;
+        this.height = 600;
         this.zoom = 1; //default zoom ratio
         Entity.call(this, game, 0, 170);
     }
@@ -494,21 +494,31 @@ Tile.prototype.draw = function () {
 
     Camera.prototype.update = function () {
 
+        this.x = u.x;
+        this.y = u.y;
+
         for (var i = 0; i < this.game.entities.length; i++) {
             var ent = this.game.entities[i];
 
-
-            if (!(ent instanceof Ufo)) {
-                ent.removeFromWorld = true;
-            }
+            if (ent instanceof Tile)
+                if (((this.x - ent.x) > 0)
+                    && ((this.y - ent.y) > 0)
+                    && ((this.x + this.width - ent.x) > 0)
+                    && ((this.y + this.height - ent.y) > 0)) {
+                    ent.x = (ent.x - this.x);
+                    ent.y = (ent.y - this.y);
+                }
         }
+
+
+
     };
         Entity.prototype.update.call(this);
 
 
     Camera.prototype.draw = function () {
-        this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-        Entity.prototype.draw.call(this);
+        // this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+        // Entity.prototype.draw.call(this);
     };
 
 
@@ -701,6 +711,10 @@ AM.downloadAll(function () {
     gameEngine.addEntity(z);
 
     gameEngine.addEntity(ufobeam);
+
+    var cam = new Camera(gameEngine);
+
+    gameEngine.addEntity(cam);
 
     // gameEngine.addEntity(blackhole);
 
