@@ -29,6 +29,8 @@ var mousex = 0, mousey = 0;
 var gameEngine;
 var ufobeam;
 var screenwidth = screenwidth;
+
+var cam;
 console.log(screenwidth);
 
 var blackhole;
@@ -123,21 +125,6 @@ Laser.prototype.update = function () {
                     ent.removeFromWorld = true;
                 }
 
-                    // var explosion = new Explosion(gameEngine, AM.getAsset("./img/boom.png"));
-                // explosion.x = 400;
-                // explosion.y = 400;
-                // explosion.animation.frameWidth = ent.animation.frameWidth;
-                // explosion.animation.frameHeight = ent.animation.frameHeight;
-                // gameEngine.addEntity(explosion);
-
-
-                // explosion.animation.frameWidth = ent.animation.frameWidth;
-                // explosion.animation.frameHeight = ent.animation.frameHeight;
-
-
-                    // ent.removeFromWorld = true;
-                // var explosion = new Explosion(gameEngine, AM.getAsset("./img/boom.png"));
-                // gameEngine.addEntity(explosion);
             }
 
         }
@@ -148,6 +135,7 @@ Laser.prototype.update = function () {
 
 
 };
+
 
 // LINE/LINE
 function lineLine(x1, y1, x2, y2, x3, y3, x4, y4) {
@@ -201,7 +189,7 @@ Laser.prototype.draw = function (event) {
     this.ctx.lineCap = "round";
     this.ctx.lineWidth = 60;
     this.ctx.strokeStyle = my_gradient;
-    // this.ctx.fillRect(a,b,x,y);
+
     this.ctx.stroke();
 
     // this.ctx.shadowBlur = 10;
@@ -323,8 +311,12 @@ Ufo.prototype.constructor = Ufo;
 
 Ufo.prototype.update = function () {
 
+    cam.x = this.x;
+    cam.y = this.y;
+
     ufobeam.x = this.x - 9;
     ufobeam.y = this.y + 83;
+
 
     blackhole.x = this.x +30;
     blackhole.y = this.y - 50;
@@ -483,43 +475,67 @@ Tile.prototype.draw = function () {
         this.ctx = game.ctx;
         this.x = 0;
         this.y = 0;
-        this.width = 600;
+        this.width = 800;
         this.height = 600;
+        this.viewTime = .01;
         this.zoom = 1; //default zoom ratio
         Entity.call(this, game, 0, 170);
     }
 
     Camera.prototype = new Entity();
     Camera.prototype.constructor = Camera;
-
     Camera.prototype.update = function () {
 
-        this.x = u.x;
-        this.y = u.y;
+        // this.x = u.x + u.animation.frameWidth*.5*scale - this.width*.5;
+        // this.y = u.y + u.animation.frameHeight*.5*scale - this.height*.5;
+
+
+
+
+
 
         for (var i = 0; i < this.game.entities.length; i++) {
             var ent = this.game.entities[i];
 
-            if (ent instanceof Tile)
-                if (((this.x - ent.x) > 0)
-                    && ((this.y - ent.y) > 0)
-                    && ((this.x + this.width - ent.x) > 0)
-                    && ((this.y + this.height - ent.y) > 0)) {
-                    ent.x = (ent.x - this.x);
-                    ent.y = (ent.y - this.y);
-                }
+
+            ent.x = (ent.x - this.x);
+            ent.y = (ent.y - this.y);
+
+            //
+            // if (ent instanceof Tile)
+            //     if (((this.x - ent.x) > 0)
+            //         && ((this.y - ent.y) > 0)
+            //         && ((this.x + this.width - ent.x) > 0)
+            //         && ((this.y + this.height - ent.y) > 0)) {
+            //         ent.x = (ent.x - this.x);
+            //         ent.y = (ent.y - this.y);
+            //     }
         }
 
-
-
     };
-        Entity.prototype.update.call(this);
 
 
     Camera.prototype.draw = function () {
+        Entity.prototype.draw.call(this);
+
+
+
+        this.ctx.rect(this.x, this.y, this.x + this.width, this.y + this.height);
+
+        this.ctx.stroke();
+
+        // this.ctx.shadowBlur = 10;
+        // this.ctx.shadowColor = "#008000";
+        //
+
+
+
+
+
         // this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
         // Entity.prototype.draw.call(this);
-    };
+        //
+        };
 
 
 AM.queueDownload("./img/magnet.png");
@@ -712,7 +728,7 @@ AM.downloadAll(function () {
 
     gameEngine.addEntity(ufobeam);
 
-    var cam = new Camera(gameEngine);
+    cam = new Camera(gameEngine);
 
     gameEngine.addEntity(cam);
 
