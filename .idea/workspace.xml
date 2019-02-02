@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="315421f8-5cb9-4dcb-8305-2f3e371ac786" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change beforePath="$PROJECT_DIR$/main.js" afterPath="$PROJECT_DIR$/main.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,8 +29,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="530" column="0" lean-forward="true" selection-start-line="530" selection-start-column="0" selection-end-line="530" selection-end-column="0" />
+            <state relative-caret-position="392">
+              <caret line="701" column="0" lean-forward="true" selection-start-line="701" selection-start-column="0" selection-end-line="701" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -51,8 +49,8 @@
       <file leaf-file-name="gameengine.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gameengine.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="68" column="4" lean-forward="false" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="4" />
+            <state relative-caret-position="670">
+              <caret line="49" column="43" lean-forward="true" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -72,12 +70,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Tile</find>
-      <find>new tile</find>
-      <find>collide</find>
-      <find>laser.pro</find>
-      <find>tile.</find>
-      <find>ufo.prototype.up</find>
       <find>blackhole</find>
       <find>instance</find>
       <find>boom.png</find>
@@ -99,9 +91,15 @@
       <find>clientX</find>
       <find>ufo_beam</find>
       <find>ufobeam =</find>
-      <find>function ufo</find>
       <find>camera</find>
       <find>main</find>
+      <find>function</find>
+      <find>function ufo</find>
+      <find>function tile</find>
+      <find>sky</find>
+      <find>ufo.proto.</find>
+      <find>ufo.prototype.update</find>
+      <find>add</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -111,8 +109,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/gameengine.js" />
-        <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/main.js" />
       </list>
     </option>
   </component>
@@ -222,12 +220,12 @@
       <workItem from="1548970025109" duration="38000" />
       <workItem from="1548978657971" duration="6000" />
       <workItem from="1548978709391" duration="3992000" />
-      <workItem from="1549084704341" duration="907000" />
+      <workItem from="1549084704341" duration="1712000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74619000" />
+    <option name="totallyTimeSpent" value="75424000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -331,14 +329,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gameengine.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="68" column="4" lean-forward="false" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assetmanager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -355,10 +345,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gameengine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="670">
+          <caret line="49" column="43" lean-forward="true" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="530" column="0" lean-forward="true" selection-start-line="530" selection-start-column="0" selection-end-line="530" selection-end-column="0" />
+        <state relative-caret-position="392">
+          <caret line="701" column="0" lean-forward="true" selection-start-line="701" selection-start-column="0" selection-end-line="701" selection-end-column="0" />
           <folding />
         </state>
       </provider>

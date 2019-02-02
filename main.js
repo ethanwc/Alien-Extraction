@@ -250,30 +250,6 @@ Explosion.prototype.draw = function (x,y) {
 };
 
 
-//TILE
-function Tile(game, spritesheet) {
-    this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, scale);
-    this.speed = 400;
-    this.ctx = game.ctx;
-    this.health = 100;
-    this.type = "unset";
-//250 is height that it is displayed at (y)
-    Entity.call(this, game, 0, 250);
-}
-
-Tile.prototype = new Entity();
-Tile.prototype.constructor = Tile;
-
-Tile.prototype.update = function () {
-    this.x += this.game.clockTick * this.speed;
-    // if (this.x > 1000) this.x = -230;
-    Entity.prototype.update.call(this);
-};
-
-Tile.prototype.draw = function () {
-    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-    Entity.prototype.draw.call(this);
-};
 
 
 //UFO_Beam
@@ -412,11 +388,11 @@ Ufo.prototype.update = function () {
                 this.collide();
                 // ent.x = -100;
                 // ent.y = -100;
-                // if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3")) {
+                if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3")) {
+                    ent.removeFromWorld = true;
 
-                // }
+                }
 
-                ent.removeFromWorld = true;
             }
         }
     }
@@ -476,6 +452,32 @@ Ufo.prototype.collideEncompass = function(other) {
     }
 };
 
+
+//TILE
+function Tile(game, spritesheet) {
+    this.animation = new Animation(spritesheet, 546, 546, 1, 1, 1, true, scale);
+    this.speed = 400;
+    this.ctx = game.ctx;
+    this.health = 100;
+    this.type = "unset";
+//250 is height that it is displayed at (y)
+    Entity.call(this, game, 0, 250);
+}
+
+Tile.prototype = new Entity();
+Tile.prototype.constructor = Tile;
+
+Tile.prototype.update = function () {
+    this.x += this.game.clockTick * this.speed;
+    // if (this.x > 1000) this.x = -230;
+    Entity.prototype.update.call(this);
+};
+
+Tile.prototype.draw = function () {
+    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+    Entity.prototype.draw.call(this);
+};
+
 // CAMERA
     function Camera(game, spritesheet) {
         this.ctx = game.ctx;
@@ -508,8 +510,8 @@ Ufo.prototype.collideEncompass = function(other) {
         this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
         Entity.prototype.draw.call(this);
     };
-//
-//
+
+
 AM.queueDownload("./img/magnet.png");
 AM.queueDownload("./img/sky.jpg");
 AM.queueDownload("./img/sky_2.png");
@@ -554,17 +556,14 @@ AM.downloadAll(function () {
     // gameEngine.addEntity(r);
 
     u = new Ufo(gameEngine, AM.getAsset("./img/ship2.png"));
-    gameEngine.addEntity(u);
     var z = new Laser(gameEngine);
-    gameEngine.addEntity(z);
 
     ufobeam = new Ufo_beam(gameEngine, AM.getAsset("./img/ufo_beam.png"));
 
-    gameEngine.addEntity(ufobeam);
 
     blackhole = new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png"));
 
-    gameEngine.addEntity(blackhole);
+
 
 
 
@@ -696,6 +695,14 @@ AM.downloadAll(function () {
             }
         }
     }
+
+    gameEngine.addEntity(u);
+
+    gameEngine.addEntity(z);
+
+    gameEngine.addEntity(ufobeam);
+
+    // gameEngine.addEntity(blackhole);
 
     document.onkeydown = function(e) {
         switch (e.keyCode) {
