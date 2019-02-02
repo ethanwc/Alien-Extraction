@@ -28,6 +28,8 @@ var u;
 var mousex = 0, mousey = 0;
 var gameEngine;
 var ufobeam;
+var screenwidth = screenwidth;
+console.log(screenwidth);
 
 var blackhole;
 
@@ -532,7 +534,8 @@ AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
     var ctx = canvas.getContext("2d");
 
-
+    document.getElementById("gameWorld").width = screen.width;
+    document.getElementById("gameWorld").height = screen.height;
     gameEngine = new GameEngine();
     gameEngine.init(ctx);
     gameEngine.start();
@@ -562,6 +565,12 @@ AM.downloadAll(function () {
     blackhole = new Blackhole(gameEngine, AM.getAsset("./img/blackhole.png"));
 
     gameEngine.addEntity(blackhole);
+
+
+
+
+
+
 
     var worldWidth = 140;
     var worldHeight = 200;
