@@ -5,7 +5,7 @@
 /*
 MUTLTITHREADING COLLISION DETECTION???
 
-
+TODO REMOVE SPEED FROM UFO, PUT ON CAMERA
 FUEL STATION
 UPGRADE STATION
 CAMERA
@@ -22,7 +22,7 @@ determine distance of each colloding entity for order of destruction, use x,y pl
  */
 var AM = new AssetManager();
 
-var scale = 1/16;
+var scale = 1/3;
 var ufoscale = 3;
 var u;
 var mousex = 0, mousey = 0;
@@ -30,8 +30,10 @@ var gameEngine;
 var ufobeam;
 var screenwidth = screenwidth;
 
+var w,h;
+
 var cam;
-console.log(screenwidth);
+// console.log(screenwidth);
 
 var blackhole;
 
@@ -91,13 +93,13 @@ Laser.prototype.update = function () {
 
     //Detect Laser collision with tiles
     //Reference: http://www.jeffreythompson.org/collision-detection/line-rect.php
-        var uu;
+    var uu;
     for (var i = 0; i < this.game.entities.length; i++) {
         var ent = this.game.entities[i];
 
         if (ent instanceof Tile) {
 
-            
+
             var x1 = u.x + 28 * ufoscale, y1 = u.y + 37 * ufoscale;
             var x2 = mousex, y2 = mousey;
 
@@ -294,12 +296,6 @@ Blackhole.prototype.draw = function () {
 // UFO
 function Ufo(game, spritesheet) {
     this.animation = new Animation(spritesheet, 56, 39, 6, .02, 12, true, ufoscale);
-    this.horizontalVelocity = 200;
-    this.verticalVelocity = 200;
-    this.verticalAcceleration = 0;
-    this.horizontalAcceleration = 0;
-    this.maxAcceleration = 1500;
-    this.maxVelocity = 1000;
     this.ctx = game.ctx;
     this.x = 200;
     this.y = 200;
@@ -311,9 +307,6 @@ Ufo.prototype.constructor = Ufo;
 
 Ufo.prototype.update = function () {
 
-    cam.x = this.x;
-    cam.y = this.y;
-
     ufobeam.x = this.x - 9;
     ufobeam.y = this.y + 83;
 
@@ -322,44 +315,14 @@ Ufo.prototype.update = function () {
     blackhole.y = this.y - 50;
 
 
-    this.horizontalVelocity += this.game.clockTick * this.horizontalAcceleration;
-    this.verticalVelocity += this.game.clockTick * this.verticalAcceleration;
-
-    this.x += this.game.clockTick * this.horizontalVelocity;
-    this.y += this.game.clockTick * this.verticalVelocity;
-
-    //a
 
 
-    //check if max accel or velocity exceeded
-
-
-    if (Math.abs(this.verticalAcceleration) > this.maxAcceleration) {
-        if (this.verticalAcceleration > 0) this.verticalAcceleration = this.maxAcceleration;
-        else this.verticalAcceleration = -this.maxAcceleration;
-    }
-
-    if (Math.abs(this.horizontalAcceleration) > this.maxAcceleration) {
-        if (this.horizontalAcceleration > 0) this.horizontalAcceleration = this.maxAcceleration;
-        else this.horizontalAcceleration = -this.maxAcceleration;
-    }
-
-        if (Math.abs(this.horizontalVelocity) > this.maxVelocity) {
-            if (this.horizontalVelocity >0) this.horizontalVelocity = this.maxVelocity;
-            else this.horizontalVelocity = -this.maxVelocity;
-        }
-
-        if (Math.abs(this.verticalVelocity) > this.maxVelocity) {
-            if (this.verticalVelocity > 0) this.verticalVelocity = this.maxVelocity;
-            else this.verticalVelocity = -this.maxVelocity;
-        }
-
-        //temp bounds fix
-        if (this.x > 4000) this.x = -230;
-        if (this. x < -230) this.x = 4000;
-        if (this.y > 4000) this.y = -230;
-        if (this. y < -230) this.y = 4000;
-        Entity.prototype.update.call(this);
+    //temp bounds fix
+    if (this.x > 4000) this.x = -230;
+    if (this. x < -230) this.x = 4000;
+    if (this.y > 4000) this.y = -230;
+    if (this. y < -230) this.y = 4000;
+    Entity.prototype.update.call(this);
     //b
 
 
@@ -471,71 +434,153 @@ Tile.prototype.draw = function () {
 };
 
 // CAMERA
-    function Camera(game) {
-        this.ctx = game.ctx;
-        this.x = 0;
-        this.y = 0;
-        this.width = 800;
-        this.height = 600;
-        this.viewTime = .01;
-        this.zoom = 1; //default zoom ratio
-        Entity.call(this, game, 0, 170);
+function Camera(game) {
+    this.ctx = game.ctx;
+
+    this.width = .95 * w;
+    this.height = .95 * h;
+    this.x = (w- this.width)/2;
+    this.y = (h-this.height)/2;
+    this.viewTime = .01;
+    this.zoom = 1; //default zoom ratio
+
+    // alert(this.x);
+
+    document.getElementById("gameWorld").width = this.width;
+    document.getElementById("gameWorld").height = this.height;
+
+    this.horizontalVelocity = 0;
+    this.verticalVelocity = 0;
+    this.verticalAcceleration = 0;
+    this.horizontalAcceleration = 0;
+    this.maxAcceleration = 1500;
+    this.maxVelocity = 1000;
+
+    Entity.call(this, game, 0, 170);
+}
+
+Camera.prototype = new Entity();
+Camera.prototype.constructor = Camera;
+Camera.prototype.update = function () {
+
+
+    // this.x = u.x - u.animation.frameWidth;
+    // this.y = u.y;
+
+    u.x = this.x + this.width/2;
+    u.y = this.y + this.height/2;
+
+
+
+
+
+    this.horizontalVelocity += this.game.clockTick * this.horizontalAcceleration;
+    this.verticalVelocity += this.game.clockTick * this.verticalAcceleration;
+
+    this.x += this.game.clockTick * this.horizontalVelocity;
+    this.y += this.game.clockTick * this.verticalVelocity;
+
+    //a
+
+
+    //check if max accel or velocity exceeded
+
+
+    if (Math.abs(this.verticalAcceleration) > this.maxAcceleration) {
+        if (this.verticalAcceleration > 0) this.verticalAcceleration = this.maxAcceleration;
+        else this.verticalAcceleration = -this.maxAcceleration;
     }
 
-    Camera.prototype = new Entity();
-    Camera.prototype.constructor = Camera;
-    Camera.prototype.update = function () {
+    if (Math.abs(this.horizontalAcceleration) > this.maxAcceleration) {
+        if (this.horizontalAcceleration > 0) this.horizontalAcceleration = this.maxAcceleration;
+        else this.horizontalAcceleration = -this.maxAcceleration;
+    }
 
-        // this.x = u.x + u.animation.frameWidth*.5*scale - this.width*.5;
-        // this.y = u.y + u.animation.frameHeight*.5*scale - this.height*.5;
+    if (Math.abs(this.horizontalVelocity) > this.maxVelocity) {
+        if (this.horizontalVelocity >0) this.horizontalVelocity = this.maxVelocity;
+        else this.horizontalVelocity = -this.maxVelocity;
+    }
 
+    if (Math.abs(this.verticalVelocity) > this.maxVelocity) {
+        if (this.verticalVelocity > 0) this.verticalVelocity = this.maxVelocity;
+        else this.verticalVelocity = -this.maxVelocity;
+    }
 
-
-
-
-
-        for (var i = 0; i < this.game.entities.length; i++) {
-            var ent = this.game.entities[i];
-
-
-            ent.x = (ent.x - this.x);
-            ent.y = (ent.y - this.y);
-
-            //
-            // if (ent instanceof Tile)
-            //     if (((this.x - ent.x) > 0)
-            //         && ((this.y - ent.y) > 0)
-            //         && ((this.x + this.width - ent.x) > 0)
-            //         && ((this.y + this.height - ent.y) > 0)) {
-            //         ent.x = (ent.x - this.x);
-            //         ent.y = (ent.y - this.y);
-            //     }
-        }
-
-    };
-
-
-    Camera.prototype.draw = function () {
-        Entity.prototype.draw.call(this);
+    //
+    // if (this.x < 0) {
+    //     this.x = 0;
+    //     this.horizontalVelocity = 0;
+    // }
+    // if (this.y < 0) {
+    //     this.y = 0;
+    //     this.verticalVelocity = 0;
+    // }
 
 
 
-        this.ctx.rect(this.x, this.y, this.x + this.width, this.y + this.height);
 
-        this.ctx.stroke();
 
-        // this.ctx.shadowBlur = 10;
-        // this.ctx.shadowColor = "#008000";
+    // cam.x = t;
+    // cam.y = this.y;
+
+
+    // this.x = u.x + u.animation.frameWidth*.5*scale - this.width*.5;
+    // this.y = u.y + u.animation.frameHeight*.5*scale - this.height*.5;
+
+
+
+
+
+    for (var i = 0; i < this.game.entities.length; i++) {
+        var ent = this.game.entities[i];
+
+        // if (ent instanceof Tile) {
+        //     ent.x = (ent.x - this.x);
+        //     ent.y = (ent.y - this.y);
+        // }
+
+        ent.x = (ent.x - this.x);
+        ent.y = (ent.y - this.y);
+
+
+        // ent.x = (ent.x - this.x);
+        // ent.y = (ent.y - this.y);
+
         //
+        // if (ent instanceof Tile)
+        //     if (((this.x - ent.x) > 0)
+        //         && ((this.y - ent.y) > 0)
+        //         && ((this.x + this.width - ent.x) > 0)
+        //         && ((this.y + this.height - ent.y) > 0)) {
+        //         ent.x = (ent.x - this.x);
+        //         ent.y = (ent.y - this.y);
+        //     }
+    }
+
+};
+
+
+Camera.prototype.draw = function () {
+    Entity.prototype.draw.call(this);
+
+
+
+    this.ctx.rect(this.x, this.y, this.x + this.width, this.y + this.height);
+
+    // this.ctx.stroke();
+
+    // this.ctx.shadowBlur = 10;
+    // this.ctx.shadowColor = "#008000";
+    //
 
 
 
 
 
-        // this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-        // Entity.prototype.draw.call(this);
-        //
-        };
+    // this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+    // Entity.prototype.draw.call(this);
+    //
+};
 
 
 AM.queueDownload("./img/magnet.png");
@@ -564,9 +609,16 @@ AM.downloadAll(function () {
 
     document.getElementById("gameWorld").width = screen.width;
     document.getElementById("gameWorld").height = screen.height;
+    w = screen.availWidth;
+    h = screen.availHeight;
     gameEngine = new GameEngine();
     gameEngine.init(ctx);
     gameEngine.start();
+    // alert(screen.width);
+    // alert(w);
+    //
+    // alert(screen.height);
+    // alert(screen.availHeight);
 
     canvas.addEventListener("click", updateCoords);
 
@@ -597,7 +649,7 @@ AM.downloadAll(function () {
 
 
 
-    var worldWidth = 140;
+    var worldWidth = 100;
     var worldHeight = 200;
 
 
@@ -691,7 +743,7 @@ AM.downloadAll(function () {
                 gameEngine.addEntity(t);
             }
 
-            else if (y < 100) {
+            else  {
                 var t;
 
                 var r = ((Math.random() * 100) + 1);
@@ -741,14 +793,14 @@ AM.downloadAll(function () {
                 // Ufo.speed = 400;
                 // u.x -= 20;
                 // b.x -= 20;
-                u.horizontalAcceleration-=50;
+                cam.horizontalAcceleration-=50;
 
                 break;
             case 38:
                 //UP
                 // u.y-=20;
                 // b.y-=20;
-                u.verticalAcceleration -=50;
+                cam.verticalAcceleration -=50;
 
                 break;
             case 39:
@@ -756,13 +808,13 @@ AM.downloadAll(function () {
                 // Ufo.speed = 400;
                 // u.x += 20;
                 // b.x+=20;
-                u.horizontalAcceleration +=50;
+                cam.horizontalAcceleration +=50;
                 console.log('start right accel');
                 break;
             case 40:
                 // u.y += 10;
                 // b.y+=10;
-                u.verticalAcceleration +=50;
+                cam.verticalAcceleration +=50;
                 //DOWN
                 break;
         }
@@ -774,14 +826,14 @@ AM.downloadAll(function () {
                 // Ufo.speed = 400;
                 // u.x -= 20;
                 // b.x -= 20;
-                u.horizontalAcceleration=0;
+                cam.horizontalAcceleration=0;
 
                 break;
             case 38:
                 //UP
                 // u.y-=20;
                 // b.y-=20;
-                u.verticalAcceleration = 0;
+                cam.verticalAcceleration = 0;
 
                 break;
             case 39:
@@ -789,14 +841,14 @@ AM.downloadAll(function () {
                 // Ufo.speed = 400;
                 // u.x += 20;
                 // b.x+=20;
-                u.horizontalAcceleration =0;
+                cam.horizontalAcceleration =0;
                 console.log('stop right accel');
 
                 break;
             case 40:
                 // u.y += 10;
                 // b.y+=10;
-                u.verticalAcceleration =0;
+                cam.verticalAcceleration =0;
                 //DOWN
                 break;
         }
