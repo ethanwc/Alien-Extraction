@@ -246,9 +246,8 @@ Explosion.prototype.draw = function (x,y) {
 function Ufo_beam(game, spritesheet) {
     // function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
     // this.animation = new Animation(spritesheet, 56, 39, 1, .2, 2, true, 3);
-    this.animation = new Animation(spritesheet, 56, 56, 6, .2, 6, true, 3);
-
-    this.speed = 400;
+    this.animation = new Animation(spritesheet, 56, 56, 6, .2, 2, true, 3);
+    this.speed = 0;
     this.ctx = game.ctx;
     //250 is height that it is displayed at (y)
     Entity.call(this, game, 0, 330);
@@ -295,7 +294,7 @@ Blackhole.prototype.draw = function () {
 
 // UFO
 function Ufo(game, spritesheet) {
-    this.animation = new Animation(spritesheet, 56, 39, 6, .02, 12, true, ufoscale);
+    this.animation = new Animation(spritesheet, 56, 39, 6, .02, 11, true, ufoscale);
     this.ctx = game.ctx;
     this.x = 200;
     this.y = 200;
@@ -307,8 +306,7 @@ Ufo.prototype.constructor = Ufo;
 
 Ufo.prototype.update = function () {
 
-    ufobeam.x = this.x - 9;
-    ufobeam.y = this.y + 83;
+
 
 
     blackhole.x = this.x +30;
@@ -469,6 +467,12 @@ Camera.prototype.update = function () {
 
     u.x = this.x + this.width/2;
     u.y = this.y + this.height/2;
+
+
+    ufobeam.x = u.x - 4;
+    ufobeam.y = u.y + 86;
+
+    if (this.x > 16000) this.x = 0;
 
 
 
