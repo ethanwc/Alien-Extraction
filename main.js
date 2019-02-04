@@ -548,7 +548,7 @@ Tile.prototype.draw = function () {
 function Camera(game) {
     this.ctx = game.ctx;
 
-    this.width = .5 * w;
+    this.width = .8 * w;
     this.height = .7 * h;
     this.x = (w- this.width)/2;
     this.y = (h-this.height)/2;
@@ -682,7 +682,6 @@ Camera.prototype.draw = function () {
 
 AM.queueDownload("./img/energyblast.png");
 AM.queueDownload("./img/heart.png");
-
 AM.queueDownload("./img/magnet.png");
 AM.queueDownload("./img/smoke.png");
 AM.queueDownload("./img/sky.jpg");
