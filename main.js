@@ -205,6 +205,39 @@ Laser.prototype.draw = function (event) {
     }
 };
 
+//HEALTH
+function Heart(game, spritesheet) {
+    // function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
+
+    this.animation = new Animation(spritesheet, 350, 306, 6, .05, 11, true, .25);
+
+    this.speed = 0;
+    this.ctx = game.ctx;
+    this.x = 0;
+    this.y = 100;
+
+    // this.x = 200;
+    // this.y = 200;
+    // this.x = 200;
+    // this.y = 200;
+//250 is height that it is displayed at (y)
+    Entity.call(this, game, 0, 250);
+}
+
+Heart.prototype = new Entity();
+Heart.prototype.constructor = Heart;
+
+Heart.prototype.update = function () {
+    // this.x += this.game.clockTick * this.speed;
+    // if (this.x > 1000) this.x = -230;
+    Entity.prototype.update.call(this);
+};
+
+Heart.prototype.draw = function (x,y) {
+    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+    Entity.prototype.draw.call(this);
+};
+
 
 //EXPLOSION
 function Explosion(game, spritesheet) {
@@ -236,6 +269,9 @@ Explosion.prototype.constructor = Explosion;
 Explosion.prototype.update = function () {
     // this.x += this.game.clockTick * this.speed;
     // if (this.x > 1000) this.x = -230;
+
+    this.y = (this.y-cam.y);
+
     Entity.prototype.update.call(this);
 };
 
@@ -392,17 +428,11 @@ Ufo.prototype.update = function () {
 
 
 
-    blackhole.x = this.x +30;
-    blackhole.y = this.y - 50;
-
-
-
-
     //temp bounds fix
-    if (this.x > 4000) this.x = -230;
-    if (this. x < -230) this.x = 4000;
-    if (this.y > 4000) this.y = -230;
-    if (this. y < -230) this.y = 4000;
+    // if (this.x > 4000) this.x = -230;
+    // if (this. x < -230) this.x = 4000;
+    // if (this.y > 4000) this.y = -230;
+    // if (this. y < -230) this.y = 4000;
     Entity.prototype.update.call(this);
     //b
 
@@ -518,8 +548,8 @@ Tile.prototype.draw = function () {
 function Camera(game) {
     this.ctx = game.ctx;
 
-    this.width = .95 * w;
-    this.height = .95 * h;
+    this.width = .5 * w;
+    this.height = .7 * h;
     this.x = (w- this.width)/2;
     this.y = (h-this.height)/2;
     this.viewTime = .01;
@@ -593,30 +623,6 @@ Camera.prototype.update = function () {
         else this.verticalVelocity = -this.maxVelocity;
     }
 
-    //
-    // if (this.x < 0) {
-    //     this.x = 0;
-    //     this.horizontalVelocity = 0;
-    // }
-    // if (this.y < 0) {
-    //     this.y = 0;
-    //     this.verticalVelocity = 0;
-    // }
-
-
-
-
-
-    // cam.x = t;
-    // cam.y = this.y;
-
-
-    // this.x = u.x + u.animation.frameWidth*.5*scale - this.width*.5;
-    // this.y = u.y + u.animation.frameHeight*.5*scale - this.height*.5;
-
-
-
-
 
     for (var i = 0; i < this.game.entities.length; i++) {
         var ent = this.game.entities[i];
@@ -624,13 +630,16 @@ Camera.prototype.update = function () {
         //     ent.x = (ent.x - this.x);
         //     ent.y = (ent.y - this.y);
         // }
-        if (ent instanceof Explosion) {
-        }
-        else {
+        // if (ent instanceof Explosion) {
+        // }
+        // else if (ent instanceof Blackhole) {
+
+        // }
+        // else {
 
             ent.x = (ent.x - this.x);
             ent.y = (ent.y - this.y);
-        }
+        // }
 
         // ent.x = (ent.x - this.x);
         // ent.y = (ent.y - this.y);
@@ -672,6 +681,7 @@ Camera.prototype.draw = function () {
 };
 
 AM.queueDownload("./img/energyblast.png");
+AM.queueDownload("./img/heart.png");
 
 AM.queueDownload("./img/magnet.png");
 AM.queueDownload("./img/smoke.png");
@@ -698,8 +708,8 @@ AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
     var ctx = canvas.getContext("2d");
 
-    document.getElementById("gameWorld").width = screen.width;
-    document.getElementById("gameWorld").height = screen.height;
+    document.getElementById("gameWorld").width = screen.width * .9;
+    document.getElementById("gameWorld").height = screen.height * .9;
     w = screen.availWidth;
     h = screen.availHeight;
     gameEngine = new GameEngine();
@@ -714,10 +724,10 @@ AM.downloadAll(function () {
     canvas.addEventListener("click", updateCoords);
 
     function updateCoords(event) {
-        // mousex = event.clientX - ctx.canvas.getBoundingClientRect().left;
-        // mousey = event.clientY - ctx.canvas.getBoundingClientRect().top;
-        mousex = event.clientX;
-        mousey = event.clientY;
+        mousex = event.clientX - ctx.canvas.getBoundingClientRect().left;
+        mousey = event.clientY - ctx.canvas.getBoundingClientRect().top;
+        // mousex = event.clientX;
+        // mousey = event.clientY;
         gameEngine.addEntity(new Laser(gameEngine));
     }
 
@@ -873,15 +883,16 @@ AM.downloadAll(function () {
 
     cam = new Camera(gameEngine);
 
+    gameEngine.addEntity(new Heart(gameEngine, AM.getAsset("./img/heart.png")));
+    // gameEngine.addEntity(blackhole);
+
     gameEngine.addEntity(cam);
 
-    // gameEngine.addEntity(blackhole);
 
     document.onkeydown = function(e) {
         switch (e.keyCode) {
             case 32:
                 //SPACE
-                ufobeam = new Ufo_beam(gameEngine,);
 
                 var blast = new Blast(gameEngine,  AM.getAsset("./img/energyblast.png"));
                 blast.x = u.x - blast.animation.frameWidth - u.animation.frameWidth;
@@ -890,7 +901,7 @@ AM.downloadAll(function () {
 
 
                 break;
-            case 37:
+            case 65:
                 //LEFT
                 // Ufo.speed = 400;
                 // u.x -= 20;
@@ -898,14 +909,14 @@ AM.downloadAll(function () {
                 cam.horizontalAcceleration-=50;
 
                 break;
-            case 38:
+            case 87:
                 //UP
                 // u.y-=20;
                 // b.y-=20;
                 cam.verticalAcceleration -=50;
 
                 break;
-            case 39:
+            case 68:
                 //RIGHT
                 // Ufo.speed = 400;
                 // u.x += 20;
@@ -913,7 +924,7 @@ AM.downloadAll(function () {
                 cam.horizontalAcceleration +=50;
                 console.log('start right accel');
                 break;
-            case 40:
+            case 83:
                 // u.y += 10;
                 // b.y+=10;
                 cam.verticalAcceleration +=50;
@@ -923,7 +934,7 @@ AM.downloadAll(function () {
     };
     document.onkeyup = function(e) {
         switch (e.keyCode) {
-            case 37:
+            case 65:
                 //LEFT
                 // Ufo.speed = 400;
                 // u.x -= 20;
@@ -931,14 +942,14 @@ AM.downloadAll(function () {
                 cam.horizontalAcceleration=0;
 
                 break;
-            case 38:
+            case 87:
                 //UP
                 // u.y-=20;
                 // b.y-=20;
                 cam.verticalAcceleration = 0;
 
                 break;
-            case 39:
+            case 68:
                 //RIGHT
                 // Ufo.speed = 400;
                 // u.x += 20;
@@ -947,7 +958,7 @@ AM.downloadAll(function () {
                 console.log('stop right accel');
 
                 break;
-            case 40:
+            case 83:
                 // u.y += 10;
                 // b.y+=10;
                 cam.verticalAcceleration =0;
