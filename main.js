@@ -118,7 +118,8 @@ Laser.prototype.update = function () {
 
             if (left || right || top || bottom) {
                 if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3")) {
-                    var explosion = new Explosion(gameEngine, AM.getAsset("./img/boom.png"));
+                    // var explosion = new Explosion(gameEngine, AM.getAsset("./img/boom.png"));
+                    var explosion = new Explosion(gameEngine, AM.getAsset("./img/smoke.png"));
                     explosion.x = ent.x;
                     explosion.y = ent.y;
 
@@ -210,8 +211,12 @@ function Explosion(game, spritesheet) {
     // function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
 
     // this.animation = new Animation(spritesheet, 56, 56, 6, .2, 6, true, 3);
+    //explosion
+    // this.animation = new Animation(spritesheet, 256, 256, 8, .05, 32, false, 1);
 
-    this.animation = new Animation(spritesheet, 256, 256, 8, .05, 32, false, 1);
+    //cloud
+    this.animation = new Animation(spritesheet, 230, 161, 3, .05, 18, false, 1);
+
     this.speed = 0;
     this.ctx = game.ctx;
     this.x = 0;
@@ -238,6 +243,84 @@ Explosion.prototype.draw = function (x,y) {
     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
     Entity.prototype.draw.call(this);
 };
+
+
+//Blast
+function Blast(game, spritesheet) {
+    // function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
+
+    this.animation = new Animation(spritesheet, 315, 300, 4, .05, 12, false, 3);
+    this.initTime = gameEngine.timer.gameTime;
+    this.viewTime = .3;
+    this.speed = 0;
+    this.ctx = game.ctx;
+    this.x = 0;
+    this.y = 0;
+
+    // this.x = 200;
+    // this.y = 200;
+    // this.x = 200;
+    // this.y = 200;
+//250 is height that it is displayed at (y)
+    Entity.call(this, game, 0, 250);
+}
+
+Blast.prototype = new Entity();
+Blast.prototype.constructor = Blast;
+
+Blast.prototype.update = function () {
+    // this.x += this.game.clockTick * this.speed;
+    // if (this.x > 1000) this.x = -230;
+
+
+
+    for (var i = 0; i < this.game.entities.length; i++) {
+        var ent = this.game.entities[i];
+
+        if (ent instanceof Tile) {
+            if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3")) {
+
+
+                var circle = {x: (u.x), y: (u.y), r: 700};
+                var rect = {
+                    x: ent.x,
+                    y: ent.y,
+                    w: (ent.animation.frameWidth * scale),
+                    h: (ent.animation.frameHeight * scale)
+                };
+                if (RectCircleColliding(circle, rect)) {
+                    var explosion = new Explosion(gameEngine, AM.getAsset("./img/smoke.png"));
+                    explosion.x = ent.x;
+                    explosion.y = ent.y;
+
+                    gameEngine.addEntity(explosion);
+
+                    ent.removeFromWorld = true;
+                }
+            }
+        }
+    }
+
+    var currentTime = gameEngine.timer.gameTime;
+
+    if ((currentTime - this.initTime) > this.viewTime) {
+        this.removeFromWorld = true;
+    }
+
+    Entity.prototype.update.call(this);
+};
+
+Blast.prototype.draw = function (x,y) {
+    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+    Entity.prototype.draw.call(this);
+};
+
+
+Blast.prototype.collide = function(entity) {
+    // entity.removeFromWorld = true;
+    // alert('collision detected');
+};
+
 
 
 
@@ -342,7 +425,7 @@ Ufo.prototype.update = function () {
                 // ent.x = -100;
                 // ent.y = -100;
                 if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3")) {
-                    ent.removeFromWorld = true;
+                    // ent.removeFromWorld = true;
 
                 }
 
@@ -538,14 +621,16 @@ Camera.prototype.update = function () {
     for (var i = 0; i < this.game.entities.length; i++) {
         var ent = this.game.entities[i];
 
-        // if (ent instanceof Tile) {
         //     ent.x = (ent.x - this.x);
         //     ent.y = (ent.y - this.y);
         // }
+        if (ent instanceof Explosion) {
+        }
+        else {
 
-        ent.x = (ent.x - this.x);
-        ent.y = (ent.y - this.y);
-
+            ent.x = (ent.x - this.x);
+            ent.y = (ent.y - this.y);
+        }
 
         // ent.x = (ent.x - this.x);
         // ent.y = (ent.y - this.y);
@@ -586,8 +671,10 @@ Camera.prototype.draw = function () {
     //
 };
 
+AM.queueDownload("./img/energyblast.png");
 
 AM.queueDownload("./img/magnet.png");
+AM.queueDownload("./img/smoke.png");
 AM.queueDownload("./img/sky.jpg");
 AM.queueDownload("./img/sky_2.png");
 AM.queueDownload("./img/sky_3.png");
@@ -792,6 +879,17 @@ AM.downloadAll(function () {
 
     document.onkeydown = function(e) {
         switch (e.keyCode) {
+            case 32:
+                //SPACE
+                ufobeam = new Ufo_beam(gameEngine,);
+
+                var blast = new Blast(gameEngine,  AM.getAsset("./img/energyblast.png"));
+                blast.x = u.x - blast.animation.frameWidth - u.animation.frameWidth;
+                blast.y = u.y-blast.animation.frameHeight - u.animation.frameHeight;
+                gameEngine.addEntity(blast);
+
+
+                break;
             case 37:
                 //LEFT
                 // Ufo.speed = 400;
@@ -867,3 +965,21 @@ function distance(a, b) {
     return Math.sqrt(difX * difX + difY * difY);
 }
 
+//https://stackoverflow.com/questions/21089959/detecting-collision-of-rectangle-with-circle
+
+
+// return true if the rectangle and circle are colliding
+function RectCircleColliding(circle,rect){
+    var distX = Math.abs(circle.x - rect.x-rect.w/2);
+    var distY = Math.abs(circle.y - rect.y-rect.h/2);
+
+    if (distX > (rect.w/2 + circle.r)) { return false; }
+    if (distY > (rect.h/2 + circle.r)) { return false; }
+
+    if (distX <= (rect.w/2)) { return true; }
+    if (distY <= (rect.h/2)) { return true; }
+
+    var dx=distX-rect.w/2;
+    var dy=distY-rect.h/2;
+    return (dx*dx+dy*dy<=(circle.r*circle.r));
+}
