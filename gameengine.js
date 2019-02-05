@@ -50,13 +50,22 @@ GameEngine.prototype.draw = function () {
 GameEngine.prototype.update = function () {
     var entitiesCount = this.entities.length;
 
+    // var camLocation;
+
     for (var i = 0; i < entitiesCount; i++) {
         var entity = this.entities[i];
 
-        if (!entity.removeFromWorld) {
+        //make camera last
+        if (entity instanceof Camera) {
+            this.entities.push(this.entities.splice(i, 1)[0]);
+
+        }
+        else if (!entity.removeFromWorld) {
             entity.update();
         }
     }
+
+    if (cam != null) cam.update();
 
     for (var i = this.entities.length - 1; i >= 0; --i) {
         if (this.entities[i].removeFromWorld) {

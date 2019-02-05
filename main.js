@@ -1,11 +1,9 @@
 //https://medium.com/techtrument/multithreading-javascript-46156179cf9a
 //one thread for just collision detection?
 
-//TODO:
-/*
-MUTLTITHREADING COLLISION DETECTION???
 
-TODO REMOVE SPEED FROM UFO, PUT ON CAMERA
+//TODO REMOVE SPEED FROM UFO, PUT ON CAMERA
+/*
 FUEL STATION
 UPGRADE STATION
 CAMERA
@@ -22,13 +20,18 @@ determine distance of each colloding entity for order of destruction, use x,y pl
  */
 var AM = new AssetManager();
 
-var scale = 1/3;
+var scale = 1/4;
 var ufoscale = 3;
 var u;
 var mousex = 0, mousey = 0;
 var gameEngine;
 var ufobeam;
 var screenwidth = screenwidth;
+
+
+var worldWidth = 100;
+var worldHeight = 200;
+
 
 var w,h;
 
@@ -270,7 +273,7 @@ Explosion.prototype.update = function () {
     // this.x += this.game.clockTick * this.speed;
     // if (this.x > 1000) this.x = -230;
 
-    this.y = (this.y-cam.y);
+    // this.y = (this.y-cam.y);
 
     Entity.prototype.update.call(this);
 };
@@ -285,7 +288,7 @@ Explosion.prototype.draw = function (x,y) {
 function Blast(game, spritesheet) {
     // function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDuration, frames, loop, scale) {
 
-    this.animation = new Animation(spritesheet, 315, 300, 4, .05, 12, false, 3);
+    this.animation = new Animation(spritesheet, 315, 300, 4, .1, 12, false, 3);
     this.initTime = gameEngine.timer.gameTime;
     this.viewTime = .3;
     this.speed = 0;
@@ -317,7 +320,7 @@ Blast.prototype.update = function () {
             if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3")) {
 
 
-                var circle = {x: (u.x), y: (u.y), r: 700};
+                var circle = {x: (u.x), y: (u.y), r: 100};
                 var rect = {
                     x: ent.x,
                     y: ent.y,
@@ -415,8 +418,8 @@ Blackhole.prototype.draw = function () {
 function Ufo(game, spritesheet) {
     this.animation = new Animation(spritesheet, 56, 39, 6, .02, 11, true, ufoscale);
     this.ctx = game.ctx;
-    this.x = 200;
-    this.y = 200;
+    this.x = 0;
+    this.y = 0;
     Entity.call(this, game, 0, 250);
 }
 
@@ -547,13 +550,20 @@ Tile.prototype.draw = function () {
 // CAMERA
 function Camera(game) {
     this.ctx = game.ctx;
+    this.width = .8 * h;
+    this.height = .8 * h;
+    this.x = 0;
+    this.y = 0;
 
-    this.width = .8 * w;
-    this.height = .7 * h;
-    this.x = (w- this.width)/2;
-    this.y = (h-this.height)/2;
+    // this.x = (w- this.width)/2;
+    // this.y = (h-this.height)/2;
+
+    // this.y = -100;
     this.viewTime = .01;
     this.zoom = 1; //default zoom ratio
+
+    this.maxX = worldWidth * 512 * scale;
+    this.maxY = worldHeight * 512 * scale;
 
     // alert(this.x);
 
@@ -562,12 +572,12 @@ function Camera(game) {
 
     this.horizontalVelocity = 0;
     this.verticalVelocity = 0;
-    this.verticalAcceleration = 0;
-    this.horizontalAcceleration = 0;
-    this.maxAcceleration = 1500;
+    // this.verticalAcceleration = 0;
+    // this.horizontalAcceleration = 0;
+    // this.maxAcceleration = 1500;
     this.maxVelocity = 1000;
 
-    Entity.call(this, game, 0, 170);
+    Entity.call(this, game, 0, 0);
 }
 
 Camera.prototype = new Entity();
@@ -585,50 +595,73 @@ Camera.prototype.update = function () {
     ufobeam.x = u.x - 4;
     ufobeam.y = u.y + 86;
 
-    if (this.x > 16000) this.x = 0;
+    // if (this.x > 16000) this.x = 0;
 
 
 
 
 
-    this.horizontalVelocity += this.game.clockTick * this.horizontalAcceleration;
-    this.verticalVelocity += this.game.clockTick * this.verticalAcceleration;
+    // this.horizontalVelocity += this.game.clockTick * this.horizontalAcceleration;
+    // this.verticalVelocity += this.game.clockTick * this.verticalAcceleration;
 
-    this.x += this.game.clockTick * this.horizontalVelocity;
-    this.y += this.game.clockTick * this.verticalVelocity;
+
 
     //a
 
 
     //check if max accel or velocity exceeded
 
+    //
+    // if (Math.abs(this.verticalAcceleration) > this.maxAcceleration) {
+    //     if (this.verticalAcceleration > 0) this.verticalAcceleration = this.maxAcceleration;
+    //     else this.verticalAcceleration = -this.maxAcceleration;
+    // }
+    //
+    // if (Math.abs(this.horizontalAcceleration) > this.maxAcceleration) {
+    //     if (this.horizontalAcceleration > 0) this.horizontalAcceleration = this.maxAcceleration;
+    //     else this.horizontalAcceleration = -this.maxAcceleration;
+    // }
+    //
+    // if (Math.abs(this.horizontalVelocity) > this.maxVelocity) {
+    //     if (this.horizontalVelocity >0) this.horizontalVelocity = this.maxVelocity;
+    //     else this.horizontalVelocity = -this.maxVelocity;
+    // }
+    //
+    // if (Math.abs(this.verticalVelocity) > this.maxVelocity) {
+    //     if (this.verticalVelocity > 0) this.verticalVelocity = this.maxVelocity;
+    //     else this.verticalVelocity = -this.maxVelocity;
+    // }
 
-    if (Math.abs(this.verticalAcceleration) > this.maxAcceleration) {
-        if (this.verticalAcceleration > 0) this.verticalAcceleration = this.maxAcceleration;
-        else this.verticalAcceleration = -this.maxAcceleration;
-    }
-
-    if (Math.abs(this.horizontalAcceleration) > this.maxAcceleration) {
-        if (this.horizontalAcceleration > 0) this.horizontalAcceleration = this.maxAcceleration;
-        else this.horizontalAcceleration = -this.maxAcceleration;
-    }
-
-    if (Math.abs(this.horizontalVelocity) > this.maxVelocity) {
-        if (this.horizontalVelocity >0) this.horizontalVelocity = this.maxVelocity;
-        else this.horizontalVelocity = -this.maxVelocity;
-    }
-
-    if (Math.abs(this.verticalVelocity) > this.maxVelocity) {
-        if (this.verticalVelocity > 0) this.verticalVelocity = this.maxVelocity;
-        else this.verticalVelocity = -this.maxVelocity;
-    }
+    var newx, newy;
 
 
-    for (var i = 0; i < this.game.entities.length; i++) {
+
+    this.x += this.game.clockTick * this.horizontalVelocity;
+    this.y += this.game.clockTick * this.verticalVelocity;
+
+    // if ((this.x < this.maxX) && (this.x > 0)) {
+    //     this.x = newx;
+    // }
+    // if ((this.y < this.maxY) && (this.y > 0)) {
+    //     this.y = newy;
+    // }
+
+
+    if (this.x < 0) this.x = 0;
+    if (this.y < 0) this.y = 0;
+
+
+    console.log(this.x);
+    console.log(this.y);
+
+
+    // if (this.x == newx && this.y == newy)
+
+        for (var i = 0; i < this.game.entities.length; i++) {
         var ent = this.game.entities[i];
 
-        //     ent.x = (ent.x - this.x);
-        //     ent.y = (ent.y - this.y);
+            // ent.x = (ent.x - this.x);
+            // ent.y = (ent.y - this.y);
         // }
         // if (ent instanceof Explosion) {
         // }
@@ -637,8 +670,20 @@ Camera.prototype.update = function () {
         // }
         // else {
 
-            ent.x = (ent.x - this.x);
-            ent.y = (ent.y - this.y);
+        // if (ent instanceof Tile) {
+
+        // ent.x = (this.x - ent.x);
+        // ent.y = (this.y - ent.y);
+        // }
+        if (ent != this) {
+            // if (this.x > 0 && this.x < this.maxX)
+            ent.x = (ent.x - this.horizontalVelocity);
+
+            // if (this.y > 0 && this.y < this.maxY)
+                ent.y = (ent.y - this.verticalVelocity);
+        }
+
+        // }
         // }
 
         // ent.x = (ent.x - this.x);
@@ -663,8 +708,8 @@ Camera.prototype.draw = function () {
 
 
 
-    this.ctx.rect(this.x, this.y, this.x + this.width, this.y + this.height);
-
+    // this.ctx.rect(this.x, this.y, this.x + this.width, this.y + this.height);
+    //
     // this.ctx.stroke();
 
     // this.ctx.shadowBlur = 10;
@@ -746,11 +791,6 @@ AM.downloadAll(function () {
 
 
 
-
-
-
-    var worldWidth = 100;
-    var worldHeight = 200;
 
 
     //Generate World
@@ -883,9 +923,9 @@ AM.downloadAll(function () {
     cam = new Camera(gameEngine);
 
     gameEngine.addEntity(new Heart(gameEngine, AM.getAsset("./img/heart.png")));
-    // gameEngine.addEntity(blackhole);
-
+    gameEngine.addEntity(blackhole);
     gameEngine.addEntity(cam);
+
 
 
     document.onkeydown = function(e) {
@@ -905,14 +945,14 @@ AM.downloadAll(function () {
                 // Ufo.speed = 400;
                 // u.x -= 20;
                 // b.x -= 20;
-                cam.horizontalAcceleration-=50;
+                cam.horizontalVelocity=-15;
 
                 break;
             case 87:
                 //UP
                 // u.y-=20;
                 // b.y-=20;
-                cam.verticalAcceleration -=50;
+                cam.verticalVelocity =-15;
 
                 break;
             case 68:
@@ -920,13 +960,13 @@ AM.downloadAll(function () {
                 // Ufo.speed = 400;
                 // u.x += 20;
                 // b.x+=20;
-                cam.horizontalAcceleration +=50;
+                cam.horizontalVelocity =15;
                 console.log('start right accel');
                 break;
             case 83:
                 // u.y += 10;
                 // b.y+=10;
-                cam.verticalAcceleration +=50;
+                cam.verticalVelocity=15;
                 //DOWN
                 break;
         }
@@ -938,14 +978,14 @@ AM.downloadAll(function () {
                 // Ufo.speed = 400;
                 // u.x -= 20;
                 // b.x -= 20;
-                cam.horizontalAcceleration=0;
+                cam.horizontalVelocity=0;
 
                 break;
             case 87:
                 //UP
                 // u.y-=20;
                 // b.y-=20;
-                cam.verticalAcceleration = 0;
+                cam.verticalVelocity = 0;
 
                 break;
             case 68:
@@ -953,14 +993,14 @@ AM.downloadAll(function () {
                 // Ufo.speed = 400;
                 // u.x += 20;
                 // b.x+=20;
-                cam.horizontalAcceleration =0;
+                cam.horizontalVelocity =0;
                 console.log('stop right accel');
 
                 break;
             case 83:
                 // u.y += 10;
                 // b.y+=10;
-                cam.verticalAcceleration =0;
+                cam.verticalVelocity =0;
                 //DOWN
                 break;
         }
