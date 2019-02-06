@@ -12,11 +12,17 @@ class Ship {
         this.vv = 0;
         this.ha = 0;
         this.va = 0;
+        this.prevx = 0;
+        this.prevy = 0;
     }
 
     update() {
+        this.prevx = this.x;
+        this.prevy = this.y;
+
         this.x += this.game.clockTick * this.hv;
         this.y += this.game.clockTick * this.vv;
+
 
         this.hv += this.game.clockTick * this.ha;
         this.vv += this.game.clockTick * this.va;
@@ -39,6 +45,8 @@ class Ship {
                     //     entity.x-70, entity.y-26));//custom offset to align
 
                     //handle collision with a block...
+                    this.x = this.prevx;
+                    this.y = this.prevy;
 
                     this.hv = - .5 * this.hv;
                     this.vv = - .5 * this.vv;

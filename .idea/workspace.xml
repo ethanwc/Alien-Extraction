@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="315421f8-5cb9-4dcb-8305-2f3e371ac786" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Explosion/Boom.js" afterPath="$PROJECT_DIR$/Explosion/Boom.js" />
-      <change beforePath="$PROJECT_DIR$/Explosion/Explosion.js" afterPath="$PROJECT_DIR$/Explosion/Explosion.js" />
-      <change beforePath="$PROJECT_DIR$/Explosion/Smoke.js" afterPath="$PROJECT_DIR$/Explosion/Smoke.js" />
-      <change beforePath="$PROJECT_DIR$/Game/camera.js" afterPath="$PROJECT_DIR$/Game/camera.js" />
-      <change beforePath="$PROJECT_DIR$/Game/keyhandler.js" afterPath="$PROJECT_DIR$/Game/keyhandler.js" />
-      <change beforePath="$PROJECT_DIR$/Game/main.js" afterPath="$PROJECT_DIR$/Game/main.js" />
-      <change beforePath="$PROJECT_DIR$/Game/resources.js" afterPath="$PROJECT_DIR$/Game/resources.js" />
-      <change beforePath="$PROJECT_DIR$/Game/worldengine.js" afterPath="$PROJECT_DIR$/Game/worldengine.js" />
-      <change beforePath="$PROJECT_DIR$/Laser/Beam.js" afterPath="$PROJECT_DIR$/Laser/Beam.js" />
-      <change beforePath="$PROJECT_DIR$/Laser/Laser.js" afterPath="$PROJECT_DIR$/Laser/Laser.js" />
       <change beforePath="$PROJECT_DIR$/Ship/Ship.js" afterPath="$PROJECT_DIR$/Ship/Ship.js" />
-      <change beforePath="$PROJECT_DIR$/Ship/Ufo.js" afterPath="$PROJECT_DIR$/Ship/Ufo.js" />
-      <change beforePath="$PROJECT_DIR$/Tile/Tile.js" afterPath="$PROJECT_DIR$/Tile/Tile.js" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -115,8 +102,8 @@
       <file leaf-file-name="Ship.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Ship/Ship.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="24" column="47" lean-forward="false" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+            <state relative-caret-position="275">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -386,12 +373,12 @@
       <workItem from="1549261281919" duration="71000" />
       <workItem from="1549351055311" duration="8609000" />
       <workItem from="1549406654362" duration="18671000" />
-      <workItem from="1549442243858" duration="13854000" />
+      <workItem from="1549442243858" duration="14083000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144247000" />
+    <option name="totallyTimeSpent" value="144476000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -773,8 +760,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Ship/Ship.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="24" column="47" lean-forward="false" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+        <state relative-caret-position="275">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
