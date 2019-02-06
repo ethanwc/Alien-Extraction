@@ -1,7 +1,6 @@
 class Laser {
-    constructor(game, animation, x, y, endx, endy) {
+    constructor(game, x, y, endx, endy) {
         this.game = game;
-        this.animation = animation;
         this.removeFromWorld = false;
         this.x = x;
         this.y = y;
@@ -12,11 +11,41 @@ class Laser {
     }
 
         update() {
+            let currentTime = gameEngine.timer.gameTime;
 
+            if ((currentTime - this.initTime) > this.viewTime) {
+                this.removeFromWorld = true;
+            }
+
+            //only check once :)
+            if (currentTime === gameEngine.timer.gameTime) {
+                for (let i = 0; i < gameEngine.entities.length; i++) {
+
+                    let entity = gameEngine.entities[i];
+
+                    if (entity instanceof Tile) {
+
+                        let x1 = this.x + camera.x, x2 = this.endx + camera.x;
+                        let y1 = this.y + camera.y, y2 = this.endy + camera.y;
+                        let rx = entity.x, ry = entity.y;
+                        let rw = entity.w, rh = entity.h;
+
+                        let left =   lineLine(x1,y1,x2,y2, rx,ry,rx, ry+rh);
+                        let right =  lineLine(x1,y1,x2,y2, rx+rw,ry, rx+rw,ry+rh);
+                        let top =    lineLine(x1,y1,x2,y2, rx,ry, rx+rw,ry);
+                        let bottom = lineLine(x1,y1,x2,y2, rx,ry+rh, rx+rw,ry+rh);
+                        if (left || right || top || bottom) {
+                            entity.removeFromWorld = true;
+                            gameEngine.addEntity(new Smoke(gameEngine, AM.getAsset("./assets/img/smoke.png"),
+                                entity.x-70, entity.y-26));//custom offset to align
+                        }
+                    }
+                }
+            }
         }
 
 
         draw(ctx) {
-            // this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
+
         }
 }

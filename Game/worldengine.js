@@ -7,7 +7,8 @@ function genworld (gameEngine, worldWidth, worldHeight, tiles) {
             else if (h < 5) {
                 tiles.push(new Dirt(gameEngine, AM.getAsset("./assets/img/dirt.png"), w*100, h*100));
             }
-            else if (h < 10) {
+            // else if (h < 10) {
+            else {
                 tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/stone.png"), w*100, h*100));
 
             }

@@ -13,7 +13,6 @@ class Camera {
     }
 
     draw(ctx) {
-        console.log("h9");
         ctx.color = "#AA232d";
         ctx.rect(0,0, 100, 100);
     }

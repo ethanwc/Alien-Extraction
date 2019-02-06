@@ -5,10 +5,15 @@ class Explosion {
         this.removeFromWorld = false;
         this.x = x;
         this.y = y;
+        this.viewTime = 1.5;
+        this.initTime = gameEngine.timer.gameTime;
     }
 
     update() {
+        let now = gameEngine.timer.gameTime;
 
+        if ((now - this.initTime) > this.viewTime)
+            this.removeFromWorld = true;
     }
 
     draw(ctx) {
