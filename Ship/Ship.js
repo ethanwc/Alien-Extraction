@@ -3,33 +3,38 @@ class Ship {
         this.game = game;
         this.animation = animation;
         this.removeFromWorld = false;
+        this.speed = 400;
         this.x = x;
         this.y = y;
     }
 
     update() {
+        this.x += this.game.clockTick * this.speed * direction.dx;
+        this.y += this.game.clockTick * this.speed * direction.dy;
 
-        for (var i = 0; i < this.game.entities.length; i++) {
-            var ent = this.game.entities[i];
 
-            //what the fuck is this
-            if (ent instanceof Tile) {
-                var l = this.collideLeft(ent), r = this.collideRight(ent), t = this.collideTop(ent),
-                    b = this.collideBottom(ent), e = this.collideEncompass(ent);
-                // if (l || r || b || t) {
 
-                if ((b && (r || l)) || (t && (r || l)) || (e && (t || b)) || (e && (l || r))) {
-                    this.collide();
-                    // ent.x = -100;
-                    // ent.y = -100;
-                    if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3")) {
-                        // ent.removeFromWorld = true;
-
-                    }
-
-                }
-            }
-        }
+        // for (var i = 0; i < this.game.entities.length; i++) {
+        //     var ent = this.game.entities[i];
+        //
+        //     //what the fuck is this
+        //     if (ent instanceof Tile) {
+        //         var l = this.collideLeft(ent), r = this.collideRight(ent), t = this.collideTop(ent),
+        //             b = this.collideBottom(ent), e = this.collideEncompass(ent);
+        //         // if (l || r || b || t) {
+        //
+        //         if ((b && (r || l)) || (t && (r || l)) || (e && (t || b)) || (e && (l || r))) {
+        //             this.collide();
+        //             // ent.x = -100;
+        //             // ent.y = -100;
+        //             if (!(ent.type === "stars" || ent.type === "sky" || ent.type === "sky2" || ent.type === "sky3")) {
+        //                 // ent.removeFromWorld = true;
+        //
+        //             }
+        //
+        //         }
+        //     }
+        // }
     }
 
     draw(ctx) {

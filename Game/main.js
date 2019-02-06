@@ -16,12 +16,6 @@ scoring system
 
 
 
-var w,h;
-
-
-
-
-
 
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
@@ -50,8 +44,6 @@ AM.downloadAll(function () {
     tiles.push(new Dirt(gameEngine, AM.getAsset("./assets/img/stone.png"), 0, 1200, 100, 100));
 
 
-
-
     let ship = new Ufo(gameEngine, AM.getAsset("./assets/img/ufo.png"), 0, 0);
     let camera = new Camera(ship);
     gameEngine.init(ctx, camera);
@@ -62,8 +54,6 @@ AM.downloadAll(function () {
     for (let i = 0; i < tiles.length; i++) {
         gameEngine.addEntity(tiles[i]);
     }
-
-
 
 
 });

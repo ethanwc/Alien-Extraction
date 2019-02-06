@@ -4,5 +4,7 @@ class Dirt extends Tile {
     }
 
     update () {
+        console.log("changing x");
+
     }
 }
