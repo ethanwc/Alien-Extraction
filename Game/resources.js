@@ -1,0 +1,22 @@
+var AM = new AssetManager();
+
+AM.queueDownload("./assets/img/energyball.png");
+AM.queueDownload("./assets/img/heart.png");
+AM.queueDownload("./assets/img/magnet.png");
+AM.queueDownload("./assets/img/smoke.png");
+AM.queueDownload("./assets/img/sky.jpg");
+AM.queueDownload("./assets/img/sky_2.png");
+AM.queueDownload("./assets/img/sky_3.png");
+AM.queueDownload("./assets/img/stars.jpg");
+AM.queueDownload("./assets/img/blackhole.png");
+AM.queueDownload("./assets/img/ufo.png");
+AM.queueDownload("./assets/img/ufo_beam.png");
+AM.queueDownload("./assets/img/grass.png");
+AM.queueDownload("./assets/img/dirt.png");
+AM.queueDownload("./assets/img/stone.png");
+AM.queueDownload("./assets/img/stone_ore.png");
+AM.queueDownload("./assets/img/stone_black.jpg");
+AM.queueDownload("./assets/img/gold_ore.png");
+AM.queueDownload("./assets/img/ore_crystal_blue.png");
+AM.queueDownload("./assets/img/ore_crystal_large.png");
+AM.queueDownload("./assets/img/boom.png");
