@@ -37,20 +37,23 @@ class GameEngine {
         })();
     }
 
+    addTile(tile) {
+        console.log("added tile");
+        this.tiles.push(tile);
+    }
+
     addEntity(entity) {
         console.log("added entity");
         this.entities.push(entity);
     }
 
     update() {
-        let entitiesCount = this.entities.length;
 
-        for (let i = 0; i < entitiesCount; i++) {
+        for (let i = 0; i < this.entities.length; i++) {
             let entity = this.entities[i];
-            if (!entity.removeFromWorld)
-            entity.update();
+            if (entity.removeFromWorld) this.entities.splice(i, 1);
+            else entity.update();
         }
-
     }
 
     loop() {

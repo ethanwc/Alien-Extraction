@@ -1,11 +1,12 @@
 class Tile {
-    constructor(game, spritesheet, x, y, w, h) {
+    constructor(game, spritesheet, x, y) {
         this.game = game;
         this.spritesheet = spritesheet;
+        this.removeFromWorld = false;
         this.x = x;
         this.y = y;
-        this.w = w;
-        this.h = h;
+        this.w = 100;
+        this.h = 100;
     }
 
     update() {

@@ -16,7 +16,11 @@ function RectCircleColliding(circle,rect){
     return (dx*dx+dy*dy<=(circle.r*circle.r));
 }
 
+// https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
 
+function rectintersect(ax, ay, aw, ah, bx, by, bw, bh) {
+    return (ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by);
+}
 
 function distance(a, b) {
     var difX = a.x - b.x;

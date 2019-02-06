@@ -1,6 +1,6 @@
 class Stone extends Tile {
-    constructor(game, spritesheet, x, y, w, h) {
-        super(game, spritesheet, x, y, w, h);
+    constructor(game, spritesheet, x, y) {
+        super(game, spritesheet, x, y);
     }
 
     update () {
