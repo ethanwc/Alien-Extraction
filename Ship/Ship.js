@@ -1,9 +1,9 @@
 class Ship {
     constructor(game, animation, x, y, w, h) {
         this.game = game;
-        this.animation = animation;
         this.moveAnimation = animation;
-        this.idleAnimation = new Animation(AM.getAsset("./assets/img/ship_idle_1.png"), 0, 0, 540, 582, 3, .1, 10, true);
+        this.idleAnimation = new Animation(AM.getAsset("./assets/img/ship_idle_1.png"), 0, 0, 540, 582, 3, .3, 10, true);
+        this.animation = this.idleAnimation;
         this.removeFromWorld = false;
         this.maxspeed = 600;
         this.x = x;
@@ -20,7 +20,6 @@ class Ship {
     }
 
     update() {
-        console.log(this.hv, this.vv);
 
         if (Math.abs(this.hv) < 100 && Math.abs(this.vv) < 100) {
             if (this.move) {

@@ -11,10 +11,8 @@ let mouse = {
 document.onmousedown = function(e) {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
-
-    console.log(mouse.x, mouse.y);
-
-    gameEngine.addEntity(new Missile(gameEngine));
+    
+    gameEngine.addEntity(new Missile(gameEngine, mouse.x, mouse.y));
 
 };
 
@@ -26,22 +24,22 @@ document.onkeydown = function(e) {
         case 65:
             //LEFT
             direction.dx = -1;
-            ship.ha -= 30;
+            ship.ha -= 50;
             break;
         case 87:
             //UP
             direction.dy = -1;
-            ship.va -= 30;
+            ship.va -= 50;
             break;
         case 68:
             //RIGHT
             direction.dx = 1;
-            ship.ha += 30;
+            ship.ha += 50;
             break;
         case 83:
             //DOWN
             direction.dy = 1;
-            ship.va += 30;
+            ship.va += 50;
             break;
     }
 };

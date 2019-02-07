@@ -1,11 +1,11 @@
 class Explosion {
-    constructor(game, animation, x, y) {
+    constructor(game, animation, x, y, viewtime) {
         this.game = game;
         this.animation = animation;
         this.removeFromWorld = false;
         this.x = x;
         this.y = y;
-        this.viewTime = 1.5;
+        this.viewTime = viewtime;
         this.initTime = gameEngine.timer.gameTime;
     }
 

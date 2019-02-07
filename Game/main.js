@@ -24,6 +24,10 @@ AM.downloadAll(function () {
     assets.push(new Blackhole(gameEngine, AM.getAsset("./assets/img/blackhole.png"), 500, 500, 1/2));
     assets.push(new Magnet(gameEngine, AM.getAsset("./assets/img/magnet.png"), 450, 450, 2));
 
+    // assets.push(new Missile(gameEngine, AM.getAsset("./assets/img/missile.png")));
+
+
+
 
     ship = new AlienShip(gameEngine, AM.getAsset("./assets/img/ship_fly.png"), 0, -600);
 
@@ -32,6 +36,7 @@ AM.downloadAll(function () {
     gameEngine.init(ctx, camera);
     gameEngine.start();
     gameEngine.addEntity(camera);
+
 
 
     genworld(gameEngine, worldWidth, worldHeight, tiles);
