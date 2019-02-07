@@ -1,13 +1,11 @@
 class Projectile {
-    constructor(game, animation, x, y, endx, endy) {
+    constructor(game, animation, x, y) {
         this.game = game;
         this.animation = animation;
         this.removeFromWorld = false;
+        this.speed = 1000;
         this.x = x;
         this.y = y;
-        this.endx = endx;
-        this.endy = endy;
-
     }
 
     update() {
@@ -17,5 +15,4 @@ class Projectile {
     draw(ctx) {
 
     }
-
 }

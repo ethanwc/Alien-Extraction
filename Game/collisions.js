@@ -1,19 +1,13 @@
 
 //https://stackoverflow.com/questions/21089959/detecting-collision-of-rectangle-with-circle
 // return true if the rectangle and circle are colliding
-function RectCircleColliding(circle,rect){
-    var distX = Math.abs(circle.x - rect.x-rect.w/2);
-    var distY = Math.abs(circle.y - rect.y-rect.h/2);
-
-    if (distX > (rect.w/2 + circle.r)) { return false; }
-    if (distY > (rect.h/2 + circle.r)) { return false; }
-
-    if (distX <= (rect.w/2)) { return true; }
-    if (distY <= (rect.h/2)) { return true; }
-
-    var dx=distX-rect.w/2;
-    var dy=distY-rect.h/2;
-    return (dx*dx+dy*dy<=(circle.r*circle.r));
+/**
+ * @return {boolean}
+ */
+function RectCircleColliding(cx, cy, cr, rx, ry, rw, rh){
+    let DeltaX = cx - Math.max(rx, Math.min(cx, rx + rw));
+    let DeltaY = cy - Math.max(ry, Math.min(cy, ry + rh));
+    return (DeltaX * DeltaX + DeltaY * DeltaY) < (cr * cr);
 }
 
 // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection

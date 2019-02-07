@@ -25,7 +25,9 @@ AM.downloadAll(function () {
     assets.push(new Magnet(gameEngine, AM.getAsset("./assets/img/magnet.png"), 450, 450, 2));
 
 
-    ship = new Ufo(gameEngine, AM.getAsset("./assets/img/ufo.png"), 0, 0);
+    ship = new AlienShip(gameEngine, AM.getAsset("./assets/img/ship_fly.png"), 0, -600);
+
+
     camera = new Camera(ship);
     gameEngine.init(ctx, camera);
     gameEngine.start();

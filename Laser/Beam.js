@@ -12,7 +12,7 @@ class Beam extends Laser {
         let x2 = this.endx, y2 = this.endy;
 
 
-        let gradient = ctx.createLinearGradient(-(y1 - y2) + y2, x1, y1, -(x1 - x2) + x2);
+        let gradient = ctx.createLinearGradient(-(y1 - y2 + camera.y) + y2, x1 + camera.x, y1 + camera.y, -(x1 + camera.x - x2) + x2);
 
 
         gradient.addColorStop(0, "#ffffff");

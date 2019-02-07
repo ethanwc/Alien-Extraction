@@ -14,7 +14,7 @@ document.onmousedown = function(e) {
 
     console.log(mouse.x, mouse.y);
 
-    gameEngine.addEntity(new Beam(gameEngine));
+    gameEngine.addEntity(new Missile(gameEngine));
 
 };
 

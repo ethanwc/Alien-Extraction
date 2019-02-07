@@ -2,6 +2,8 @@ class Ship {
     constructor(game, animation, x, y, w, h) {
         this.game = game;
         this.animation = animation;
+        this.moveAnimation = animation;
+        this.idleAnimation = new Animation(AM.getAsset("./assets/img/ship_idle_1.png"), 0, 0, 540, 582, 3, .1, 10, true);
         this.removeFromWorld = false;
         this.maxspeed = 600;
         this.x = x;
@@ -14,9 +16,27 @@ class Ship {
         this.va = 0;
         this.prevx = 0;
         this.prevy = 0;
+        this.move = 0;
     }
 
     update() {
+        console.log(this.hv, this.vv);
+
+        if (Math.abs(this.hv) < 100 && Math.abs(this.vv) < 100) {
+            if (this.move) {
+                this.animation = this.idleAnimation;
+                this.move = 0;
+            }
+        }
+        else if (!this.move) {
+                this.move = 1;
+                this.animation = this.moveAnimation;
+            }
+
+
+
+
+
         this.prevx = this.x;
         this.prevy = this.y;
 
@@ -39,17 +59,16 @@ class Ship {
             let entity = gameEngine.entities[i];
 
             if (entity instanceof Tile) {
-                if (rectintersect(this.x, this.y, this.w, this.h, entity.x, entity.y, entity.w, entity.h)) {
-                    // entity.removeFromWorld = true;
-                    // gameEngine.addEntity(new Smoke(gameEngine, AM.getAsset("./assets/img/smoke.png"),
-                    //     entity.x-70, entity.y-26));//custom offset to align
+                if (RectCircleColliding(this.x + this.w * .5, this.y + this.h * .5,
+                        260, entity.x, entity.y, entity.w, entity.h)) {
+                    entity.removeFromWorld = true;
 
                     //handle collision with a block...
-                    this.x = this.prevx;
-                    this.y = this.prevy;
+                    // this.x = this.prevx;
+                    // this.y = this.prevy;
 
-                    this.hv = - .5 * this.hv;
-                    this.vv = - .5 * this.vv;
+                    // this.hv = - .3 * this.hv;
+                    // this.vv = - .3 * this.vv;
                 }
             }
         }
