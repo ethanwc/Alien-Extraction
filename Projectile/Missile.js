@@ -1,8 +1,7 @@
 class Missile extends Projectile {
     constructor(game, mousex, mousey) {
         super(game, new Animation(AM.getAsset("./assets/img/missile.png"),
-            0, 0, 138, 477, 6, .3, 10, true),
-            ship.x + ship.w/2, ship.y + ship.h/2, mousex, mousey, 500);
+            0, 0, 138, 477, 6, .3, 10, true), 138, 477, mousex, mousey, 500);
     }
 
 
@@ -16,6 +15,6 @@ class Missile extends Projectile {
 
 
     draw(ctx) {
-        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
+        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x - this.w/2, this.y - this.game.camera.y + this.h/2, 1);
     }
 }
