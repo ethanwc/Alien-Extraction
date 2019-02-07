@@ -29,7 +29,7 @@ class Projectile {
 
     update() {
         // this.x += this.xrate * this.speed * this.game.clockTick;
-        this.y += this.yrate * this.speed * this.game.clockTick;
+        this.y += 1 * this.speed * this.game.clockTick;
 
 
         // let x1 = this.initx + camera.x, x2 = this.endx + camera.x;
@@ -46,7 +46,7 @@ class Projectile {
             if (entity instanceof Tile) {
 
                 let x1 = this.initx + this.w/2, x2 = this.x + this.w/2;
-                let y1 = this.inity, y2 = this.y + this.h + 200;
+                let y1 = this.inity + this.h, y2 = this.y + this.h + 200;
                 let rx = entity.x, ry = entity.y;
                 let rw = entity.w, rh = entity.h;
 

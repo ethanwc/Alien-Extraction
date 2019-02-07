@@ -41,8 +41,6 @@ class Ship {
 
         }
 
-
-
         this.prevx = this.x;
         this.prevy = this.y;
 
@@ -67,7 +65,10 @@ class Ship {
             if (entity instanceof Tile) {
                 if (RectCircleColliding(this.x + this.w * .5, this.y + this.h * .5,
                         260, entity.x, entity.y, entity.w, entity.h)) {
-                    // entity.removeFromWorld = true;
+                    entity.removeFromWorld = true;
+
+                    gameEngine.addEntity(new Boom(gameEngine, AM.getAsset("./assets/img/boom.png"),
+                        entity.x-70, entity.y-66));//c
 
                     //handle collision with a block...
                     this.x = this.prevx;

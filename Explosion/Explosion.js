@@ -22,14 +22,14 @@ class Explosion {
             if (entity instanceof Tile) {
                 if (RectCircleColliding(this.x + 620 * .5, this.y + 620 * .5,
                         280, entity.x, entity.y, entity.w, entity.h)) {
+                    //custom offset to align
                     entity.removeFromWorld = true;
 
-                    //handle collision with a block...
-                    // this.x = this.prevx;
-                    // this.y = this.prevy;
+                    gameEngine.addEntity(new Smoke(gameEngine, AM.getAsset("./assets/img/smoke.png"),
+                        entity.x-70, entity.y-26));//c
 
-                    // this.hv = - .3 * this.hv;
-                    // this.vv = - .3 * this.vv;
+                    // entity.explode(entity.x-70, entity.y-26);
+
                 }
             }
         }

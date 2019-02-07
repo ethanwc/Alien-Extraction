@@ -4,7 +4,11 @@ class Smoke extends Explosion {
     }
 
     update () {
-        super.update();
+
+        let now = gameEngine.timer.gameTime;
+
+        if ((now - this.initTime) > this.viewTime)
+            this.removeFromWorld = true;
     }
 
 }
