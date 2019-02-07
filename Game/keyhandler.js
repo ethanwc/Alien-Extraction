@@ -11,6 +11,8 @@ let mouse = {
 document.onmousedown = function(e) {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+
+    ship.shootstate();
     
     gameEngine.addEntity(new Missile(gameEngine, mouse.x, mouse.y));
 

@@ -3,6 +3,8 @@ class Ship {
         this.game = game;
         this.moveAnimation = animation;
         this.idleAnimation = new Animation(AM.getAsset("./assets/img/ship_idle_1.png"), 0, 0, 540, 582, 3, .3, 10, true);
+        this.fireAnimation = new Animation(AM.getAsset("./assets/img/ship_attack_2.png"),
+            0, 0, 540, 580, 3, .2, 10, true);
         this.animation = this.idleAnimation;
         this.removeFromWorld = false;
         this.maxspeed = 600;
@@ -17,22 +19,27 @@ class Ship {
         this.prevx = 0;
         this.prevy = 0;
         this.move = 0;
+        this.shootime = 1;
+        this.shootstart = 0
+
     }
 
     update() {
 
-        if (Math.abs(this.hv) < 100 && Math.abs(this.vv) < 100) {
-            if (this.move) {
-                this.animation = this.idleAnimation;
-                this.move = 0;
+        if ((gameEngine.timer.gameTime - this.shootstart) > this.shootime) {
+
+            if (Math.abs(this.hv) < 100 && Math.abs(this.vv) < 100) {
+                if (this.move) {
+                    this.animation = this.idleAnimation;
+                    this.move = 0;
+                }
             }
-        }
-        else if (!this.move) {
+            else if (!this.move) {
                 this.move = 1;
                 this.animation = this.moveAnimation;
             }
 
-
+        }
 
 
 
@@ -60,17 +67,22 @@ class Ship {
             if (entity instanceof Tile) {
                 if (RectCircleColliding(this.x + this.w * .5, this.y + this.h * .5,
                         260, entity.x, entity.y, entity.w, entity.h)) {
-                    entity.removeFromWorld = true;
+                    // entity.removeFromWorld = true;
 
                     //handle collision with a block...
-                    // this.x = this.prevx;
-                    // this.y = this.prevy;
+                    this.x = this.prevx;
+                    this.y = this.prevy;
 
-                    // this.hv = - .3 * this.hv;
-                    // this.vv = - .3 * this.vv;
+                    this.hv = - .3 * this.hv;
+                    this.vv = - .3 * this.vv;
                 }
             }
         }
+    }
+
+    shootstate() {
+        this.animation = this.fireAnimation;
+        this.shootstart = gameEngine.timer.gameTime;
     }
 
     draw(ctx) {
