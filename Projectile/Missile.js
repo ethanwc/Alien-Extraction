@@ -1,7 +1,7 @@
 class Missile extends Projectile {
     constructor(game, mousex, mousey) {
         super(game, new Animation(AM.getAsset("./assets/img/missile.png"),
-            0, 0, 138, 477, 6, .1, 10, true), 138, 477, mousex, mousey, 500);
+            0, 0, 138, 477, 6, .1, 10, true), 138, 477, mousex, mousey, 1400);
     }
 
 

@@ -22,8 +22,14 @@ AM.queueDownload("./assets/img/ore_crystal_large.png");
 AM.queueDownload("./assets/img/boom.png");
 AM.queueDownload("./assets/img/ship_fly.png");
 AM.queueDownload("./assets/img/ship_idle_1.png");
+
 AM.queueDownload("./assets/img/ship_attack_1.png");
 AM.queueDownload("./assets/img/ship_attack_2.png");
 AM.queueDownload("./assets/img/ship_attack_3.png");
+
+AM.queueDownload("./assets/img/ship_land.png");
+AM.queueDownload("./assets/img/ship_landing_retract.png");
+AM.queueDownload("./assets/img/ship_landing_deploy.png");
+
 AM.queueDownload("./assets/img/missile.png");
 AM.queueDownload("./assets/img/missile_explosion.png");

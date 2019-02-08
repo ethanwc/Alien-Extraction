@@ -1,6 +1,6 @@
 class Animation {
     constructor(spritesheet, startX, startY, frameWidth, frameHeight, sheetWidth, frameDuration,
-                frames, loop) {
+                frames, loop , reverse) {
         this.spriteSheet = spritesheet;
         this.startX = startX;
         this.startY = startY;
@@ -12,28 +12,39 @@ class Animation {
         this.totalTime = frameDuration * frames;
         this.elapsedTime = 0;
         this.loop = loop;
+        this.reverse = reverse | false;
     }
 
     drawFrame(tick, ctx, x, y, scaleBy) {
-        let scale = scaleBy || 1;
+        var scaleBy = scaleBy || 1;
         this.elapsedTime += tick;
-        if (this.isDone()) {
-            if (this.loop) {
-                this.elapsedTime -= this.totalTime;
+        if (this.loop) {
+            if (this.isDone()) {
+                this.elapsedTime = 0;
             }
+        } else if (this.isDone()) {
+            return;
+        }
+        var index = this.reverse ? this.frames - this.currentFrame() - 1 : this.currentFrame();
+        var vindex = 0;
+        if ((index+1) * this.frameWidth + this.startX > this.spriteSheet.width) {
+            index -= Math.floor((this.spriteSheet.width - this.startX) / this.frameWidth);
+            vindex++;
+        }
+        while ((index + 1) * this.frameWidth > this.spriteSheet.width) {
+            index -= Math.floor(this.spriteSheet.width / this.frameWidth);
+            vindex++;
         }
 
-        let frame = this.currentFrame();
-
-        let xindex = frame % this.sheetWidth;
-        let yindex = Math.floor(frame / this.sheetWidth);
-
+        var locX = x;
+        var locY = y;
+        var offset = vindex === 0 ? this.startX : 0;
         ctx.drawImage(this.spriteSheet,
-            xindex * this.frameWidth, yindex * this.frameHeight + this.startY,  // source from sheet
+            index * this.frameWidth + offset, vindex*this.frameHeight + this.startY,  // source from sheet
             this.frameWidth, this.frameHeight,
-            x,y ,
-            this.frameWidth * scale,
-            this.frameHeight * scale);
+            locX, locY,
+            this.frameWidth * scaleBy,
+            this.frameHeight * scaleBy);
     }
 
     currentFrame() {

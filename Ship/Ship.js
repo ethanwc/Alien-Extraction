@@ -4,10 +4,10 @@ class Ship {
         this.moveAnimation = animation;
         this.idleAnimation = new Animation(AM.getAsset("./assets/img/ship_idle_1.png"), 0, 0, 540, 582, 3, .3, 10, true);
         this.fireAnimation = new Animation(AM.getAsset("./assets/img/ship_attack_2.png"), 0, 0, 540, 580, 3, .2, 10, true);
-        this.landAnimation = new Animation(AM.getAsset("./assets/img/ship_land.png"), 0, 0, 540, 580, 3, .2, 10, true);
-        // this.takingoffAnimation;
-        // this.landingAnimation;
-        this.animation = this.landAnimation;
+        this.landAnimation = new Animation(AM.getAsset("./assets/img/ship_land.png"), 0, 0, 540, 582, 1, .2, 1, true);
+        this.landingDeploy = new Animation(AM.getAsset("./assets/img/ship_landing_deploy.png"), 0, 0, 540, 582, 4, .1, 14, true);
+        this.landingRetract = new Animation(AM.getAsset("./assets/img/ship_landing_deploy.png"), 0, 0, 540, 582, 4, .1, 14, true, true);
+        this.animation = this.idleAnimation;
         this.removeFromWorld = false;
 
         //landing, landed, taking off animations
@@ -27,59 +27,71 @@ class Ship {
         this.landingGear = 0;
         this.shootstart = 0;
         this.landingStart = 0;
-        this.waitTime = 2;
+        this.swapAnimation = 0;
+        this.waitTime = 14 * .1 - .1;
+        this.flySize = 260;
+        this.landSize = 230;
+        this.r = this.flySize;
 
 
     }
 
     toggleLanding() {
 
-        //already checks if idle or move should occur? just need time in between other animations check
-
         if ((gameEngine.timer.gameTime - this.landingStart) > this.waitTime) {
 
-        //if gear is deployed...retract
-        if (this.landingGear) {
-            //set animation to detract, then set to idle after 2 seconds
+            //already checks if idle or move should occur? just need time in between other animations check
+            this.landingGear = !this.landingGear;
+
+
+            if (this.landingGear) {
+                this.r = this.landSize;
+                this.animation = this.landingRetract;
+            }
+
+            else {
+                this.r = this.flySize;
+                this.animation = this.landingDeploy;
+            }
+
+            this.swapAnimation = 1;
             this.landingStart = gameEngine.timer.gameTime;
-
         }
-        //gear is retracted...deploy
-        else {
-            //set animation to deploy...then keep deploy until press again
-
-            this.landingStart = gameEngine.timer.gameTime;
-
-        }
-}
 
 
 
-this.landingGear = !this.landingGear;
     }
 
     update() {
+        if ((gameEngine.timer.gameTime - this.landingStart) > this.waitTime) {
 
-            if(!this.landingGear && (gameEngine.timer.gameTime - this.landingStart) > this.waitTime) {
-
-                if ((gameEngine.timer.gameTime - this.shootstart) > this.shootime) {
-
-                    if (Math.abs(this.hv) < 100 && Math.abs(this.vv) < 100) {
-                        if (this.move) {
-                            this.animation = this.idleAnimation;
-                            this.move = 0;
-                        }
-                    } else if (!this.move) {
-                        this.move = 1;
-                        this.animation = this.moveAnimation;
+        if (!this.swapAnimation && this.animation !== this.landAnimation) {
+                if (Math.abs(this.hv) < 100 && Math.abs(this.vv) < 100) {
+                    if (this.move) {
+                        this.animation = this.idleAnimation;
+                        this.move = 0;
                     }
-
+                } else if (!this.move) {
+                    this.move = 1;
+                    this.animation = this.moveAnimation;
                 }
-            }
-            //landing gear deployed animation...
-            else {
+
+        }
+
+        else {
+            //handle transition still :)
+                this.swapAnimation = !this.swapAnimation;
+                if (this.animation === this.landingDeploy) {
+                    this.resetAnimation(this.landingDeploy);
+                    this.animation = this.idleAnimation;
+                }
+                else if (this.animation === this.landingRetract) {
+                    this.resetAnimation(this.landingRetract);
+                    this.animation = this.landAnimation;
+                }
 
             }
+        }
 
         this.prevx = this.x;
         this.prevy = this.y;
@@ -103,7 +115,7 @@ this.landingGear = !this.landingGear;
 
             if (entity instanceof Tile) {
                 if (RectCircleColliding(this.x + this.w * .5, this.y + this.h * .5,
-                        260, entity.x, entity.y, entity.w, entity.h)) {
+                        this.r, entity.x, entity.y, entity.w, entity.h)) {
                     entity.removeFromWorld = true;
 
                     gameEngine.addEntity(new Boom(gameEngine, AM.getAsset("./assets/img/boom.png"),
@@ -120,13 +132,26 @@ this.landingGear = !this.landingGear;
         }
     }
 
-    shootstate() {
-        this.animation = this.fireAnimation;
-        this.shootstart = gameEngine.timer.gameTime;
+    shoot() {
+        if ((gameEngine.timer.gameTime - this.landingStart) > this.waitTime) {
+            gameEngine.addEntity(new Missile(gameEngine, mouse.x, mouse.y));
+            this.animation = this.fireAnimation;
+            this.shootstart = gameEngine.timer.gameTime;
+        }
     }
 
+    resetAnimation(animation) {
+
+        animation.elapsedTime = 0;
+    }
+
+
     draw(ctx) {
-        ctx.rect(0,0,200,200);
+        // ctx.rect(0,0,200,200);
         this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
+        ctx.arc(this.x + this.w * .5 - this.game.camera.x, this.y + this.h * .5 - this.game.camera.y, 260, 2 * Math.PI, false);
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = '#FF0000';
+        ctx.stroke();
     }
 }

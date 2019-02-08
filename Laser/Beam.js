@@ -1,6 +1,6 @@
 class Beam extends Laser {
-    constructor(game) {
-        super(game, ship.x + 28 - camera.x, ship.y + 37 - camera.y, mouse.x, mouse.y);
+    constructor(game, startx, starty) {
+        super(game, startx, starty, mouse.x, mouse.y);
     }
 
     update() {
@@ -15,11 +15,11 @@ class Beam extends Laser {
         let gradient = ctx.createLinearGradient(-(y1 - y2 + camera.y) + y2, x1 + camera.x, y1 + camera.y, -(x1 + camera.x - x2) + x2);
 
 
-        gradient.addColorStop(0, "#ffffff");
+        // gradient.addColorStop(0, "#ffffff");
         gradient.addColorStop(.4, "#66ff66");
         gradient.addColorStop(.5, "#66ff66");
         gradient.addColorStop(.6, "#66ff66");
-        gradient.addColorStop(1, "#ffffff");
+        // gradient.addColorStop(1, "#ffffff");
 
         gradient.stroke = "butt";
         ctx.fillStyle = gradient;

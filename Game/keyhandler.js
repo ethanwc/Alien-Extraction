@@ -11,11 +11,16 @@ let mouse = {
 document.onmousedown = function(e) {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+    switch (e.which) {
 
-    ship.shootstate();
-    
-    gameEngine.addEntity(new Missile(gameEngine, mouse.x, mouse.y));
-
+        case 1:
+            gameEngine.addEntity(new Beam(gameEngine, ship.x + ship.w/3 + 55 - camera.x, ship.y + ship.h - 20 - camera.y));
+            gameEngine.addEntity(new Beam(gameEngine, ship.x + 2 * ship.w/3 - 55 - camera.x, ship.y + ship.h - 20 - camera.y));
+            break;
+        case 3:
+            if (!ship.landingGear) ship.shoot();
+            break;
+    }
 };
 
 document.onkeydown = function(e) {
