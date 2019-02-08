@@ -8,8 +8,8 @@ AM.downloadAll(function () {
     let canvas = document.getElementById("gameWorld");
     let ctx = canvas.getContext("2d");
 
-    document.getElementById("gameWorld").width = screen.width * .9;
-    document.getElementById("gameWorld").height = screen.height * .9;
+    document.getElementById("gameWorld").width = screen.width * .7;
+    document.getElementById("gameWorld").height = screen.height * .7;
 
 
     gameEngine = new GameEngine();
@@ -29,7 +29,7 @@ AM.downloadAll(function () {
 
 
 
-    ship = new AlienShip(gameEngine, AM.getAsset("./assets/img/ship_fly.png"), 0, -600);
+    ship = new AlienShip(gameEngine, AM.getAsset("./assets/img/ship_fly.png"), 600, -600);
 
 
     camera = new Camera(ship);
