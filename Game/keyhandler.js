@@ -20,6 +20,10 @@ document.onmousedown = function(e) {
 
 document.onkeydown = function(e) {
     switch (e.keyCode) {
+        case 90:
+            //Z
+            ship.toggleLanding();
+            break;
         case 32:
             //SPACE
             break;
