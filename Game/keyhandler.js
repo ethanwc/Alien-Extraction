@@ -8,6 +8,7 @@ let mouse = {
     y:0
 };
 
+
 document.onmousedown = function(e) {
     mouse.x = event.clientX - gameEngine.ctx.canvas.getBoundingClientRect().left;
     mouse.y = event.clientY - gameEngine.ctx.canvas.getBoundingClientRect().top;
@@ -17,8 +18,10 @@ document.onmousedown = function(e) {
     if (!ship.landingGear)
     switch (e.which) {
         case 1:
-            gameEngine.addEntity(new Beam(gameEngine, ship.x + ship.w/3 + 55 - camera.x, ship.y + ship.h - 20 - camera.y));
-            gameEngine.addEntity(new Beam(gameEngine, ship.x + 2 * ship.w/3 - 55 - camera.x, ship.y + ship.h - 20 - camera.y));
+
+            console.log(screen.width * .9 - camera.x, 100 - camera.y);
+            gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w/3 + 55) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
+            gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w/3 + 120) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
             break;
         case 3:
             ship.shoot();

@@ -12,6 +12,8 @@ class Ship {
 
         //landing, landed, taking off animations
         this.maxspeed = 600;
+        this.landingSpeed = 200;
+        this.speed = this.maxspeed;
         this.x = x;
         this.y = y;
         this.w = w;
@@ -29,8 +31,8 @@ class Ship {
         this.landingStart = 0;
         this.swapAnimation = 0;
         this.waitTime = 14 * .1 - .1;
-        this.flySize = 260;
-        this.landSize = 230;
+        this.flySize = 130;
+        this.landSize = 100;
         this.r = this.flySize;
 
 
@@ -47,11 +49,13 @@ class Ship {
             if (this.landingGear) {
                 this.r = this.landSize;
                 this.animation = this.landingRetract;
+                this.speed = this.maxspeed;
             }
 
             else {
                 this.r = this.flySize;
                 this.animation = this.landingDeploy;
+                this.speed = this.landingSpeed;
             }
 
             this.swapAnimation = 1;
@@ -99,11 +103,15 @@ class Ship {
         this.hv += this.game.clockTick * this.ha;
         this.vv += this.game.clockTick * this.va;
 
-        if (this.hv > this.maxspeed) this.hv = this.maxspeed;
-        if (this.hv < -1 * this.maxspeed) this.hv = -1 * this.maxspeed;
+        if (this.hv > this.speed) this.hv = this.speed;
+        if (this.hv < -1 * this.speed) this.hv = -1 * this.speed;
 
-        if (this.vv > this.maxspeed) this.vv = this.maxspeed;
-        if (this.vv < -1 * this.maxspeed) this.vv = -1 * this.maxspeed;
+        if (this.vv > this.speed) this.vv = this.speed;
+        if (this.vv < -1 * this.speed) this.vv = -1 * this.speed;
+
+        if (this.ha === 0) this.hv *= .97;
+        if (this.va === 0) this.vv *= .97;
+
 
         this.x += this.game.clockTick * this.hv;
         this.y += this.game.clockTick * this.vv;
@@ -114,19 +122,22 @@ class Ship {
             let entity = gameEngine.entities[i];
 
             if (entity instanceof Tile) {
-                if (RectCircleColliding(this.x + this.w * .5, this.y + this.h * .5,
+                if (RectCircleColliding(this.x + this.w * .25, this.y + this.h * .25,
                         this.r, entity.x, entity.y, entity.w, entity.h)) {
-                    entity.removeFromWorld = true;
 
-                    gameEngine.addEntity(new Boom(gameEngine, AM.getAsset("./assets/img/boom.png"),
-                        entity.x-70, entity.y-66));//c
 
-                    //handle collision with a block...
                     this.x = this.prevx;
                     this.y = this.prevy;
 
-                    this.hv = - .3 * this.hv;
-                    this.vv = - .3 * this.vv;
+                    if (!this.landingGear) {
+                        entity.removeFromWorld = true;
+                        gameEngine.addEntity(new Boom(gameEngine, AM.getAsset("./assets/img/boom.png"),
+                            entity.x-70, entity.y-66));//c
+
+                        this.hv = - .3 * this.hv;
+                        this.vv = - .3 * this.vv;
+                    }
+
                 }
             }
         }
@@ -147,11 +158,6 @@ class Ship {
 
 
     draw(ctx) {
-        // ctx.rect(0,0,200,200);
-        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
-        ctx.arc(this.x + this.w * .5 - this.game.camera.x, this.y + this.h * .5 - this.game.camera.y, 260, 2 * Math.PI, false);
-        ctx.lineWidth = 3;
-        ctx.strokeStyle = '#FF0000';
-        ctx.stroke();
+
     }
 }

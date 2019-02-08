@@ -13,10 +13,11 @@ class Animation {
         this.elapsedTime = 0;
         this.loop = loop;
         this.reverse = reverse | false;
+        this.scaleBy = 1;
     }
 
     drawFrame(tick, ctx, x, y, scaleBy) {
-        var scaleBy = scaleBy || 1;
+        this.scaleBy = scaleBy || 1;
         this.elapsedTime += tick;
         if (this.loop) {
             if (this.isDone()) {
@@ -43,8 +44,8 @@ class Animation {
             index * this.frameWidth + offset, vindex*this.frameHeight + this.startY,  // source from sheet
             this.frameWidth, this.frameHeight,
             locX, locY,
-            this.frameWidth * scaleBy,
-            this.frameHeight * scaleBy);
+            this.frameWidth * this.scaleBy,
+            this.frameHeight * this.scaleBy);
     }
 
     currentFrame() {

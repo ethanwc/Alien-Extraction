@@ -8,8 +8,8 @@ class Camera {
     }
 
     update() {
-        this.x = this.ship.x - this.w / 2 + this.ship.w / 2;
-        this.y = this.ship.y - this.h / 2 + this.ship.h / 2;
+        this.x = this.ship.x - this.w / 2 + this.ship.w / 4;
+        this.y = this.ship.y - this.h / 2 + this.ship.h / 4;
     }
 
     draw(ctx) {

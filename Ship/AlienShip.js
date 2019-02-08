@@ -6,8 +6,8 @@ class AlienShip extends Ship {
         super.update();
     }
     draw(ctx) {
-        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
-        // ctx.arc(this.x + this.w * .5 - this.game.camera.x, this.y + this.h * .5 - this.game.camera.y, 260, 2 * Math.PI, false);
+        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1/2);
+        // ctx.arc(this.x + this.w * .25 - this.game.camera.x, this.y + this.h * .25 - this.game.camera.y, this.flySize, 2 * Math.PI, false);
         // ctx.lineWidth = 3;
         // ctx.strokeStyle = '#FF0000';
         // ctx.stroke();
