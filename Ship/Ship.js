@@ -2,7 +2,7 @@ class Ship {
     constructor(game, animation, x, y, w, h) {
         this.game = game;
         this.moveAnimation = animation;
-        this.idleAnimation = new Animation(AM.getAsset("./assets/img/ship_idle_1.png"), 0, 0, 540, 582, 3, .3, 10, true);
+        this.idleAnimation = new Animation(AM.getAsset("./assets/img/ship_idle_1.png"), 0, 0, 540, 581, 3, .3, 10, true);
         this.fireAnimation = new Animation(AM.getAsset("./assets/img/ship_attack_2.png"), 0, 0, 540, 580, 3, .2, 10, true);
         this.landAnimation = new Animation(AM.getAsset("./assets/img/ship_land.png"), 0, 0, 540, 582, 1, .2, 1, true);
         this.landingDeploy = new Animation(AM.getAsset("./assets/img/ship_landing_deploy.png"), 0, 0, 540, 582, 4, .1, 14, true);
@@ -96,9 +96,6 @@ class Ship {
         this.prevx = this.x;
         this.prevy = this.y;
 
-        this.x += this.game.clockTick * this.hv;
-        this.y += this.game.clockTick * this.vv;
-
         this.hv += this.game.clockTick * this.ha;
         this.vv += this.game.clockTick * this.va;
 
@@ -107,6 +104,9 @@ class Ship {
 
         if (this.vv > this.maxspeed) this.vv = this.maxspeed;
         if (this.vv < -1 * this.maxspeed) this.vv = -1 * this.maxspeed;
+
+        this.x += this.game.clockTick * this.hv;
+        this.y += this.game.clockTick * this.vv;
 
 
         for (let i = 0; i < gameEngine.entities.length; i++) {
