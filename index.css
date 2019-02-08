@@ -1,0 +1,9 @@
+.button{
+    display:inline-block;
+    background:none;
+    width: 200px;
+    height: 50px;
+}
+.button.okay{
+    background:url('assets/img/menu_start.png');
+}
