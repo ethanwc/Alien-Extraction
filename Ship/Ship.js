@@ -208,7 +208,8 @@ class Ship {
     burst() {
         if (!ship.landingGear)
             if (this.isAlive) {
-                gameEngine.addEntity(new EnergyBall(gameEngine, AM.getAsset("./assets/img/energyball.png"), ship.x - 15, ship.y));
+                gameEngine.addEntity(new EnergyBall(gameEngine, AM.getAsset("./assets/img/energyball.png"),
+                    ship.x - 15, ship.y));
                 let burst = document.createElement("audio");
                 burst.src = "./assets/sound/burst1.wav";
                 burst.play();

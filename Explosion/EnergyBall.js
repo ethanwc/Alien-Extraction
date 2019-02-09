@@ -13,7 +13,7 @@ class EnergyBall extends Explosion {
 
             let entity = gameEngine.entities[i];
 
-            if (entity instanceof Tile) {
+            if (entity instanceof Tile && entity.foreground) {
                 if (RectCircleColliding(this.x + 315 * .5, this.y + 300 * .5,
                         300, entity.x, entity.y, entity.w, entity.h)) {
                     //custom offset to align
@@ -25,6 +25,13 @@ class EnergyBall extends Explosion {
                 }
             }
         }
+    }
+    draw(ctx) {
+        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y);
+        // ctx.arc(this.x + 315 * .5 - this.game.camera.x, this.y + 300 * .5 - this.game.camera.y, 280, 2 * Math.PI, false);
+        // ctx.lineWidth = 3;
+        // ctx.strokeStyle = '#FF0000';
+        // ctx.stroke();
     }
 
 }
