@@ -78,7 +78,7 @@ class Ship {
             this.landed = true;
         }
 
-        if (this.landed && this.vv > 5) this.landed = false;
+        if (this.landed && this.vv > 2 && this.hv > 2) this.landed = false;
 
 
         if ((gameEngine.timer.gameTime - this.landingStart) > this.waitTime) {

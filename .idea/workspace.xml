@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="315421f8-5cb9-4dcb-8305-2f3e371ac786" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Game/keyhandler.js" afterPath="$PROJECT_DIR$/Game/keyhandler.js" />
       <change beforePath="$PROJECT_DIR$/Ship/Ship.js" afterPath="$PROJECT_DIR$/Ship/Ship.js" />
-      <change beforePath="$PROJECT_DIR$/assets/sound.js" afterPath="$PROJECT_DIR$/assets/sound.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -41,11 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state relative-caret-position="150">
+              <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -64,8 +62,8 @@
       <file leaf-file-name="Laser.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Laser/Laser.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+            <state relative-caret-position="475">
+              <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -81,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ship.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Ship.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Ship/Ship.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="73" column="38" lean-forward="false" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="38" />
+            <state relative-caret-position="250">
+              <caret line="73" column="46" lean-forward="true" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -242,8 +240,8 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/Explosion/Explosion.js" />
         <option value="$PROJECT_DIR$/assets/sound.js" />
-        <option value="$PROJECT_DIR$/Ship/Ship.js" />
         <option value="$PROJECT_DIR$/Game/keyhandler.js" />
+        <option value="$PROJECT_DIR$/Ship/Ship.js" />
       </list>
     </option>
   </component>
@@ -431,12 +429,12 @@
       <workItem from="1549582525871" duration="4614000" />
       <workItem from="1549604558148" duration="16455000" />
       <workItem from="1549671056947" duration="127000" />
-      <workItem from="1549682449592" duration="4787000" />
+      <workItem from="1549682449592" duration="5240000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="199015000" />
+    <option name="totallyTimeSpent" value="199468000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -691,26 +689,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Laser/Beam.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Ship/AlienShip.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Laser/Laser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -731,14 +713,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ship/Ship.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="73" column="38" lean-forward="false" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Game/gameengine.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -755,10 +729,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Laser/Beam.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Laser/Laser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ship/Ship.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
-          <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <caret line="73" column="46" lean-forward="true" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
           <folding />
         </state>
       </provider>
