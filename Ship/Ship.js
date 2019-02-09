@@ -33,6 +33,7 @@ class Ship {
         this.waitTime = 14 * .1 - .1;
         this.flySize = 130;
         this.landSize = 100;
+        this.landed = 0;
         this.r = this.flySize;
 
 
@@ -68,6 +69,18 @@ class Ship {
     }
 
     update() {
+
+
+        let ship_btm = this.y + this.h/2 - 45;
+        if (!this.landed && this.landingGear && (ship_btm < 2 && ship_btm > -2)) {
+
+            land.play();
+            this.landed = true;
+        }
+
+        if (this.landed && this.vv > 5) this.landed = false;
+
+
         if ((gameEngine.timer.gameTime - this.landingStart) > this.waitTime) {
 
         if (!this.swapAnimation && this.animation !== this.landAnimation) {
@@ -82,6 +95,7 @@ class Ship {
                 }
 
         }
+
 
         else {
             //handle transition still :)

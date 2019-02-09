@@ -44,30 +44,32 @@ document.onkeydown = function(e) {
             break;
         case 32:
             //SPACE
-            gameEngine.addEntity(new EnergyBall(gameEngine, AM.getAsset("./assets/img/energyball.png"), ship.x - 15 , ship.y ));
-            let burst = document.createElement("audio");
-            burst.src = "./assets/sound/burst1.wav";
-            burst.play();
+            if (!ship.landingGear) {
+                gameEngine.addEntity(new EnergyBall(gameEngine, AM.getAsset("./assets/img/energyball.png"), ship.x - 15, ship.y));
+                let burst = document.createElement("audio");
+                burst.src = "./assets/sound/burst1.wav";
+                burst.play();
+            }
             break;
         case 65:
             //LEFT
             direction.dx = -1;
-            ship.ha -= 50;
+            ship.ha -= 70;
             break;
         case 87:
             //UP
             direction.dy = -1;
-            ship.va -= 50;
+            ship.va -= 70;
             break;
         case 68:
             //RIGHT
             direction.dx = 1;
-            ship.ha += 50;
+            ship.ha += 70;
             break;
         case 83:
             //DOWN
             direction.dy = 1;
-            ship.va += 50;
+            ship.va += 70;
             break;
     }
 };
