@@ -6,6 +6,7 @@ let camera = undefined;
 let status = undefined;
 
 function startGame()  {
+    menu_start.play();
     let startImg = document.getElementById('startImg');
     startImg.parentNode.removeChild(startImg);
     AM.downloadAll(function () {
@@ -22,7 +23,7 @@ function startGame()  {
         let tiles = [];
 
         // assets.push(new Boom(gameEngine, AM.getAsset("./assets/img/boom.png"), 1200, 0));
-        assets.push(new EnergyBall(gameEngine, AM.getAsset("./assets/img/energyball.png"), 1000, 0));
+        // assets.push(new EnergyBall(gameEngine, AM.getAsset("./assets/img/energyball.png"), 1000, 0));
 
         assets.push(new Blackhole(gameEngine, AM.getAsset("./assets/img/blackhole.png"), 500, 0, 1 / 2));
         assets.push(new Magnet(gameEngine, AM.getAsset("./assets/img/magnet.png"), 300, 0, 2));
