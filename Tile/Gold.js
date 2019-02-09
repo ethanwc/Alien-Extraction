@@ -1,4 +1,4 @@
-class Dirt extends Tile {
+class Gold extends Tile {
     constructor(game, spritesheet, x, y, foreground) {
         super(game, spritesheet, x, y, foreground);
     }

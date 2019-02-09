@@ -19,7 +19,7 @@ class Explosion {
 
             let entity = gameEngine.entities[i];
 
-            if (entity instanceof Tile) {
+            if (entity instanceof Tile && entity.foreground) {
                 if (RectCircleColliding(this.x + 620 * .5, this.y + 620 * .5,
                         280, entity.x, entity.y, entity.w, entity.h)) {
                     //custom offset to align

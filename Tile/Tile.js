@@ -1,5 +1,5 @@
 class Tile {
-    constructor(game, spritesheet, x, y) {
+    constructor(game, spritesheet, x, y, foreground) {
         this.game = game;
         this.spritesheet = spritesheet;
         this.removeFromWorld = false;
@@ -7,14 +7,10 @@ class Tile {
         this.y = y;
         this.w = 100;
         this.h = 100;
+        this.foreground = foreground;
     }
 
     update() {
-    }
-
-    explode(x, y) {
-        gameEngine.addEntity(new Smoke(gameEngine, AM.getAsset("./assets/img/smoke.png"),
-            x, y), 2);//custom offset to align
     }
 
     draw(ctx) {

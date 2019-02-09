@@ -136,7 +136,7 @@ class Ship {
 
             let entity = gameEngine.entities[i];
 
-            if (entity instanceof Tile) {
+            if (entity instanceof Tile && entity.foreground) {
                 if (RectCircleColliding(this.x + this.w * .25, this.y + this.h * .25,
                         this.r, entity.x, entity.y, entity.w, entity.h)) {
 

@@ -23,7 +23,7 @@ class Laser {
 
                     let entity = gameEngine.entities[i];
 
-                    if (entity instanceof Tile) {
+                    if (entity instanceof Tile && entity.foreground) {
 
                         let x1 = this.x + camera.x, x2 = this.endx + camera.x;
                         let y1 = this.y + camera.y, y2 = this.endy + camera.y;
