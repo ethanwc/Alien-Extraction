@@ -15,41 +15,29 @@ document.onmousedown = function(e) {
     // mouse.x = e.clientX - .15 * screen.width;
     // mouse.y = e.clientY - .15 * screen.height;
 
-    if (!ship.landingGear)
     switch (e.which) {
         case 1:
-
-            console.log(screen.width * .9 - camera.x, 100 - camera.y);
-            gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w/3 + 55) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
-            gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w/3 + 120) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
-            // beam_noise.play();
-
-            let laser_beam_fire = document.createElement("audio");
-            laser_beam_fire.src = "./assets/sound/laser4.mp3";
-            laser_beam_fire.play();
-
-            // myAudio.pause();
+            ship.shootLaser();
             break;
         case 3:
-            ship.shoot();
+            ship.shootMissile();
             break;
     }
 };
 
 document.onkeydown = function(e) {
     switch (e.keyCode) {
+        case 88:
+            //D
+            ship.die();
+            break;
         case 90:
             //Z
             ship.toggleLanding();
             break;
         case 32:
             //SPACE
-            if (!ship.landingGear) {
-                gameEngine.addEntity(new EnergyBall(gameEngine, AM.getAsset("./assets/img/energyball.png"), ship.x - 15, ship.y));
-                let burst = document.createElement("audio");
-                burst.src = "./assets/sound/burst1.wav";
-                burst.play();
-            }
+            ship.burst();
             break;
         case 65:
             //LEFT

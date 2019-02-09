@@ -30,6 +30,8 @@ AM.queueDownload("./assets/img/ship_attack_3.png");
 AM.queueDownload("./assets/img/ship_land.png");
 AM.queueDownload("./assets/img/ship_landing_retract.png");
 AM.queueDownload("./assets/img/ship_landing_deploy.png");
+AM.queueDownload("./assets/img/ship_death.png");
+AM.queueDownload("./assets/img/ship_dead.png");
 
 AM.queueDownload("./assets/img/missile.png");
 AM.queueDownload("./assets/img/missile_explosion.png");
