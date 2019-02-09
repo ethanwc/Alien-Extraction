@@ -49,13 +49,14 @@ class Ship {
             if (this.landingGear) {
                 this.r = this.landSize;
                 this.animation = this.landingRetract;
-                this.speed = this.maxspeed;
+                this.speed = this.landingSpeed;
             }
 
             else {
                 this.r = this.flySize;
                 this.animation = this.landingDeploy;
-                this.speed = this.landingSpeed;
+                this.speed = this.maxspeed;
+
             }
 
             this.swapAnimation = 1;
