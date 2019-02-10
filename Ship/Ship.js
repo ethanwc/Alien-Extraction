@@ -90,7 +90,7 @@ class Ship {
 
 
             let ship_btm = this.y + this.h / 2 - 45;
-            if (!this.landed && this.landingGear && (ship_btm < 2 && ship_btm > -2)) {
+            if (!this.landed && this.landingGear && (ship_btm < 2 && ship_btm > -2) && this.vv < 2 && this.hv < 2) {
 
                 land.play();
                 this.landed = true;
