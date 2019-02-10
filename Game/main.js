@@ -20,8 +20,8 @@ function startGame()  {
         document.getElementById("gameWorld").width = screen.width * screenScale;
         document.getElementById("gameWorld").height = screen.height * screenScale;
 
-        document.getElementById("menu").height = screen.width * screenScale;
-        document.getElementById("menu").height = screen.height * screenScale;
+        // document.getElementById("menu").height = screen.width * screenScale;
+        // document.getElementById("menu").height = screen.height * screenScale;
 
         // document.getElementById("menu").height = screen.width * screenScale;
         // document.getElementById("menu").height = screen.height * screenScale;
