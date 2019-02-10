@@ -4,8 +4,12 @@ let worldHeight = 150;
 let ship = undefined;
 let camera = undefined;
 let status = undefined;
+let screenScale = .7;
 
 function startGame()  {
+
+
+
     menu_start.play();
     let startImg = document.getElementById('startImg');
     startImg.parentNode.removeChild(startImg);
@@ -13,8 +17,16 @@ function startGame()  {
         let canvas = document.getElementById("gameWorld");
         let ctx = canvas.getContext("2d");
 
-        document.getElementById("gameWorld").width = screen.width * .7;
-        document.getElementById("gameWorld").height = screen.height * .7;
+        document.getElementById("gameWorld").width = screen.width * screenScale;
+        document.getElementById("gameWorld").height = screen.height * screenScale;
+
+        document.getElementById("menu").height = screen.width * screenScale;
+        document.getElementById("menu").height = screen.height * screenScale;
+
+        // document.getElementById("menu").height = screen.width * screenScale;
+        // document.getElementById("menu").height = screen.height * screenScale;
+
+
 
 
         gameEngine = new GameEngine();
