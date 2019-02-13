@@ -1,5 +1,5 @@
 class Tile {
-    constructor(game, spritesheet, x, y, foreground) {
+    constructor(game, spritesheet, x, y, foreground, health) {
         this.game = game;
         this.spritesheet = spritesheet;
         this.removeFromWorld = false;
@@ -8,6 +8,19 @@ class Tile {
         this.w = 200;
         this.h = 200;
         this.foreground = foreground;
+        this.health = 1000;
+    }
+
+    hitByLaser() {
+        this.health-= 10;
+    }
+
+    hitByRocket() {
+        this.health-= 10;
+    }
+
+    hitByBurst() {
+        this.health-= 10;
     }
 
     update() {

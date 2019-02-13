@@ -1,6 +1,6 @@
 class Dirt extends Tile {
-    constructor(game, spritesheet, x, y, foreground) {
-        super(game, spritesheet, x, y, foreground);
+    constructor(game, spritesheet, x, y, foreground, health) {
+        super(game, spritesheet, x, y, foreground, health);
     }
 
     update () {

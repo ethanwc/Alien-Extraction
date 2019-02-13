@@ -17,6 +17,7 @@ AM.queueDownload("./assets/img/stone.png");
 AM.queueDownload("./assets/img/stone_ore.png");
 AM.queueDownload("./assets/img/stone_black.jpg");
 AM.queueDownload("./assets/img/gold_ore.png");
+AM.queueDownload("./assets/img/gold_bit.png");
 AM.queueDownload("./assets/img/ore_crystal_blue.png");
 AM.queueDownload("./assets/img/ore_crystal_large.png");
 AM.queueDownload("./assets/img/boom.png");

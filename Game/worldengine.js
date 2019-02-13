@@ -27,7 +27,7 @@ function genworld (gameEngine, worldWidth, worldHeight, tiles) {
                     tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/stone_black.jpg"), w * tilesize, h * tilesize, true));
                 }
                 else {
-                    tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/gold_ore.png"), w * tilesize, h * tilesize, true));
+                    tiles.push(new Gold(gameEngine, AM.getAsset("./assets/img/gold_ore.png"), w * tilesize, h * tilesize, true));
                 }
 
             }
@@ -41,15 +41,15 @@ function genworld (gameEngine, worldWidth, worldHeight, tiles) {
                     tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/stone_ore.png"), w * tilesize, h * tilesize, true));
                 }
                 else if (r < 98) {
-                    tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/gold_ore.png"), w * tilesize, h * tilesize, true));
+                    tiles.push(new Gold(gameEngine, AM.getAsset("./assets/img/gold_ore.png"), w * tilesize, h * tilesize, true));
                 }
 
                 else if (r < 99) {
-                    tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/ore_crystal_blue.png"), w * tilesize, h * tilesize, true));
+                    tiles.push(new Crytsal(gameEngine, AM.getAsset("./assets/img/ore_crystal_blue.png"), w * tilesize, h * tilesize, true));
                 }
 
                 else {
-                    tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/ore_crystal_large.png"), w * tilesize, h * tilesize, true));
+                    tiles.push(new Crytsal(gameEngine, AM.getAsset("./assets/img/ore_crystal_large.png"), w * tilesize, h * tilesize, true));
                 }
             }
         }

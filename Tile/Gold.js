@@ -1,8 +1,17 @@
 class Gold extends Tile {
-    constructor(game, spritesheet, x, y, foreground) {
-        super(game, spritesheet, x, y, foreground);
+    constructor(game, spritesheet, x, y, foreground, health) {
+        super(game, spritesheet, x, y, foreground, health);
     }
 
     update () {
+        if (this.health < 1) {
+            this.onDestroy();
+            this.removeFromWorld = true;
+        }
+    }
+
+    onDestroy() {
+        console.log("occuring");
+        gameEngine.addEntity(new GoldBit(gameEngine, AM.getAsset("./assets/img/gold_bit.png"), this.x + this.w/4, this.y + this.h/4));
     }
 }
