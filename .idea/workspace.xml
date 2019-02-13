@@ -5,7 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="315421f8-5cb9-4dcb-8305-2f3e371ac786" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Ship/Ship.js" afterPath="$PROJECT_DIR$/Ship/Ship.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Bits/StoneBit.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Explosion/GreenExplosion.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Tile/Dirt.js" afterPath="$PROJECT_DIR$/Tile/Dirt.js" />
+      <change beforePath="$PROJECT_DIR$/Tile/Grass.js" afterPath="$PROJECT_DIR$/Tile/Grass.js" />
+      <change beforePath="$PROJECT_DIR$/Tile/Stone.js" afterPath="$PROJECT_DIR$/Tile/Stone.js" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/Ship.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (1).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (10).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (11).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (12).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (13).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (14).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (15).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (16).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (2).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (3).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (4).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (5).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (6).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (7).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (8).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/img/t/ship (9).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/resources.js" afterPath="$PROJECT_DIR$/assets/resources.js" />
+      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,21 +43,81 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="53" column="68" lean-forward="true" selection-start-line="53" selection-start-column="68" selection-end-line="53" selection-end-column="68" />
+            <state relative-caret-position="150">
+              <caret line="15" column="70" lean-forward="true" selection-start-line="15" selection-start-column="70" selection-end-line="15" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Tile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tile/Tile.js">
+      <file leaf-file-name="Grass.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tile/Grass.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dirt.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tile/Dirt.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Bits.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Bits/Bits.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GreenExplosion.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Explosion/GreenExplosion.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resources.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/resources.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="217">
+              <caret line="10" column="47" lean-forward="true" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GoldBit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Bits/GoldBit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StoneBit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Bits/StoneBit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="3" column="5" lean-forward="true" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -42,78 +126,18 @@
       <file leaf-file-name="Stone.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tile/Stone.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="29" lean-forward="false" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+            <state relative-caret-position="350">
+              <caret line="14" column="42" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="animation.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/animation.js">
+      <file leaf-file-name="Gold.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tile/Gold.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Explosion.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Explosion/Explosion.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-355">
-              <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Ship.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Ship/Ship.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EnergyBall.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Explosion/EnergyBall.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="13" column="48" lean-forward="true" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Missile_Explosion.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Explosion/Missile_Explosion.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Projectile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Projectile/Projectile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="50" column="38" lean-forward="true" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Sky.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tile/Sky.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+            <state relative-caret-position="400">
+              <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -130,8 +154,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>attack</find>
-      <find>consol</find>
       <find>lineLine</find>
       <find>lineline</find>
       <find>ship.x</find>
@@ -160,6 +182,8 @@
       <find>gold_ore</find>
       <find>new miss</find>
       <find>landing</find>
+      <find>resources</find>
+      <find>dirt</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Ethan Desktop\Desktop\loll\Alien-Extraction\assets</dir>
@@ -171,8 +195,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Game/Collisions.js" />
-        <option value="$PROJECT_DIR$/Absorb/Projectile.js" />
         <option value="$PROJECT_DIR$/Absorb/Projectile/Projectile.js" />
         <option value="$PROJECT_DIR$/Projectile/Laser.js" />
         <option value="$PROJECT_DIR$/Game/assetmanager.js" />
@@ -206,22 +228,24 @@
         <option value="$PROJECT_DIR$/Game/main.js" />
         <option value="$PROJECT_DIR$/Tile/Sky.js" />
         <option value="$PROJECT_DIR$/bits/Bits.js" />
-        <option value="$PROJECT_DIR$/assets/resources.js" />
         <option value="$PROJECT_DIR$/Bits/GoldBit.js" />
         <option value="$PROJECT_DIR$/Game/worldengine.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/Bits/Bits.js" />
         <option value="$PROJECT_DIR$/Laser/Laser.js" />
-        <option value="$PROJECT_DIR$/Tile/Gold.js" />
         <option value="$PROJECT_DIR$/Tile/Crystal.js" />
-        <option value="$PROJECT_DIR$/Tile/Dirt.js" />
-        <option value="$PROJECT_DIR$/Tile/Grass.js" />
         <option value="$PROJECT_DIR$/Tile/Tile.js" />
-        <option value="$PROJECT_DIR$/Tile/Stone.js" />
         <option value="$PROJECT_DIR$/Projectile/Projectile.js" />
         <option value="$PROJECT_DIR$/Explosion/EnergyBall.js" />
         <option value="$PROJECT_DIR$/Explosion/Missile_Explosion.js" />
         <option value="$PROJECT_DIR$/Ship/Ship.js" />
+        <option value="$PROJECT_DIR$/Bits/StoneBit.js" />
+        <option value="$PROJECT_DIR$/Explosion/GreenExplosion.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/Tile/Gold.js" />
+        <option value="$PROJECT_DIR$/Tile/Stone.js" />
+        <option value="$PROJECT_DIR$/Tile/Grass.js" />
+        <option value="$PROJECT_DIR$/Tile/Dirt.js" />
+        <option value="$PROJECT_DIR$/assets/resources.js" />
       </list>
     </option>
   </component>
@@ -415,12 +439,12 @@
       <workItem from="1549794356075" duration="16000" />
       <workItem from="1549794439260" duration="2000" />
       <workItem from="1549800582045" duration="7000" />
-      <workItem from="1550021840881" duration="5412000" />
+      <workItem from="1550021840881" duration="6713000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="211324000" />
+    <option name="totallyTimeSpent" value="212625000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -458,8 +482,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/img/deathball.png" />
-    <entry file="file://$PROJECT_DIR$/Ship/Deathball.js" />
     <entry file="file://$PROJECT_DIR$/assets/img/ship_fly.png" />
     <entry file="file://$PROJECT_DIR$/assets/img/ship_idle_1.png" />
     <entry file="file://$PROJECT_DIR$/assets/img/missile.png" />
@@ -592,14 +614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/resources.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="27" column="51" lean-forward="false" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Game/worldengine.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="617">
@@ -624,22 +638,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Bits/Bits.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Bits/GoldBit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="11" lean-forward="false" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Projectile/Missile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -656,34 +654,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tile/Gold.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tile/Crystal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tile/Dirt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tile/Grass.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -712,18 +686,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tile/Stone.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="29" lean-forward="false" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Explosion/Explosion.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-355">
           <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projectile/Projectile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="50" column="38" lean-forward="false" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Explosion/Missile_Explosion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Explosion/EnergyBall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="13" column="48" lean-forward="false" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ship/Ship.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -736,42 +734,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Projectile/Projectile.js">
+    <entry file="file://$PROJECT_DIR$/Explosion/GreenExplosion.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="50" column="38" lean-forward="true" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Explosion/Missile_Explosion.js">
+    <entry file="file://$PROJECT_DIR$/Bits/StoneBit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="5" lean-forward="true" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bits/GoldBit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
-          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Explosion/EnergyBall.js">
+    <entry file="file://$PROJECT_DIR$/Bits/Bits.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="48" lean-forward="true" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+        <state relative-caret-position="25">
+          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ship/Ship.js">
+    <entry file="file://$PROJECT_DIR$/Tile/Gold.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+        <state relative-caret-position="400">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tile/Stone.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="42" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tile/Grass.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tile/Dirt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="53" column="68" lean-forward="true" selection-start-line="53" selection-start-column="68" selection-end-line="53" selection-end-column="68" />
+        <state relative-caret-position="150">
+          <caret line="15" column="70" lean-forward="true" selection-start-line="15" selection-start-column="70" selection-end-line="15" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/resources.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="10" column="47" lean-forward="true" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
           <folding />
         </state>
       </provider>
