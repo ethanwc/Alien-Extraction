@@ -13,7 +13,7 @@ class Ship {
         this.removeFromWorld = false;
 
         //landing, landed, taking off animations
-        this.maxspeed = 600;
+        this.maxspeed = 800;
         this.landingSpeed = 200;
         this.speed = this.maxspeed;
         this.x = x;
@@ -90,7 +90,7 @@ class Ship {
 
 
             let ship_btm = this.y + this.h / 2 - 45;
-            if (!this.landed && this.landingGear && (ship_btm < 2 && ship_btm > -2) && this.vv < 2 && this.hv < 2) {
+            if (!this.landed && this.landingGear && (ship_btm < 2 && ship_btm > -2) && this.hv < 5) {
 
                 land.play();
                 this.landed = true;
