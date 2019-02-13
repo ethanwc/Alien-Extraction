@@ -23,11 +23,7 @@ class Explosion {
                 if (RectCircleColliding(this.x + 620 * .5, this.y + 620 * .5,
                         280, entity.x, entity.y, entity.w, entity.h)) {
                     //custom offset to align
-                    entity.removeFromWorld = true;
-
-                    gameEngine.addEntity(new Smoke(gameEngine, AM.getAsset("./assets/img/smoke.png"),
-                        entity.x-70, entity.y-26));//c
-
+                    entity.hitByExplosion();
                     // entity.explode(entity.x-70, entity.y-26);
 
                 }

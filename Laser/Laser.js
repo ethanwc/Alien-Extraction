@@ -36,7 +36,6 @@ class Laser {
                         let bottom = lineRect(x1,y1,x2,y2, rx,ry+rh, rx+rw,ry+rh);
                         if (left || right || top || bottom) {
                                 entity.hitByLaser();
-
                         }
                     }
                 }

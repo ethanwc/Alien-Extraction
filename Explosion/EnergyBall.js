@@ -17,10 +17,7 @@ class EnergyBall extends Explosion {
                 if (RectCircleColliding(this.x + 315 * .5, this.y + 300 * .5,
                         300, entity.x, entity.y, entity.w, entity.h)) {
                     //custom offset to align
-                    entity.removeFromWorld = true;
-
-                    gameEngine.addEntity(new Smoke(gameEngine, AM.getAsset("./assets/img/smoke.png"),
-                        entity.x-70, entity.y-26));//c
+                    entity.hitByBurst();
 
                 }
             }

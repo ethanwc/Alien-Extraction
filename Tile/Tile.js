@@ -15,12 +15,14 @@ class Tile {
         this.health-= 10;
     }
 
-    hitByRocket() {
-        this.health-= 10;
+
+
+    hitByExplosion() {
+        this.health-= 50;
     }
 
     hitByBurst() {
-        this.health-= 10;
+        this.health -= 100;
     }
 
 
