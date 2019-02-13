@@ -13,8 +13,13 @@ function startGame()  {
     menu_start.play();
     let startImg = document.getElementById('startImg');
     startImg.parentNode.removeChild(startImg);
+
+    let canvas = undefined;
+
+
     AM.downloadAll(function () {
-        let canvas = document.getElementById("gameWorld");
+        canvas = document.getElementById("gameWorld");
+        canvas.style.display='block';
         let ctx = canvas.getContext("2d");
 
         document.getElementById("gameWorld").width = screen.width * screenScale;

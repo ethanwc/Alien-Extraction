@@ -15,8 +15,6 @@ class Tile {
         this.health-= 10;
     }
 
-
-
     hitByExplosion() {
         this.health-= 50;
     }
