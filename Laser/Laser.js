@@ -35,15 +35,7 @@ class Laser {
                         let top =    lineRect(x1,y1,x2,y2, rx,ry, rx+rw,ry);
                         let bottom = lineRect(x1,y1,x2,y2, rx,ry+rh, rx+rw,ry+rh);
                         if (left || right || top || bottom) {
-                            if (entity instanceof Gold) {
-                                console.log(entity.health);
                                 entity.hitByLaser();
-                            }
-                            else {
-                                entity.removeFromWorld = true;
-                                gameEngine.addEntity(new Smoke(gameEngine, AM.getAsset("./assets/img/smoke.png"),
-                                    entity.x-70, entity.y-26));//custom offset to align
-                            }
 
                         }
                     }

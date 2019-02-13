@@ -58,7 +58,7 @@ class Projectile {
                     this.removeFromWorld = true;
 
                     let explosion = new Missile_Explosion(gameEngine, AM.getAsset("./assets/img/missile_explosion.png"),
-                        this.x-520, this.y + 400);
+                        this.x-440, this.y + 400);
 
                     gameEngine.addEntity(explosion);
                 }

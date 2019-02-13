@@ -23,8 +23,6 @@ class Tile {
         this.health-= 10;
     }
 
-    update() {
-    }
 
     draw(ctx) {
         ctx.drawImage(this.spritesheet, this.x - camera.x, this.y - camera.y, this.w, this.h);

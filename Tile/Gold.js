@@ -11,7 +11,7 @@ class Gold extends Tile {
     }
 
     onDestroy() {
-        console.log("occuring");
         gameEngine.addEntity(new GoldBit(gameEngine, AM.getAsset("./assets/img/gold_bit.png"), this.x + this.w/4, this.y + this.h/4));
+        gameEngine.addEntity(new Smoke(gameEngine, AM.getAsset("./assets/img/smoke.png"), this.x-70, this.y-26));//custom offset to align
     }
 }
