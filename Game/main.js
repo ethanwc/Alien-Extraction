@@ -4,7 +4,10 @@ let worldHeight = 150;
 let ship = undefined;
 let camera = undefined;
 let status = undefined;
+let health = undefined;
 let screenScale = .7;
+let width = undefined;
+let height = undefined;
 
 function startGame()  {
 
@@ -22,8 +25,11 @@ function startGame()  {
         canvas.style.display='block';
         let ctx = canvas.getContext("2d");
 
-        document.getElementById("gameWorld").width = screen.width * screenScale;
-        document.getElementById("gameWorld").height = screen.height * screenScale;
+        width = screen.width * screenScale;
+        height = screen.height * screenScale;
+
+        document.getElementById("gameWorld").width = width;
+        document.getElementById("gameWorld").height = height;
 
         // document.getElementById("menu").height = screen.width * screenScale;
         // document.getElementById("menu").height = screen.height * screenScale;
@@ -38,9 +44,6 @@ function startGame()  {
 
         let assets = [];
         let tiles = [];
-
-        // assets.push(new Boom(gameEngine, AM.getAsset("./assets/img/boom.png"), 1200, 0));
-        // assets.push(new EnergyBall(gameEngine, AM.getAsset("./assets/img/energyball.png"), 1000, 0));
 
         assets.push(new Blackhole(gameEngine, AM.getAsset("./assets/img/blackhole.png"), 500, 0, 1 / 2));
         assets.push(new Magnet(gameEngine, AM.getAsset("./assets/img/magnet.png"), 300, 0, 2));
@@ -72,9 +75,23 @@ function startGame()  {
 
 
 
-        gameEngine.addEntity(new Heart(gameEngine, AM.getAsset("./assets/img/heart.png"), + screen.width * .7 - 100 ,0));
-        gameEngine.addEntity(new Heart(gameEngine, AM.getAsset("./assets/img/heart.png"), + screen.width * .7 - 200 ,0));
-        gameEngine.addEntity(new Heart(gameEngine, AM.getAsset("./assets/img/heart.png"), + screen.width * .7 - 300 ,0));
+        gameEngine.addEntity(new Heart(gameEngine, AM.getAsset("./assets/img/heart.png"), + screen.width * .7 - 350 ,0));
+
+        let sw = screen.width * screenScale;
+        let sh = screen.height * screenScale;
+        // let sh = 100;
+
+        let windowoffset = 25;
+
+        let w = 100; //width of each status progress bar
+        let h = 100; //height of each status progress bar
+
+        let x = sw - w - windowoffset;
+        let y = sh - h;
+        y = 0;
+        health = new Health(ship, 100, x, y, w, h);
+
+        gameEngine.addEntity(health);
 
     });
 }
