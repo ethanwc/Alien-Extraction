@@ -82,13 +82,9 @@ class Health {
 
     update() {
         //die event
-        // if (this.health < 1) {
-        // }
-
-        //update health
-        this.w = Math.min(this.health, this.w);
-
-
+        if (this.health < 1) {
+            this.w = Math.min(this.health, this.w);
+        }
     }
 
     draw(ctx) {

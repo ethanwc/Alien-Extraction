@@ -43,11 +43,12 @@ class GameEngine {
     }
 
     addEntity(entity) {
-        console.log("added entity");
+        // console.log("added entity");
         this.entities.push(entity);
     }
 
     update() {
+        // console.log("n entities: ", this.entities.length);
 
         for (let i = 0; i < this.entities.length; i++) {
             let entity = this.entities[i];

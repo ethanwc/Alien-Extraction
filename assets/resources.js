@@ -26,6 +26,10 @@ AM.queueDownload("./assets/img/boom.png");
 AM.queueDownload("./assets/img/ship_fly.png");
 AM.queueDownload("./assets/img/ship_idle_1.png");
 
+
+AM.queueDownload("./assets/img/status_health_table.png");
+
+
 AM.queueDownload("./assets/img/ship_attack_1.png");
 AM.queueDownload("./assets/img/ship_attack_2.png");
 AM.queueDownload("./assets/img/ship_attack_3.png");

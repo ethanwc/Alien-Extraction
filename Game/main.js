@@ -75,7 +75,7 @@ function startGame()  {
 
 
 
-        gameEngine.addEntity(new Heart(gameEngine, AM.getAsset("./assets/img/heart.png"), + screen.width * .7 - 350 ,0));
+
 
         let sw = screen.width * screenScale;
         let sh = screen.height * screenScale;
@@ -83,14 +83,26 @@ function startGame()  {
 
         let windowoffset = 25;
 
-        let w = 100; //width of each status progress bar
-        let h = 100; //height of each status progress bar
 
-        let x = sw - w - windowoffset;
-        let y = sh - h;
+
+
+       let w = 400;
+        let h = 70;
+        let  x = sw - w - windowoffset;
+        let   y = windowoffset;
+
+        let img = new Icon(gameEngine, AM.getAsset("./assets/img/status_health_table.png"), x, y, w, h);
+
+
+         w = 330; //width of each status progress bar
+         h = 100; //height of each status progress bar
+
+         x = sw - w - windowoffset;
+         y = sh - h;
         y = 0;
-        health = new Health(ship, 100, x, y, w, h);
+        health = new Health(ship, 100, img.x + 6, img.y - 32, w, h);
 
+        gameEngine.addEntity(img);
         gameEngine.addEntity(health);
 
     });
