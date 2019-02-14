@@ -9,10 +9,10 @@ class Health {
         this.health = initialHealth;
         this.minHealth = 0;
         this.maxHealth = 100;
+        this.previousHealth = this.health;
         this.ctx = undefined;
         this.bar = new Progressbar(x,y,w,h);
-
-
+        this.isDrawing = true;
         this.counter = 0;
         this.particles = [];
     }
@@ -56,7 +56,7 @@ class Health {
     }
 
     fakeDraw(ctx) {
-
+            if (this.isDrawing)
             this.softReset(ctx);
             this.counter++;
             this.bar.hue += 0.7;
@@ -64,9 +64,11 @@ class Health {
             this.bar.widths += 2;
 
             if (this.bar.widths > this.w) {
-                if (this.counter > 215) {
+                if (this.counter > this.w/2) {
                     this.hardReset(ctx);
-                } else {
+                    this.isDrawing = false;
+                }
+                if (this.isDrawing) {
                     this.bar.hue = 126;
                     this.bar.widths = this.w;
                     this.bar.draw(ctx);
@@ -82,9 +84,13 @@ class Health {
 
     update() {
         //die event
-        if (this.health < 1) {
-            this.w = Math.min(this.health, this.w);
+        if (!this.isDrawing && this.previousHealth !== this.health) {
+            this.isDrawing = true;
         }
+
+        // if (this.health < 1) {
+        //     this.w = Math.min(this.health, this.w);
+        // }
     }
 
     draw(ctx) {
@@ -92,15 +98,15 @@ class Health {
     }
 
     softReset(ctx) {
-        let offset = this.h/2 - 12;
-        ctx.fillRect(this.x, this.y + offset, this.w, 25);
+            // let offset = this.h/2 - 12;
+            // ctx.fillRect(this.x, this.y + offset, this.w, 25);
     }
 
     hardReset(ctx) {
-        this.softReset(ctx);
-        this.bar.hue = 0;
-        this.bar.widths = 0;
-        this.counter = 0;
-        this.particles = [];
+            this.softReset(ctx);
+            this.bar.hue = 0;
+            this.bar.widths = 0;
+            this.counter = 0;
+            this.particles = [];
     }
 }

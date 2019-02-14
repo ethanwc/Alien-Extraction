@@ -5,7 +5,6 @@ class Progressbar {
         this.w = w;
         this.h = h;
         this.barHeight = 58;
-        console.log("y: ", this.y/2 + this.barHeight/2);
         this.offset = this.h/2 - 12;
         this.widths = 0;
         this.hue = 0;
