@@ -83,7 +83,7 @@ function startGame()  {
         let pw = 330;
         let ph = 100;
         let x = sw - iw - windowoffset;
-        let y = windowoffset;
+        let y = windowoffset + ph/2;
 
         let img = new Icon(gameEngine, AM.getAsset("./assets/img/status_health_table.png"), x, y, iw, ih);
         health = new Health(ship, 100, img.x + 6, img.y - 32, pw, ph);
@@ -91,13 +91,17 @@ function startGame()  {
         gameEngine.addEntity(img);
         gameEngine.addEntity(health);
 
-        y = windowoffset + ph;
+        y = windowoffset +  3 * ph/2;
 
         let img2 = new Icon(gameEngine, AM.getAsset("./assets/img/status_energy_table.png"), x, y, iw, ih);
         let fuel = new Fuel(ship, 100, img2.x + 6, img2.y - 32, pw, ph);
 
         gameEngine.addEntity(img2);
         gameEngine.addEntity(fuel);
+
+        let info = new TextInfo(sw - iw - windowoffset);
+
+        gameEngine.addEntity(info);
 
     });
 }
