@@ -1,4 +1,7 @@
-//https://www.html5canvastutorials.com/advanced/html5-canvas-animated-progress-bar/
+/*
+Based on this:
+https://www.html5canvastutorials.com/advanced/html5-canvas-animated-progress-bar/
+ */
 class Health {
     constructor(ship, initialHealth, x, y, w, h) {
         this.ship = ship;
@@ -7,7 +10,6 @@ class Health {
         this.w = w;
         this.h = h;
         this.health = initialHealth;
-        this.minHealth = 0;
         this.maxHealth = 100;
         this.previousHealth = this.health;
         this.ctx = undefined;
@@ -27,7 +29,9 @@ class Health {
     }
 
     hurt (damageTaken) {
+        this.previousHealth = this.health;
         this.health-= damageTaken;
+        if (this.health < 0) this.health = 0;
     }
 
     fakeUpdate(ctx) {
@@ -56,26 +60,24 @@ class Health {
     }
 
     fakeDraw(ctx) {
-            // if (this.isDrawing)
             this.softReset(ctx);
             this.counter++;
             this.bar.hue += 0.7;
 
             this.bar.widths += 2;
 
-            if (this.bar.widths > this.w) {
+            if (this.bar.widths > (this.health/this.maxHealth) * this.w) {
                 this.isDrawing = false;
                 this.bar.isDrawling = false;
                 if (this.isDrawing) {
                     if (this.counter > this.w / 2) {
                         this.hardReset(ctx);
                     }
-                    if (this.isDrawing) {
                         this.bar.hue = 126;
                         this.bar.widths = this.w;
                         this.bar.draw(ctx);
-                    }
                 }
+                else this.bar.draw(ctx);
             }
 
             else {
@@ -89,8 +91,12 @@ class Health {
 
     update() {
         //die event
+
+        if (this.health < 0) ship.die();
+
         if (!this.isDrawing && this.previousHealth !== this.health) {
             this.isDrawing = true;
+            this.bar.widths = (this.health/this.maxHealth) * this.w;
         }
 
         // if (this.health < 1) {

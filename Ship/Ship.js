@@ -1,5 +1,7 @@
 class Ship {
     constructor(game, animation, x, y, w, h) {
+        // super(game, new Animation(spritesheet, 0, 0, 540, 584, 3, .1, 10, true), x, y, 540, 584);
+
         this.game = game;
         this.moveAnimation = animation;
         this.idleAnimation = new Animation(AM.getAsset("./assets/img/ship_idle_1.png"), 0, 0, 540, 581, 3, .3, 10, true);
@@ -81,7 +83,7 @@ class Ship {
             this.isAlive = 0;
             this.animation = this.dieAnimation;
             this.deathTime = gameEngine.timer.gameTime;
-            health.hurt(100);
+            health.hurt(1000);
         }
     }
 
@@ -163,6 +165,8 @@ class Ship {
                         this.x = this.prevx;
                         this.y = this.prevy;
 
+                        health.hurt(20);
+
                         if (!this.landingGear) {
                             entity.removeFromWorld = true;
                             gameEngine.addEntity(new Boom(gameEngine, AM.getAsset("./assets/img/boom.png"),
@@ -225,6 +229,6 @@ class Ship {
 
 
     draw(ctx) {
-
+        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1/2);
     }
 }
