@@ -56,7 +56,7 @@ class Health {
     }
 
     fakeDraw(ctx) {
-            if (this.isDrawing)
+            // if (this.isDrawing)
             this.softReset(ctx);
             this.counter++;
             this.bar.hue += 0.7;
@@ -64,16 +64,21 @@ class Health {
             this.bar.widths += 2;
 
             if (this.bar.widths > this.w) {
-                if (this.counter > this.w/2) {
-                    this.hardReset(ctx);
-                    this.isDrawing = false;
-                }
+                this.isDrawing = false;
+                this.bar.isDrawling = false;
                 if (this.isDrawing) {
-                    this.bar.hue = 126;
-                    this.bar.widths = this.w;
-                    this.bar.draw(ctx);
+                    if (this.counter > this.w / 2) {
+                        this.hardReset(ctx);
+                    }
+                    if (this.isDrawing) {
+                        this.bar.hue = 126;
+                        this.bar.widths = this.w;
+                        this.bar.draw(ctx);
+                    }
                 }
-            } else {
+            }
+
+            else {
                 this.bar.draw(ctx);
                 for (let i = 0; i < 25; i += 10) {
                     this.particles.push(new Particle(this.bar, this.x, this.y + this.h/2 - 10));
@@ -94,12 +99,14 @@ class Health {
     }
 
     draw(ctx) {
-        this.fakeDraw(ctx);
+        if (this.isDrawing) this.fakeDraw(ctx);
+        else this.bar.draw(ctx);
+
     }
 
     softReset(ctx) {
-            // let offset = this.h/2 - 12;
-            // ctx.fillRect(this.x, this.y + offset, this.w, 25);
+            let offset = this.h/2 - 12;
+            ctx.fillRect(this.x, this.y + offset, this.w, 25);
     }
 
     hardReset(ctx) {

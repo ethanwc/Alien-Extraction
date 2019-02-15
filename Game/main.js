@@ -86,11 +86,10 @@ function startGame()  {
 
 
 
-       let w = 400;
+        let w = 400;
         let h = 70;
-        let  x = sw - w - windowoffset;
-        let   y = windowoffset;
-
+        let x = sw - w - windowoffset;
+        let y = windowoffset;
         let img = new Icon(gameEngine, AM.getAsset("./assets/img/status_health_table.png"), x, y, w, h);
 
 
