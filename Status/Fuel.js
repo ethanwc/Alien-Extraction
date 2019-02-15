@@ -2,7 +2,7 @@
 Based on this:
 https://www.html5canvastutorials.com/advanced/html5-canvas-animated-progress-bar/
  */
-class Health {
+class Fuel {
     constructor(ship, initialHealth, x, y, w, h) {
         this.ship = ship;
         this.x = x;

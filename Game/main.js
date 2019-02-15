@@ -1,6 +1,6 @@
 let gameEngine = undefined;
-let worldWidth = 100;
-let worldHeight = 150;
+let worldWidth = 50;
+let worldHeight = 100;
 let ship = undefined;
 let camera = undefined;
 let status = undefined;
@@ -75,35 +75,29 @@ function startGame()  {
 
 
 
-
-
         let sw = screen.width * screenScale;
         let sh = screen.height * screenScale;
-        // let sh = 100;
-
         let windowoffset = 25;
+        let iw = 400;
+        let ih = 70;
+        let pw = 330;
+        let ph = 100;
+        let x = sw - iw - windowoffset;
+        let y = windowoffset;
 
-
-
-
-        let w = 400;
-        let h = 70;
-        let  x = sw - w - windowoffset;
-        let   y = windowoffset;
-
-        let img = new Icon(gameEngine, AM.getAsset("./assets/img/status_health_table.png"), x, y, w, h);
-
-
-         w = 330; //width of each status progress bar
-         h = 100; //height of each status progress bar
-
-         x = sw - w - windowoffset;
-         y = sh - h;
-        y = 0;
-        health = new Health(ship, 100, img.x + 6, img.y - 32, w, h);
+        let img = new Icon(gameEngine, AM.getAsset("./assets/img/status_health_table.png"), x, y, iw, ih);
+        health = new Health(ship, 100, img.x + 6, img.y - 32, pw, ph);
 
         gameEngine.addEntity(img);
         gameEngine.addEntity(health);
+
+        y = windowoffset + ph;
+
+        let img2 = new Icon(gameEngine, AM.getAsset("./assets/img/status_energy_table.png"), x, y, iw, ih);
+        let fuel = new Fuel(ship, 100, img2.x + 6, img2.y - 32, pw, ph);
+
+        gameEngine.addEntity(img2);
+        gameEngine.addEntity(fuel);
 
     });
 }
