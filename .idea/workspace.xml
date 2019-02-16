@@ -5,20 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="315421f8-5cb9-4dcb-8305-2f3e371ac786" name="Default Changelist" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Hud/Hud.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Game/main.js" afterPath="$PROJECT_DIR$/Game/main.js" />
-      <change beforePath="$PROJECT_DIR$/Ship/Ship.js" afterPath="$PROJECT_DIR$/Ship/Ship.js" />
-      <change beforePath="$PROJECT_DIR$/Status/Fuel.js" afterPath="$PROJECT_DIR$/Hud/Fuel.js" />
-      <change beforePath="$PROJECT_DIR$/Status/Health.js" afterPath="$PROJECT_DIR$/Hud/Health.js" />
-      <change beforePath="$PROJECT_DIR$/Status/Icon.js" afterPath="$PROJECT_DIR$/Hud/Icon.js" />
-      <change beforePath="$PROJECT_DIR$/Status/Particle.js" afterPath="$PROJECT_DIR$/Hud/Particle.js" />
-      <change beforePath="$PROJECT_DIR$/Status/Progressbar.js" afterPath="$PROJECT_DIR$/Hud/Progressbar.js" />
-      <change beforePath="$PROJECT_DIR$/Status/ProgressbarHandler.js" afterPath="$PROJECT_DIR$/Hud/ProgressbarHandler.js" />
-      <change beforePath="$PROJECT_DIR$/Status/TextInfo.js" afterPath="$PROJECT_DIR$/Hud/TextInfo.js" />
-      <change beforePath="$PROJECT_DIR$/assets/img/ship_land.png" afterPath="$PROJECT_DIR$/assets/img/ship_land.png" />
-      <change beforePath="$PROJECT_DIR$/assets/img/ship_landing_deploy.png" afterPath="$PROJECT_DIR$/assets/img/ship_landing_deploy.png" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change beforePath="$PROJECT_DIR$/Hud/Health.js" afterPath="$PROJECT_DIR$/Hud/Health.js" />
+      <change beforePath="$PROJECT_DIR$/Hud/Progressbar.js" afterPath="$PROJECT_DIR$/Hud/Progressbar.js" />
+      <change beforePath="$PROJECT_DIR$/Hud/ProgressbarHandler.js" afterPath="$PROJECT_DIR$/Hud/ProgressbarHandler.js" />
+      <change beforePath="$PROJECT_DIR$/Hud/TextInfo.js" afterPath="$PROJECT_DIR$/Hud/TextInfo.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="59" column="56" lean-forward="true" selection-start-line="59" selection-start-column="56" selection-end-line="59" selection-end-column="56" />
+            <state relative-caret-position="96">
+              <caret line="47" column="64" lean-forward="true" selection-start-line="47" selection-start-column="64" selection-end-line="47" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -45,8 +36,8 @@
       <file leaf-file-name="ProgressbarHandler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hud/ProgressbarHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="103" column="41" lean-forward="false" selection-start-line="103" selection-start-column="41" selection-end-line="103" selection-end-column="41" />
+            <state relative-caret-position="595">
+              <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -57,8 +48,8 @@
       <file leaf-file-name="Health.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hud/Health.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+            <state relative-caret-position="0">
+              <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -77,8 +68,8 @@
       <file leaf-file-name="Progressbar.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hud/Progressbar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="16" column="84" lean-forward="false" selection-start-line="16" selection-start-column="84" selection-end-line="16" selection-end-column="84" />
+            <state relative-caret-position="475">
+              <caret line="19" column="48" lean-forward="false" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -107,8 +98,8 @@
       <file leaf-file-name="TextInfo.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hud/TextInfo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+            <state relative-caret-position="395">
+              <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -124,11 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ship.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Ship.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Ship/Ship.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+            <state relative-caret-position="375">
+              <caret line="161" column="38" lean-forward="true" selection-start-line="161" selection-start-column="38" selection-end-line="161" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -172,8 +163,8 @@
       <find>fillrect</find>
       <find>softre</find>
       <find>this.w</find>
-      <find>softr</find>
       <find>landingstart</find>
+      <find>softr</find>
       <find>this.waittime</find>
     </findStrings>
     <dirStrings>
@@ -186,7 +177,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Game/resources.js" />
         <option value="$PROJECT_DIR$/index.css" />
         <option value="$PROJECT_DIR$/Game/animation.js" />
         <option value="$PROJECT_DIR$/Projectile/Missile.js" />
@@ -233,10 +223,11 @@
         <option value="$PROJECT_DIR$/Status/TextInfo.js" />
         <option value="$PROJECT_DIR$/Game/main.js" />
         <option value="$PROJECT_DIR$/Hud/Hud.js" />
-        <option value="$PROJECT_DIR$/Hud/Progressbar.js" />
-        <option value="$PROJECT_DIR$/Hud/ProgressbarHandler.js" />
-        <option value="$PROJECT_DIR$/Hud/TextInfo.js" />
         <option value="$PROJECT_DIR$/Ship/Ship.js" />
+        <option value="$PROJECT_DIR$/Hud/Progressbar.js" />
+        <option value="$PROJECT_DIR$/Hud/TextInfo.js" />
+        <option value="$PROJECT_DIR$/Hud/Health.js" />
+        <option value="$PROJECT_DIR$/Hud/ProgressbarHandler.js" />
       </list>
     </option>
   </component>
@@ -445,12 +436,12 @@
       <workItem from="1550188099015" duration="5962000" />
       <workItem from="1550222901558" duration="2638000" />
       <workItem from="1550225552388" duration="1591000" />
-      <workItem from="1550284639350" duration="2545000" />
+      <workItem from="1550284639350" duration="3209000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="242167000" />
+    <option name="totallyTimeSpent" value="242831000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -748,14 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hud/Health.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Game/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="55">
@@ -772,32 +755,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hud/Progressbar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="84" lean-forward="false" selection-start-line="16" selection-start-column="84" selection-end-line="16" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hud/ProgressbarHandler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="103" column="41" lean-forward="false" selection-start-line="103" selection-start-column="41" selection-end-line="103" selection-end-column="41" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hud/TextInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Ship/AlienShip.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -806,18 +763,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/Hud/TextInfo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="59" column="56" lean-forward="true" selection-start-line="59" selection-start-column="56" selection-end-line="59" selection-end-column="56" />
+        <state relative-caret-position="395">
+          <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Ship/Ship.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="161" column="38" lean-forward="true" selection-start-line="161" selection-start-column="38" selection-end-line="161" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hud/Health.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hud/Progressbar.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
-          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+          <caret line="19" column="48" lean-forward="false" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hud/ProgressbarHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="47" column="64" lean-forward="true" selection-start-line="47" selection-start-column="64" selection-end-line="47" selection-end-column="64" />
           <folding />
         </state>
       </provider>

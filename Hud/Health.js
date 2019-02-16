@@ -32,7 +32,6 @@ class Health {
 
     update() {
         //die event
-        if (this.health < 0) ship.die();
         this.handler.update();
     }
 

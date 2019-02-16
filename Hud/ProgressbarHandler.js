@@ -31,7 +31,10 @@ class ProgressbarHandler {
     hurt(damageTaken) {
         this.previousHealth = this.health;
         this.health -= damageTaken;
-        if (this.health < 0) this.health = 0;
+        if (this.health < 0)  {
+            this.health = 0;
+            ship.die();
+        }
     }
 
     fakeUpdate(ctx) {
@@ -84,9 +87,6 @@ class ProgressbarHandler {
     }
 
     update() {
-        //die event
-        if (this.health < 0) ship.die();
-
         if (!this.isDrawing && this.previousHealth !== this.health) {
             this.isDrawing = true;
             this.bar.widths = (this.health / this.maxHealth) * this.w;

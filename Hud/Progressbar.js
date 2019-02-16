@@ -16,8 +16,8 @@ class Progressbar {
             ctx.fillStyle = 'hsla(' + this.hue + ', 100%, 50%, 1)';
             ctx.fillRect(this.x, this.y + this.offset, this.widths, this.barHeight);
             let grad = ctx.createLinearGradient(this.x, this.y, 0, this.w);
-            grad.addColorStop(0, this.colorstop2);
-            grad.addColorStop(1, this.colorstop1);
+            grad.addColorStop(0, this.colorstop1);
+            grad.addColorStop(1, this.colorstop2);
             ctx.fillStyle = grad;
             ctx.fillRect(this.x, this.y + this.offset, this.widths, this.barHeight);
     }
