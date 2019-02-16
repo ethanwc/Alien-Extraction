@@ -8,6 +8,7 @@ let health = undefined;
 let screenScale = .7;
 let width = undefined;
 let height = undefined;
+let info;
 
 function startGame()  {
 
@@ -99,9 +100,12 @@ function startGame()  {
         gameEngine.addEntity(img2);
         gameEngine.addEntity(fuel);
 
-        let info = new TextInfo(sw - iw - windowoffset);
+        info = new TextInfo(sw - iw - windowoffset);
 
         gameEngine.addEntity(info);
+
+        let absorb = new AbsorbBits();
+        gameEngine.addEntity(absorb);
 
     });
 }

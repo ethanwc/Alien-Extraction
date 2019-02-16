@@ -28,8 +28,8 @@ document.onmousedown = function(e) {
 document.onkeydown = function(e) {
     switch (e.keyCode) {
         case 88:
-            //D
-            ship.die();
+            //X
+            ship.toggleAbsorb();
             break;
         case 90:
             //Z

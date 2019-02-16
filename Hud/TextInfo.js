@@ -3,7 +3,7 @@ class TextInfo {
         this.initx = initx;
         this.cargoCapacity = "0%";
         this.elevation = 0;
-        this.balance = 0;
+        this.balance = 10000;
         this.string = null;
     }
 
@@ -16,7 +16,7 @@ class TextInfo {
     }
 
     updateBalance(newBalance) {
-        this.balance = newBalance;
+        this.balance += newBalance;
     }
 
     update() {

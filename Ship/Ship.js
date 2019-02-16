@@ -42,8 +42,14 @@ class Ship {
         this.landed = 0;
         this.isAlive = 1;
         this.r = this.flySize;
+        this.isAbsorbing = false;
 
 
+    }
+
+    toggleAbsorb() {
+        if (this.isAlive)
+            this.isAbsorbing = !this.isAbsorbing;
     }
 
     toggleLanding() {
@@ -73,8 +79,6 @@ class Ship {
                 this.swapAnimation = 1;
                 this.landingStart = gameEngine.timer.gameTime;
             }
-
-
         }
     }
 
@@ -116,7 +120,6 @@ class Ship {
                     }
 
                 }
-
 
                 else {
                     //handle transition still :)
