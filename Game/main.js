@@ -57,7 +57,7 @@ function startGame()  {
         gameEngine.start();
         gameEngine.addEntity(camera);
 
-        // status = new Status(ship);
+        // status = new Hud(ship);
 
 
         genworld(gameEngine, worldWidth, worldHeight, tiles);

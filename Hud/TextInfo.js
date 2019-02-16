@@ -20,6 +20,7 @@ class TextInfo {
     }
 
     update() {
+        this.elevation = -1 * ((ship.y + ship.w * .5)/10 - 2 | 0);
         this.string = "Balance: " + this.balance + " Elevation: " + this.elevation + " Capacity: " + this.cargoCapacity;
     }
 

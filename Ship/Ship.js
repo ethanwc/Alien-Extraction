@@ -7,8 +7,8 @@ class Ship {
         this.idleAnimation = new Animation(AM.getAsset("./assets/img/ship_idle_1.png"), 0, 0, 540, 581, 3, .3, 10, true);
         this.fireAnimation = new Animation(AM.getAsset("./assets/img/ship_attack_2.png"), 0, 0, 540, 580, 3, .2, 10, true);
         this.landAnimation = new Animation(AM.getAsset("./assets/img/ship_land.png"), 0, 0, 540, 582, 1, .2, 1, true);
-        this.landingDeploy = new Animation(AM.getAsset("./assets/img/ship_landing_deploy.png"), 0, 0, 540, 582, 4, .1, 14, true, false);
-        this.landingRetract = new Animation(AM.getAsset("./assets/img/ship_landing_deploy.png"), 0, 0, 540, 582, 4, .1, 14, true, true);
+        this.landingDeploy = new Animation(AM.getAsset("./assets/img/ship_landing_deploy.png"), 0, 0, 540, 582, 4, .1, 10, true, true);
+        this.landingRetract = new Animation(AM.getAsset("./assets/img/ship_landing_deploy.png"), 0, 0, 540, 582, 4, .1, 10, true, false);
         this.dieAnimation = new Animation(AM.getAsset("./assets/img/ship_death.png"), 0, 0, 540, 541, 3, .1, 10, true, true);
         this.deathAnimation = new Animation(AM.getAsset("./assets/img/ship_dead.png"), 0, 0, 540, 541, 1, .1, 1, true, true);
         this.animation = this.idleAnimation;
@@ -34,7 +34,7 @@ class Ship {
         this.shootstart = 0;
         this.landingStart = 0;
         this.swapAnimation = 0;
-        this.waitTime = 14 * .1 - .1;
+        this.waitTime = 10 * .1 - .1;
         this.flySize = 130;
         this.landSize = 100;
         this.deathTime = 0;

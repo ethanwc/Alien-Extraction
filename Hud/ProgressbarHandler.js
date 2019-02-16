@@ -101,7 +101,7 @@ class ProgressbarHandler {
 
     softReset(ctx) {
         let offset = this.h / 2 - 12;
-        ctx.fillRect(this.x, this.y + offset, this.w, 25);
+        // ctx.fillRect(this.x, this.y + offset, this.w, 25);
     }
 
     hardReset(ctx) {
