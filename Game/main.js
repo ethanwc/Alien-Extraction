@@ -71,6 +71,14 @@ function startGame()  {
         for (let i = 0; i < assets.length; i++) {
             gameEngine.addEntity(assets[i]);
         }
+        let f = new FuelStore(AM.getAsset("./assets/img/store_fuel.png"), 400, -764, 840, 764);
+        let g = new UpgradeStore(AM.getAsset("./assets/img/store_upgrade.png"), 2800, -1169/2, 1255, 1169);
+        let h = new MineralStore(AM.getAsset("./assets/img/store_minerals.png"), 1300, -642/2, 1309, 642);
+
+        gameEngine.addEntity(f);
+        gameEngine.addEntity(g);
+        gameEngine.addEntity(h);
+
 
         gameEngine.addEntity(ship);
 
@@ -106,6 +114,7 @@ function startGame()  {
 
         let absorb = new AbsorbBits();
         gameEngine.addEntity(absorb);
+
 
     });
 }

@@ -1,5 +1,5 @@
 class Tile {
-    constructor(game, spritesheet, x, y, foreground, health) {
+    constructor(game, spritesheet, x, y, foreground) {
         this.game = game;
         this.spritesheet = spritesheet;
         this.removeFromWorld = false;

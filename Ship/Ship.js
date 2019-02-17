@@ -162,14 +162,11 @@ class Ship {
                 if (entity instanceof Tile && entity.foreground) {
                     if (RectCircleColliding(this.x + this.w * .25, this.y + this.h * .25,
                             this.r, entity.x, entity.y, entity.w, entity.h)) {
-
-
                         this.x = this.prevx;
                         this.y = this.prevy;
 
-                        health.hurt(20);
-
                         if (!this.landingGear) {
+                            health.hurt(20);
                             entity.removeFromWorld = true;
                             gameEngine.addEntity(new Boom(gameEngine, AM.getAsset("./assets/img/boom.png"),
                                 entity.x - 70, entity.y - 66));//c

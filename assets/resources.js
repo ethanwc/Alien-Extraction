@@ -31,6 +31,13 @@ AM.queueDownload("./assets/img/status_energy_table.png");
 AM.queueDownload("./assets/img/status_health_table.png");
 
 
+
+AM.queueDownload("./assets/img/store_fuel.png");
+AM.queueDownload("./assets/img/store_minerals.png");
+AM.queueDownload("./assets/img/store_upgrade.png");
+
+
+
 AM.queueDownload("./assets/img/ship_attack_1.png");
 AM.queueDownload("./assets/img/ship_attack_2.png");
 AM.queueDownload("./assets/img/ship_attack_3.png");
