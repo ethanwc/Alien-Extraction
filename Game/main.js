@@ -5,7 +5,7 @@ let ship = undefined;
 let camera = undefined;
 let status = undefined;
 let health = undefined;
-let screenScale = .7;
+let screenScale = .9;
 let width = undefined;
 let height = undefined;
 let info;
@@ -24,6 +24,9 @@ function startGame()  {
     AM.downloadAll(function () {
         canvas = document.getElementById("gameWorld");
         canvas.style.display='block';
+
+        document.documentElement.style.overflow = 'hidden';  // firefox, chrome
+
         let ctx = canvas.getContext("2d");
 
         width = screen.width * screenScale;
