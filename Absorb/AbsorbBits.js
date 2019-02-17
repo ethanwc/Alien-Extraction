@@ -27,6 +27,10 @@ class AbsorbBits {
     }
 
     handleAbsorb(bit) {
+        let pop = document.createElement("audio");
+        pop.src = "./assets/sound/pop.mp3";
+        pop.play();
+
         if (bit instanceof GoldBit) info.updateBalance(1000);
         bit.removeFromWorld = true;
     }
