@@ -87,7 +87,6 @@ class Ship {
             this.isAlive = 0;
             this.animation = this.dieAnimation;
             this.deathTime = gameEngine.timer.gameTime;
-            health.hurt(1000);
         }
     }
 

@@ -27,15 +27,31 @@ class Health {
         // this.previousHealth = this.health;
         // this.health -= damageTaken;
         // if (this.health < 0) this.health = 0;
-        this.handler.hurt(damageTaken);
+        this.handler.negate(damageTaken);
     }
 
     update() {
         //die event
         this.handler.update();
+        this.handleSound();
     }
 
     draw(ctx) {
         this.handler.draw(ctx);
+    }
+
+    handleSound() {
+        let health = this.handler.current;
+
+        if (health > 30 && !alarm.pause) {
+            alarm.pause();
+        }
+
+        else if (health <= 30 && ship.isAlive) {
+            alarm.play();
+            alarm.loop = 1;
+        }
+
+        if (health === 0) alarm.pause();
     }
 }

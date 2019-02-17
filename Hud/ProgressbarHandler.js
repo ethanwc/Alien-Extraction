@@ -3,37 +3,40 @@ Based on this:
 https://www.html5canvastutorials.com/advanced/html5-canvas-animated-progress-bar/
  */
 class ProgressbarHandler {
-    constructor(ship, initialHealth, x, y, w, h, colorstop1, colorstop2) {
+    constructor(ship, initial, x, y, w, h, colorstop1, colorstop2) {
         this.ship = ship;
+        this.bar = new Progressbar(x, y, w, h, colorstop1, colorstop2);
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        this.health = initialHealth;
-        this.maxHealth = 100;
-        this.previousHealth = this.health;
+        this.max = 100;
+        this.current = initial;
+        this.previous = this.current;
         this.ctx = undefined;
-        this.bar = new Progressbar(x, y, w, h, colorstop1, colorstop2);
         this.isDrawing = true;
         this.counter = 0;
         this.particles = [];
     }
 
 
-    setHealth(newHealth) {
-        this.health = newHealth;
+    setCurrent(newValue) {
+        this.current = newValue;
     }
 
-    setMaxHealth(newMaxHealth) {
-        this.maxHealth = newMaxHealth;
+    setMax(newMax) {
+        this.max = newMax;
     }
 
-    hurt(damageTaken) {
-        this.previousHealth = this.health;
-        this.health -= damageTaken;
-        if (this.health < 0)  {
-            this.health = 0;
+    negate(toRemove) {
+        this.previous = this.current;
+        this.current -= toRemove;
+
+         if (this.current <= 0)  {
+            this.current = 0;
+            this.update();
             ship.die();
+            // alarm.pause();
         }
     }
 
@@ -66,7 +69,7 @@ class ProgressbarHandler {
 
         this.bar.widths += 2;
 
-        if (this.bar.widths > (this.health / this.maxHealth) * this.w) {
+        if (this.bar.widths > (this.current / this.max) * this.w) {
             this.isDrawing = false;
             this.bar.isDrawling = false;
             if (this.isDrawing) {
@@ -87,9 +90,9 @@ class ProgressbarHandler {
     }
 
     update() {
-        if (!this.isDrawing && this.previousHealth !== this.health) {
+        if (!this.isDrawing && this.previous !== this.current) {
             this.isDrawing = true;
-            this.bar.widths = (this.health / this.maxHealth) * this.w;
+            this.bar.widths = (this.current / this.max) * this.w;
         }
     }
 
