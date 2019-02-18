@@ -9,6 +9,12 @@ let screenScale = .9;
 let width = undefined;
 let height = undefined;
 let info;
+let canvas = undefined;
+
+
+function temp() {
+    alert('works');
+}
 
 function startGame()  {
 
@@ -18,14 +24,13 @@ function startGame()  {
     let startImg = document.getElementById('startImg');
     startImg.parentNode.removeChild(startImg);
 
-    let canvas = undefined;
 
 
     AM.downloadAll(function () {
         canvas = document.getElementById("gameWorld");
         canvas.style.display='block';
 
-        document.documentElement.style.overflow = 'hidden';  // firefox, chrome
+        // document.documentElement.style.overflow = 'hidden';  // firefox, chrome
 
         let ctx = canvas.getContext("2d");
 
@@ -34,9 +39,9 @@ function startGame()  {
 
         document.getElementById("gameWorld").width = width;
         document.getElementById("gameWorld").height = height;
-
-        // document.getElementById("menu").height = screen.width * screenScale;
-        // document.getElementById("menu").height = screen.height * screenScale;
+        //
+        // document.getElementById("menu").width = width;
+        // document.getElementById("menu").height = height;
 
         // document.getElementById("menu").height = screen.width * screenScale;
         // document.getElementById("menu").height = screen.height * screenScale;
@@ -118,6 +123,11 @@ function startGame()  {
         let absorb = new AbsorbBits();
         gameEngine.addEntity(absorb);
 
+        // let m = new FuelMenu();
+        // gameEngine.addEntity(m);
+
+        // let m = new UpgradeMenu();
+        // gameEngine.addEntity(m);
 
     });
 }

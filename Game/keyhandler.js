@@ -5,7 +5,8 @@ let direction = {
 
 let mouse = {
     x:0,
-    y:0
+    y:0,
+    isPressed:0
 };
 
 
@@ -17,10 +18,20 @@ document.onmousedown = function(e) {
 
     switch (e.which) {
         case 1:
-            ship.shootLaser();
+            // ship.shootLaser();
+            mouse.isPressed = true;
             break;
         case 3:
             ship.shootMissile();
+            break;
+    }
+};
+
+document.onmouseup = function(e) {
+    switch (e.which) {
+        case 1:
+            // ship.shootLaser();
+            mouse.isPressed = false;
             break;
     }
 };

@@ -30,6 +30,10 @@ AM.queueDownload("./assets/img/ship_idle_1.png");
 AM.queueDownload("./assets/img/status_energy_table.png");
 AM.queueDownload("./assets/img/status_health_table.png");
 
+AM.queueDownload("./assets/img/menu_background.png");
+AM.queueDownload("./assets/img/menu_exit.png");
+AM.queueDownload("./assets/img/menu_start.png");
+AM.queueDownload("./assets/img/menu_table1.png");
 
 
 AM.queueDownload("./assets/img/store_fuel.png");
