@@ -25,7 +25,7 @@ AM.queueDownload("./assets/img/ore_crystal_large.png");
 AM.queueDownload("./assets/img/boom.png");
 AM.queueDownload("./assets/img/ship_fly.png");
 AM.queueDownload("./assets/img/ship_idle_1.png");
-
+AM.queueDownload("./assets/img/window_long.png");
 
 AM.queueDownload("./assets/img/status_energy_table.png");
 AM.queueDownload("./assets/img/status_health_table.png");

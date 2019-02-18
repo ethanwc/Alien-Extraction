@@ -1,10 +1,6 @@
 class UpgradeMenu extends Menu {
-    constructor() {
-        super(AM.getAsset("./assets/img/menu_background.png"));
-        this.w = 1190;
-        this.h = 1080;
-        this.x = width/2 - this.w/2;
-        this.y = height/2 - this.h/2;
+    constructor(x, w) {
+        super(AM.getAsset("./assets/img/menu_background.png"), x, w, width/2 - 1190/2, height/2-1080/2, 1190, 1080);
         this.img = undefined;
         this.items = [];
         this.text = [];
@@ -15,7 +11,7 @@ class UpgradeMenu extends Menu {
     }
 
     update() {
-
+        super.update();
     }
 
     draw(ctx) {
@@ -29,7 +25,7 @@ class UpgradeMenu extends Menu {
         let iconsize = 160;
         let header = new MenuItem(this, undefined, AM.getAsset("./assets/img/header_upgrade.png"), x + this.w/2 - 442/2, this.y + 50, 442, 59, this.dummyCallback);
         this.items.push(header);
-        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), this.x + this.w - 135, this.y + 20, 100, 100, this.fullBuy);
+        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), this.x + this.w - 135, this.y + 20, 100, 100, this.exit);
         this.items.push(exit);
 
 
@@ -154,6 +150,10 @@ class UpgradeMenu extends Menu {
 
     playError() {
 
+    }
+
+    exit(menuItem) {
+        menuItem.menu.setTime();
     }
 
 

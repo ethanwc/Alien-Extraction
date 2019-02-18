@@ -1,10 +1,13 @@
-class TextInfo {
+class Info {
     constructor(initx) {
         this.initx = initx;
         this.cargoCapacity = "0%";
         this.elevation = 0;
         this.balance = 10000;
         this.string = null;
+        this.dirtQuantity = 0;
+        this.goldQuantity = 0;
+        this.goldValue = 20;
     }
 
     updateCargoCapacity(newCapacity) {

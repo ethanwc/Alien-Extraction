@@ -55,8 +55,8 @@ function startGame()  {
         let assets = [];
         let tiles = [];
 
-        assets.push(new Blackhole(gameEngine, AM.getAsset("./assets/img/blackhole.png"), 500, 0, 1 / 2));
-        assets.push(new Magnet(gameEngine, AM.getAsset("./assets/img/magnet.png"), 300, 0, 2));
+        // assets.push(new Blackhole(gameEngine, AM.getAsset("./assets/img/blackhole.png"), 500, 0, 1 / 2));
+        // assets.push(new Magnet(gameEngine, AM.getAsset("./assets/img/magnet.png"), 300, 0, 2));
 
 
         ship = new AlienShip(gameEngine, AM.getAsset("./assets/img/ship_fly.png"), 600, -600);
@@ -117,18 +117,21 @@ function startGame()  {
         gameEngine.addEntity(img2);
         gameEngine.addEntity(fuel);
 
-        info = new TextInfo(sw - iw - windowoffset);
+        info = new Info(sw - iw - windowoffset);
 
         gameEngine.addEntity(info);
 
         let absorb = new AbsorbBits();
         gameEngine.addEntity(absorb);
 
-        // let m = new FuelMenu();
-        // gameEngine.addEntity(m);
+        let mm = new FuelMenu(f.x, f.w + 550);
+        gameEngine.addEntity(mm);
 
-        // let m = new UpgradeMenu();
-        // gameEngine.addEntity(m);
+        let m = new UpgradeMenu(g.x, g.w);
+        gameEngine.addEntity(m);
+
+        let rrr = new MineralMenu(h.x, h.w);
+        gameEngine.addEntity(rrr);
 
     });
 }

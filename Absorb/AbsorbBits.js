@@ -31,7 +31,11 @@ class AbsorbBits {
         pop.src = "./assets/sound/pop.mp3";
         pop.play();
 
-        if (bit instanceof GoldBit) info.updateBalance(1000);
+
+        if (bit instanceof GoldBit) {
+            console.log(info.goldQuantity);
+            info.goldQuantity++;
+        }
         bit.removeFromWorld = true;
     }
 

@@ -1,6 +1,6 @@
 class FuelMenu extends Menu {
-    constructor() {
-        super(AM.getAsset("./assets/img/menu_background.png"));
+    constructor(x, w) {
+        super(AM.getAsset("./assets/img/menu_background.png"), x, w, width/2 - 940/2, height/2 - 1010/2, 940, 1010);
         this.w = 940;
         this.h = 1010;
         this.x = width/2 - this.w/2;
@@ -13,7 +13,7 @@ class FuelMenu extends Menu {
     }
 
     update() {
-
+        super.update();
     }
 
     draw(ctx) {
@@ -27,7 +27,7 @@ class FuelMenu extends Menu {
         let temp;
         let height = 200;
         let width = (this.w/2 - 20);
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x, this.y + 200 - 30, width, height, this.fullBuy);
+        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, this.y + 200 - 30, width, height, this.fullBuy);
         this.items.push(temp);
 
 
@@ -37,11 +37,11 @@ class FuelMenu extends Menu {
 
 
 
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 2 - 30), width, height, this.fullBuy, "test");
+        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 2 - 30), width, height, this.fullBuy, "test");
         this.items.push(temp);
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 3 - 30), width, height, this.fullBuy);
+        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 3 - 30), width, height, this.fullBuy);
         this.items.push(temp);
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 4 - 30), width, height, this.fullBuy);
+        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 4 - 30), width, height, this.fullBuy);
         this.items.push(temp);
 
 
@@ -49,17 +49,17 @@ class FuelMenu extends Menu {
 
         x+= 10;
 
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 - 30, width, height, this.fullBuy);
+        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 - 30, width, height, this.fullBuy);
         this.items.push(temp);
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 * 2 - 30, width, height, this.fullBuy);
+        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 * 2 - 30, width, height, this.fullBuy);
         this.items.push(temp);
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 * 3 - 30, width, height, this.fullBuy);
+        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 * 3 - 30, width, height, this.fullBuy);
         this.items.push(temp);
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 * 4 - 30, width, height, this.fullBuy);
+        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 * 4 - 30, width, height, this.fullBuy);
         this.items.push(temp);
 
 
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_exit.png"), this.x + this.w - 135, this.y + 20, 100, 100, this.fullBuy);
+        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), this.x + this.w - 135, this.y + 20, 100, 100, this.exit);
 
         this.items.push(temp);
 
@@ -67,7 +67,7 @@ class FuelMenu extends Menu {
     }
 
     drawMenu(ctx) {
-        ctx.drawImage(this.background, this.x, this.y, this.w, this.h);
+        // ctx.drawImage(this.background, this.x, this.y, this.w, this.h);
 
         for (let i = 0; i < this.items.length; i++) {
             let menuItem = this.items[i];
@@ -84,6 +84,10 @@ class FuelMenu extends Menu {
 
     fullBuy() {
         info.updateBalance(500);
+    }
+
+    exit(menuItem) {
+        menuItem.menu.setTime();
     }
 
 }

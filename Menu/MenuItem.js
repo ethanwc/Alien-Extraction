@@ -16,11 +16,13 @@ class MenuItem {
         this.level = level;
     }
     update() {
+        if (this.menu.isEnabled)
         this.handleClick()
     }
 
     draw (ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
+        if (this.menu.isEnabled)
+            ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
 
     checkSelected() {
