@@ -8,7 +8,9 @@ class UpgradeMenu extends Menu {
         this.img = undefined;
         this.items = [];
         this.text = [];
+        this.basePrice = 1000;
         this.createMenuItems();
+        this.currentCost = 0;
 
     }
 
@@ -25,15 +27,14 @@ class UpgradeMenu extends Menu {
     createMenuItems() {
         let x = this.x + 20;
         let iconsize = 160;
-        let header = new MenuItem(AM.getAsset("./assets/img/header_upgrade.png"), x + this.w/2 - 442/2, this.y + 50, 442, 59, this.dummyCallback);
+        let header = new MenuItem(this, undefined, AM.getAsset("./assets/img/header_upgrade.png"), x + this.w/2 - 442/2, this.y + 50, 442, 59, this.dummyCallback);
         this.items.push(header);
-        let exit = new MenuItem(AM.getAsset("./assets/img/menu_exit.png"), this.x + this.w - 135, this.y + 20, 100, 100, this.fullBuy);
+        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), this.x + this.w - 135, this.y + 20, 100, 100, this.fullBuy);
         this.items.push(exit);
 
 
         for (let row = 0; row < 7; row ++) {
             let yo = this.y + 160;
-
             for (let column = 0; column < 4; column ++) {
                 let icon;
                 let callback;
@@ -74,7 +75,9 @@ class UpgradeMenu extends Menu {
                         callback = this.handleDamage;
                         break;
                 }
-                this.items.push(new MenuItem(icon, x, yo, iconsize, iconsize, callback));
+                gameEngine.addEntity(new MenuItem(this, column, icon, x, yo, iconsize, iconsize, callback));
+
+                // this.items.push(new MenuItem(this, icon, x, yo, iconsize, iconsize, callback));
                 yo+= iconsize + 5;
             }
             x+= iconsize + 5;
@@ -82,7 +85,7 @@ class UpgradeMenu extends Menu {
     }
 
     drawMenu(ctx) {
-        ctx.drawImage(this.background, this.x, this.y, this.w, this.h);
+        // ctx.drawImage(this.background, this.x, this.y, this.w, this.h);
 
         for (let i = 0; i < this.items.length; i++) {
             let menuItem = this.items[i];
@@ -94,6 +97,10 @@ class UpgradeMenu extends Menu {
                 ctx.fillText(menuItem.text, menuItem.x + menuItem.w/4 , menuItem.y + menuItem.h/2, menuItem.w);
             }
         }
+        //draw cost and upgrade name of what is selected
+        ctx.font = "60px Arial";
+        ctx.fillStyle = "white";
+        ctx.fillText(this.currentCost, this.x + 40, this.y + 120, 400);
     }
 
     fullBuy() {
@@ -102,7 +109,14 @@ class UpgradeMenu extends Menu {
 
     handleFuel(menuItem) {
         console.log("first call ", menuItem.level);
-        menuItem.img = AM.getAsset("./assets/img/icon_ship_selected.png");
+
+        if (info.balance >= menuItem.level * 100000) menuItem.img = AM.getAsset("./assets/img/icon_ship_selected.png");
+        else  {
+            let error = document.createElement("audio");
+            error.src = "./assets/sound/menu_error.wav";
+            error.play();
+        }
+
     }
 
     handleHangar() {
@@ -132,4 +146,15 @@ class UpgradeMenu extends Menu {
     handleDamage() {
 
     }
+
+    updateCost(level) {
+        if (level === 0) this.currentCost = '$' + 1000000;
+        else this.currentCost = '$' + 1000000 * (1 +level);
+    }
+
+    playError() {
+
+    }
+
+
 }

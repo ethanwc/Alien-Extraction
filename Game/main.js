@@ -10,6 +10,7 @@ let width = undefined;
 let height = undefined;
 let info;
 let canvas = undefined;
+let selectionPrice = 0;
 
 
 function temp() {

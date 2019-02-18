@@ -9,10 +9,14 @@ let mouse = {
     isPressed:0
 };
 
-
-document.onmousedown = function(e) {
+document.onmousemove = function(e) {
     mouse.x = event.clientX - gameEngine.ctx.canvas.getBoundingClientRect().left;
     mouse.y = event.clientY - gameEngine.ctx.canvas.getBoundingClientRect().top;
+};
+
+document.onmousedown = function(e) {
+    // mouse.x = event.clientX - gameEngine.ctx.canvas.getBoundingClientRect().left;
+    // mouse.y = event.clientY - gameEngine.ctx.canvas.getBoundingClientRect().top;
     // mouse.x = e.clientX - .15 * screen.width;
     // mouse.y = e.clientY - .15 * screen.height;
 
