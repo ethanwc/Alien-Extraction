@@ -1,5 +1,5 @@
 class MenuItem {
-    constructor(img, x, y, w, h, callback) {
+    constructor(img, x, y, w, h, callback, text) {
         this.img = img;
         this.x = x;
         this.y = y;
@@ -8,6 +8,7 @@ class MenuItem {
         this.lastClick = 0;
         this.coolDown = .2;
         this.callback = callback;
+        this.text = text
     }
     update() {
         if (this.checkClick()) this.handleClick();

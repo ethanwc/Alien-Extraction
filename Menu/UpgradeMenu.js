@@ -2,7 +2,7 @@ class UpgradeMenu extends Menu {
     constructor() {
         super(AM.getAsset("./assets/img/menu_background.png"));
         this.w = 940;
-        this.h = 1010;
+        this.h = 1080;
         this.x = width/2 - this.w/2;
         this.y = height/2 - this.h/2;
         this.img = undefined;
@@ -31,36 +31,12 @@ class UpgradeMenu extends Menu {
         this.items.push(temp);
 
 
-        for (let i = 0; i < 20; i++) this.text.push("test123");
-
-
-
-
-
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 2 - 30), width, height, this.fullBuy);
-        this.items.push(temp);
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 3 - 30), width, height, this.fullBuy);
-        this.items.push(temp);
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 4 - 30), width, height, this.fullBuy);
+        temp = new MenuItem(AM.getAsset("./assets/img/header_upgrade.png"), x + this.w/4, this.y + 50, 442, 59, this.dummyCallback);
         this.items.push(temp);
 
-
-
-
-        x+= 10;
-
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 - 30, width, height, this.fullBuy);
-        this.items.push(temp);
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 * 2 - 30, width, height, this.fullBuy);
-        this.items.push(temp);
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 * 3 - 30, width, height, this.fullBuy);
-        this.items.push(temp);
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 * 4 - 30, width, height, this.fullBuy);
-        this.items.push(temp);
 
 
         temp = new MenuItem(AM.getAsset("./assets/img/menu_exit.png"), this.x + this.w - 135, this.y + 20, 100, 100, this.fullBuy);
-
         this.items.push(temp);
 
 
@@ -69,15 +45,14 @@ class UpgradeMenu extends Menu {
     drawMenu(ctx) {
         ctx.drawImage(this.background, this.x, this.y, this.w, this.h);
 
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < this.items.length; i++) {
             let menuItem = this.items[i];
-            let text = this.text[i];
             menuItem.update();
             menuItem.draw(ctx);
-            if (i < 8) {
+            if (menuItem.text !== undefined) {
                 ctx.font = "60px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText(text, menuItem.x + menuItem.w/4 , menuItem.y + menuItem.h/2, menuItem.w);
+                ctx.fillText(menuItem.text, menuItem.x + menuItem.w/4 , menuItem.y + menuItem.h/2, menuItem.w);
             }
 
         }
@@ -85,6 +60,10 @@ class UpgradeMenu extends Menu {
 
     fullBuy() {
         info.updateBalance(500);
+    }
+
+    dummyCallback() {
+
     }
 
 }

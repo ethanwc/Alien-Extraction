@@ -35,6 +35,8 @@ AM.queueDownload("./assets/img/menu_exit.png");
 AM.queueDownload("./assets/img/menu_start.png");
 AM.queueDownload("./assets/img/menu_table1.png");
 
+AM.queueDownload("./assets/img/header_upgrade.png");
+
 
 AM.queueDownload("./assets/img/store_fuel.png");
 AM.queueDownload("./assets/img/store_minerals.png");

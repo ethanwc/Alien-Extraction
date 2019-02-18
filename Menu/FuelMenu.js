@@ -37,7 +37,7 @@ class FuelMenu extends Menu {
 
 
 
-        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 2 - 30), width, height, this.fullBuy);
+        temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 2 - 30), width, height, this.fullBuy, "test");
         this.items.push(temp);
         temp = new MenuItem(AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 3 - 30), width, height, this.fullBuy);
         this.items.push(temp);
@@ -69,15 +69,14 @@ class FuelMenu extends Menu {
     drawMenu(ctx) {
         ctx.drawImage(this.background, this.x, this.y, this.w, this.h);
 
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < this.items.length; i++) {
             let menuItem = this.items[i];
-            let text = this.text[i];
             menuItem.update();
             menuItem.draw(ctx);
-            if (i < 8) {
-            ctx.font = "60px Arial";
-            ctx.fillStyle = "white";
-            ctx.fillText(text, menuItem.x + menuItem.w/4 , menuItem.y + menuItem.h/2, menuItem.w);
+            if (menuItem.text !== undefined) {
+                ctx.font = "60px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText(menuItem.text, menuItem.x + menuItem.w/4 , menuItem.y + menuItem.h/2, menuItem.w);
             }
 
         }
