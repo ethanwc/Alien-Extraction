@@ -8,7 +8,9 @@ class MenuItem {
         this.lastClick = 0;
         this.coolDown = .2;
         this.callback = callback;
-        this.text = text
+        this.text = text;
+        this.isUnlocked = false;
+        this.level = 0;
     }
     update() {
         if (this.checkClick()) this.handleClick();
@@ -25,7 +27,7 @@ class MenuItem {
 
     handleClick() {
         if ((gameEngine.timer.gameTime - this.lastClick) > this.coolDown) {
-            this.callback();
+            this.callback(this);
             this.lastClick = gameEngine.timer.gameTime;
         }
     }

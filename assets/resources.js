@@ -37,6 +37,26 @@ AM.queueDownload("./assets/img/menu_table1.png");
 
 AM.queueDownload("./assets/img/header_upgrade.png");
 
+AM.queueDownload("./assets/img/icon_armor.png");
+AM.queueDownload("./assets/img/icon_damage.png");
+AM.queueDownload("./assets/img/icon_dot1.png");
+AM.queueDownload("./assets/img/icon_dot2.png");
+AM.queueDownload("./assets/img/icon_hangar.png");
+AM.queueDownload("./assets/img/icon_health.png");
+AM.queueDownload("./assets/img/icon_info.png");
+AM.queueDownload("./assets/img/icon_ship.png");
+AM.queueDownload("./assets/img/icon_speed.png");
+AM.queueDownload("./assets/img/icon_upgrade.png");
+
+AM.queueDownload("./assets/img/icon_armor_selected.png");
+AM.queueDownload("./assets/img/icon_damage_selected.png");
+AM.queueDownload("./assets/img/icon_dot1_selected.png");
+AM.queueDownload("./assets/img/icon_dot2_selected.png");
+AM.queueDownload("./assets/img/icon_hangar_selected.png");
+AM.queueDownload("./assets/img/icon_health_selected.png");
+AM.queueDownload("./assets/img/icon_ship_selected.png");
+AM.queueDownload("./assets/img/icon_speed_selected.png");
+
 
 AM.queueDownload("./assets/img/store_fuel.png");
 AM.queueDownload("./assets/img/store_minerals.png");
