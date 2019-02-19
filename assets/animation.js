@@ -26,8 +26,8 @@ class Animation {
         } else if (this.isDone()) {
             return;
         }
-        var index = this.reverse ? this.frames - this.currentFrame() - 1 : this.currentFrame();
-        var vindex = 0;
+        let index = this.reverse ? this.frames - this.currentFrame() - 1 : this.currentFrame();
+        let vindex = 0;
         if ((index+1) * this.frameWidth + this.startX > this.spriteSheet.width) {
             index -= Math.floor((this.spriteSheet.width - this.startX) / this.frameWidth);
             vindex++;
@@ -37,9 +37,9 @@ class Animation {
             vindex++;
         }
 
-        var locX = x;
-        var locY = y;
-        var offset = vindex === 0 ? this.startX : 0;
+        let locX = x;
+        let locY = y;
+        let offset = vindex === 0 ? this.startX : 0;
         ctx.drawImage(this.spriteSheet,
             index * this.frameWidth + offset, vindex*this.frameHeight + this.startY,  // source from sheet
             this.frameWidth, this.frameHeight,

@@ -13,7 +13,7 @@ class Camera {
     }
 
     draw(ctx) {
-        ctx.color = "#AA232d";
-        ctx.rect(0,0, 100, 100);
+        // ctx.color = "#AA232d";
+        // ctx.rect(0,0, 100, 100);
     }
 }

@@ -26,10 +26,10 @@ class Projectile {
                 let rx = entity.x, ry = entity.y;
                 let rw = entity.w, rh = entity.h;
 
-                let left = lineRect(x1, y1, x2, y2, rx, ry, rx, ry + rh);
-                let right = lineRect(x1, y1, x2, y2, rx + rw, ry, rx + rw, ry + rh);
-                let top = lineRect(x1, y1, x2, y2, rx, ry, rx + rw, ry);
-                let bottom = lineRect(x1, y1, x2, y2, rx, ry + rh, rx + rw, ry + rh);
+                let left = lineRect(x1, y1, x2, y2, rx, ry, rx, ry + rh)[0];
+                let right = lineRect(x1, y1, x2, y2, rx + rw, ry, rx + rw, ry + rh)[0];
+                let top = lineRect(x1, y1, x2, y2, rx, ry, rx + rw, ry)[0];
+                let bottom = lineRect(x1, y1, x2, y2, rx, ry + rh, rx + rw, ry + rh)[0];
                 if (left || right || top || bottom) {
                     this.removeFromWorld = true;
 
