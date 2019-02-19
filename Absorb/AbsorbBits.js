@@ -27,15 +27,30 @@ class AbsorbBits {
     }
 
     handleAbsorb(bit) {
-        let pop = document.createElement("audio");
-        pop.src = "./assets/sound/pop.mp3";
-        pop.play();
 
 
-        if (bit instanceof GoldBit) {
-            info.goldQuantity++;
+        if (info.cargo < info.cargoCapacity) {
+
+            if (bit instanceof GoldBit) {
+                info.goldQuantity++;
+            }
+
+            info.cargo++;
+            bit.removeFromWorld = true;
+
+            let pop = document.createElement("audio");
+            pop.src = "./assets/sound/pop.mp3";
+            pop.play();
+
         }
-        bit.removeFromWorld = true;
+        //cargo is full, disable absorption
+        else {
+            ship.toggleAbsorb();
+
+            full.play();
+        }
+
+
     }
 
     moveBit(bit) {

@@ -1,7 +1,8 @@
 class Model {
     constructor(initx) {
         this.initx = initx;
-        this.cargoCapacity = "0%";
+        this.cargo = 0;
+        this.cargoCapacity = 100;
         this.fuelCapacity = 50;
         this.elevation = 0;
         this.balance = 10000;
@@ -38,7 +39,8 @@ class Model {
 
     update() {
         this.elevation = -1 * ((ship.y + ship.w * .5)/10 - 2 | 0);
-        this.string = "Balance: " + this.balance + "  Elevation: " + this.elevation + "  Capacity: " + this.cargoCapacity;
+        this.string = "Balance: " + this.balance + "  Elevation: " + this.elevation +
+            "  Capacity: " + ((this.cargo / this.cargoCapacity) * 100 | 0) + "%";
         this.checkFuel();
     }
 

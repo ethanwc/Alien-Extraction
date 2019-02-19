@@ -7,3 +7,6 @@ land.src = "./assets/sound/landing.wav";
 let alarm = document.createElement("audio");
 alarm.loop = true;
 alarm.src = "./assets/sound/alarm.wav";
+
+let full = document.createElement("audio");
+full.src = "./assets/sound/ship_full.wav";

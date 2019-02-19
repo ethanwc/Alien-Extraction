@@ -1,7 +1,4 @@
-/*
-Based on this:
-https://www.html5canvastutorials.com/advanced/html5-canvas-animated-progress-bar/
- */
+
 class Fuel {
     constructor(ship, initialFuel, x, y, w, h) {
         this.ship = ship;
@@ -32,7 +29,10 @@ class Fuel {
         //die event
         //
         this.handler.setCurrent(this.fuelLevel);
-        if (this.fuelLevel < 0) ship.die();
+        if (this.fuelLevel < 0) {
+            ship.die();
+            this.fuelLevel = 0;
+        }
         this.handler.update();
     }
 
