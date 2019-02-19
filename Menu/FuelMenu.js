@@ -34,10 +34,7 @@ class FuelMenu extends Menu {
         for (let i = 0; i < 20; i++) this.text.push("test123");
 
 
-
-
-
-        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 2 - 30), width, height, this.fullBuy, "test");
+        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 2 - 30), width, height, this.refuel, "Refuel");
         this.items.push(temp);
         temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 3 - 30), width, height, this.fullBuy);
         this.items.push(temp);
@@ -80,6 +77,10 @@ class FuelMenu extends Menu {
             }
 
         }
+    }
+
+    refuel() {
+        fuel.fuelLevel = 50;
     }
 
     fullBuy() {

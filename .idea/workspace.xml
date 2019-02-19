@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="315421f8-5cb9-4dcb-8305-2f3e371ac786" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Hud/ProgressbarHandler.js" afterPath="$PROJECT_DIR$/Hud/ProgressbarHandler.js" />
+      <change beforePath="$PROJECT_DIR$/Hud/Fuel.js" afterPath="$PROJECT_DIR$/Hud/Fuel.js" />
+      <change beforePath="$PROJECT_DIR$/Menu/FuelMenu.js" afterPath="$PROJECT_DIR$/Menu/FuelMenu.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,8 +26,8 @@
             <file leaf-file-name="Fuel.js" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/Hud/Fuel.js">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="675">
-                    <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
+                  <state relative-caret-position="606">
+                    <caret line="33" column="48" lean-forward="true" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
                     <folding>
                       <element signature="n#!!doc" expanded="true" />
                     </folding>
@@ -44,8 +45,18 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="45" column="63" lean-forward="true" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="63" />
+            <state relative-caret-position="275">
+              <caret line="11" column="73" lean-forward="false" selection-start-line="11" selection-start-column="73" selection-end-line="11" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FuelMenu.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Menu/FuelMenu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="82" column="28" lean-forward="true" selection-start-line="82" selection-start-column="28" selection-end-line="82" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -66,16 +77,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="298">
               <caret line="173" column="35" lean-forward="false" selection-start-line="173" selection-start-column="35" selection-end-line="173" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Particle.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hud/Particle.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,8 +115,8 @@
       <file leaf-file-name="ProgressbarHandler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hud/ProgressbarHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="875">
-              <caret line="38" column="29" lean-forward="true" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+            <state relative-caret-position="175">
+              <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -153,7 +154,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>exit</find>
       <find>ctx.fill</find>
       <find>upgrade</find>
       <find>1234</find>
@@ -183,6 +183,7 @@
       <find>health.hurt</find>
       <find>health</find>
       <find>100</find>
+      <find>u</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Ethan Desktop\Desktop\loll\Alien-Extraction\assets</dir>
@@ -225,7 +226,6 @@
         <option value="$PROJECT_DIR$/Hud/Info.js" />
         <option value="$PROJECT_DIR$/Menu/MenuItem.js" />
         <option value="$PROJECT_DIR$/Menu/MineralMenu.js" />
-        <option value="$PROJECT_DIR$/Menu/FuelMenu.js" />
         <option value="$PROJECT_DIR$/assets/resources.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/Explosion/GreenExplosion.js" />
@@ -243,8 +243,9 @@
         <option value="$PROJECT_DIR$/Model/Info.js" />
         <option value="$PROJECT_DIR$/Game/main.js" />
         <option value="$PROJECT_DIR$/Model/Model.js" />
-        <option value="$PROJECT_DIR$/Hud/Fuel.js" />
+        <option value="$PROJECT_DIR$/Menu/FuelMenu.js" />
         <option value="$PROJECT_DIR$/Hud/ProgressbarHandler.js" />
+        <option value="$PROJECT_DIR$/Hud/Fuel.js" />
       </list>
     </option>
   </component>
@@ -288,12 +289,7 @@
             <path>
               <item name="Alien-Extraction" type="b2602c69:ProjectViewProjectNode" />
               <item name="Alien-Extraction" type="462c0819:PsiDirectoryNode" />
-              <item name="Hud" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Alien-Extraction" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Alien-Extraction" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="Menu" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -422,12 +418,12 @@
       <workItem from="1550473541924" duration="5349000" />
       <workItem from="1550479366066" duration="6006000" />
       <workItem from="1550539915360" duration="3446000" />
-      <workItem from="1550543375073" duration="6957000" />
+      <workItem from="1550543375073" duration="7387000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="300515000" />
+    <option name="totallyTimeSpent" value="300945000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -642,14 +638,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Menu/FuelMenu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="28" column="36" lean-forward="true" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Game/gameengine.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -818,28 +806,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hud/Fuel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hud/Health.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="498">
           <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hud/ProgressbarHandler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="38" column="29" lean-forward="true" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -852,10 +822,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Menu/FuelMenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="82" column="28" lean-forward="true" selection-start-line="82" selection-start-column="28" selection-end-line="82" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hud/Fuel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="606">
+          <caret line="33" column="48" lean-forward="true" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hud/ProgressbarHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="45" column="63" lean-forward="true" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="63" />
+        <state relative-caret-position="275">
+          <caret line="11" column="73" lean-forward="false" selection-start-line="11" selection-start-column="73" selection-end-line="11" selection-end-column="73" />
           <folding />
         </state>
       </provider>

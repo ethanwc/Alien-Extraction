@@ -30,6 +30,8 @@ class Fuel {
 
     update() {
         //die event
+        //
+        this.handler.setCurrent(this.fuelLevel);
         if (this.fuelLevel < 0) ship.die();
         this.handler.update();
     }
