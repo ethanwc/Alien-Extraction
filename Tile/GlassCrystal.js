@@ -1,4 +1,4 @@
-class Crytsal extends Tile {
+class GlassCrystal extends Tile {
     constructor(game, spritesheet, x, y, foreground, health) {
         super(game, spritesheet, x, y, foreground, health);
     }
@@ -12,7 +12,7 @@ class Crytsal extends Tile {
 
 
     onDestroy() {
-        gameEngine.addEntity(new CrystalBit(gameEngine, AM.getAsset("./assets/img/blue_crystal_bit.png"), this.x+40, this.y+20));//custom offset to align
+        gameEngine.addEntity(new CrystalBit(gameEngine, AM.getAsset("./assets/img/glass_crystal_bit.png"), this.x + this.w/4, this.y + this.h/4));
         gameEngine.addEntity(new Smoke(gameEngine, AM.getAsset("./assets/img/smoke.png"), this.x-70, this.y-26));//custom offset to align
     }
 }

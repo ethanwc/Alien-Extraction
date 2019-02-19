@@ -9,14 +9,31 @@ function genworld (gameEngine, worldWidth, worldHeight, tiles) {
                 tiles.push(new Grass(gameEngine, AM.getAsset("./assets/img/grass.png"), w * tilesize, h * tilesize, true));
             }
             else if (h < 15) {
-                tiles.push(new Dirt(gameEngine, AM.getAsset("./assets/img/dirt.png"), w * tilesize, h * tilesize, true));
+                let r = ((Math.random() * tilesize) + 1);
+                if (r < 25) {
+                    tiles.push(new Dirt(gameEngine, AM.getAsset("./assets/img/dirt.png"), w * tilesize, h * tilesize, true));
+                }
+
+                else if (r < 25) {
+                    tiles.push(new Dirt(gameEngine, AM.getAsset("./assets/img/tile_dirt_cracked.jpg"), w * tilesize, h * tilesize, true));
+                }
+                else if (r < 75) {
+                    tiles.push(new Dirt(gameEngine, AM.getAsset("./assets/img/tile_dirt_plain.jpg"), w * tilesize, h * tilesize, true));
+
+                }
+                else {
+                    tiles.push(new Dirt(gameEngine, AM.getAsset("./assets/img/tile_dirt_mud.jpg"), w * tilesize, h * tilesize, true));
+
+                }
             }
-            else if (h < 20) {
-                tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/stone.png"), w * tilesize, h * tilesize, true));
-            }
+
             else if (h < 30) {
-                tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/stone_black.jpg"), w * tilesize, h * tilesize, true));
+                randomStone(w*tilesize, h*tilesize, tiles)
             }
+            else if (h < 35) {
+                tiles.push(new GlassCrystal(gameEngine, AM.getAsset("./assets/img/tile_crystal2.png"), w * tilesize, h * tilesize, true));
+            }
+
             else if (h < 40) {
                 let r = ((Math.random() * tilesize) + 1);
 
@@ -35,7 +52,7 @@ function genworld (gameEngine, worldWidth, worldHeight, tiles) {
                 let r = ((Math.random() * tilesize) + 1);
 
                 if (r < 94) {
-                    tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/stone.png"), w * tilesize, h * tilesize, true));
+                    randomStone(w*tilesize, h*tilesize, tiles)
                 }
                 else if (r < 96) {
                     tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/stone_ore.png"), w * tilesize, h * tilesize, true));
@@ -53,5 +70,26 @@ function genworld (gameEngine, worldWidth, worldHeight, tiles) {
                 }
             }
         }
+    }
+}
+
+function randomStone(x,y, tiles) {
+    let r = ((Math.random() * tilesize) + 1);
+    if (r < 25) {
+        tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/stone.png"), x, y, true));
+
+    }
+    else if (r < 50) {
+        tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/stone_black.jpg"), x,y, true));
+
+    }
+    else if (r < 75) {
+        tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/tile_stone_black.jpg"), x,y, true));
+
+    }
+
+    else {
+        tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/tile_stone_cracked.jpg"), x,y, true));
+
     }
 }

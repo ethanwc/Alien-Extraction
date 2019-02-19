@@ -11,6 +11,14 @@ AM.queueDownload("./assets/img/stars.jpg");
 AM.queueDownload("./assets/img/blackhole.png");
 AM.queueDownload("./assets/img/grass.png");
 AM.queueDownload("./assets/img/dirt.png");
+AM.queueDownload("./assets/img/tile_dirt_cracked.jpg");
+AM.queueDownload("./assets/img/tile_dirt_mud.jpg");
+AM.queueDownload("./assets/img/tile_dirt_plain.jpg");
+
+AM.queueDownload("./assets/img/tile_stone_black.jpg");
+AM.queueDownload("./assets/img/tile_stone_cracked.jpg");
+
+
 AM.queueDownload("./assets/img/dirt_bit.png");
 AM.queueDownload("./assets/img/stone.png");
 AM.queueDownload("./assets/img/stone_ore.png");
@@ -24,6 +32,10 @@ AM.queueDownload("./assets/img/boom.png");
 AM.queueDownload("./assets/img/ship_fly.png");
 AM.queueDownload("./assets/img/ship_idle_1.png");
 AM.queueDownload("./assets/img/window_long.png");
+AM.queueDownload("./assets/img/blue_crystal_bit.png");
+
+AM.queueDownload("./assets/img/glass_crystal_bit.png");
+AM.queueDownload("./assets/img/tile_crystal2.png");
 
 AM.queueDownload("./assets/img/status_energy_table.png");
 AM.queueDownload("./assets/img/status_health_table.png");
