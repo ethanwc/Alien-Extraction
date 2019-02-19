@@ -10,7 +10,7 @@ class ProgressbarHandler {
         this.y = y;
         this.w = w;
         this.h = h;
-        this.max = 100;
+        this.max = initial;
         this.current = initial;
         this.previous = this.current;
         this.ctx = undefined;
