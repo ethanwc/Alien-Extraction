@@ -8,6 +8,8 @@ class Laser {
         this.endy = endy;
         this.viewTime = .1;
         this.initTime = gameEngine.timer.gameTime;
+        this.entityDistance = 10000000;
+        this.entityToHurt = undefined;
     }
 
         update() {
@@ -35,9 +37,17 @@ class Laser {
                         let top =    lineRect(x1,y1,x2,y2, rx,ry, rx+rw,ry);
                         let bottom = lineRect(x1,y1,x2,y2, rx,ry+rh, rx+rw,ry+rh);
                         if (left || right || top || bottom) {
-                                entity.hitByLaser();
+                            let distance = this.checkDistance(this.x + camera.x, this.y + camera.y, entity.x, entity.y);
+                            if (distance < this.entityDistance) {
+                                this.entityDistance = distance;
+                                this.entityToHurt = entity;
+                            }
                         }
                     }
+                }
+                if (this.entityToHurt !== undefined) {
+                    this.entityToHurt.hitByLaser();
+                    this.entityToHurt.removeFromWorld = true;
                 }
             }
         }
@@ -46,4 +56,10 @@ class Laser {
         draw(ctx) {
 
         }
+
+    checkDistance(ax, ay, bx, by) {
+        let difX = ax - bx;
+        let difY = ay - by;
+        return Math.sqrt(difX * difX + difY * difY);
+    }
 }

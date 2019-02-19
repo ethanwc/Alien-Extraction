@@ -24,7 +24,6 @@ class Explosion {
                         280, entity.x, entity.y, entity.w, entity.h)) {
                     //custom offset to align
                     entity.hitByExplosion();
-                    // entity.explode(entity.x-70, entity.y-26);
 
                 }
             }
@@ -33,9 +32,9 @@ class Explosion {
 
     draw(ctx) {
         this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.3);
-        // ctx.arc(this.x + 620 * .5 - this.game.camera.x, this.y + 620 * .5 - this.game.camera.y, 280, 2 * Math.PI, false);
-        // ctx.lineWidth = 3;
-        // ctx.strokeStyle = '#FF0000';
-        // ctx.stroke();
+        ctx.arc(this.x + 620 * .5 - this.game.camera.x, this.y + 620 * .5 - this.game.camera.y, 280, 2 * Math.PI, false);
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = '#FF0000';
+        ctx.stroke();
     }
 }

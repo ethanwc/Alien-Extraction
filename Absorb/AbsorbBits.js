@@ -33,7 +33,6 @@ class AbsorbBits {
 
 
         if (bit instanceof GoldBit) {
-            console.log(info.goldQuantity);
             info.goldQuantity++;
         }
         bit.removeFromWorld = true;
