@@ -5,6 +5,9 @@ class UpgradeMenu extends Menu {
         this.items = [];
         this.text = [];
         this.basePrice = 1000;
+        this.startx = 0;
+        this.ystart = 0;
+        this.vspan = 0;
         this.createMenuItems();
         this.currentCost = 0;
 
@@ -21,16 +24,21 @@ class UpgradeMenu extends Menu {
     }
 
     createMenuItems() {
-        let x = this.x + 20;
-        let iconsize = 160;
-        let header = new MenuItem(this, undefined, AM.getAsset("./assets/img/header_upgrade.png"), x + this.w/2 - 442/2, this.y + 50, 442, 59, this.dummyCallback);
+        let gap = 5;
+        let iconsize = (width - (8 * gap))/12;
+        let span = (7 * iconsize + 8 * gap);
+        this.vspan = (4 * iconsize + 3 * gap);
+        let x = (width - span)/2;
+        this.startx = x;
+        this.ystart = (height - this.vspan)/2;
+        let header = new MenuItem(this, undefined, AM.getAsset("./assets/img/header_upgrade.png"), span - x, this.ystart - 100, 442, 59, this.dummyCallback);
         this.items.push(header);
-        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), this.x + this.w - 135, this.y + 20, 100, 100, this.exit);
+        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"),  x + span - 120, this.ystart -150, 100, 100, this.exit);
         this.items.push(exit);
 
 
         for (let row = 0; row < 7; row ++) {
-            let yo = this.y + 160;
+            let yo = this.ystart;
             for (let column = 0; column < 4; column ++) {
                 let icon;
                 let callback;
@@ -90,13 +98,15 @@ class UpgradeMenu extends Menu {
             if (menuItem.text !== undefined) {
                 ctx.font = "60px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText(menuItem.text, menuItem.x + menuItem.w/4 , menuItem.y + menuItem.h/2, menuItem.w);
+                // ctx.fillText(menuItem.text, menuItem.x + menuItem.w/4 , menuItem.y + menuItem.h/2, menuItem.w);
             }
         }
         //draw cost and upgrade name of what is selected
         ctx.font = "60px Arial";
         ctx.fillStyle = "white";
-        ctx.fillText(this.currentCost, this.x + 40, this.y + 120, 400);
+        ctx.fillText(this.currentCost, this.startx + 10, this.ystart - 50, 200);
+        ctx.fillText("Balance: " + info.balance, this.startx + 10, this.ystart + this.vspan + 50, 400);
+
     }
 
     fullBuy() {
