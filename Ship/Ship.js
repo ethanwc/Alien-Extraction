@@ -85,6 +85,7 @@ class Ship {
     die() {
         if (this.isAlive) {
             this.isAlive = 0;
+            gameEngine.addEntity(new GreenExplosion(this.game, AM.getAsset("./assets/img/greenexplosion.png"), this.x-150, this.y-120));
             this.animation = this.dieAnimation;
             this.deathTime = gameEngine.timer.gameTime;
         }

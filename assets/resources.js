@@ -76,3 +76,5 @@ AM.queueDownload("./assets/img/ship_dead.png");
 
 AM.queueDownload("./assets/img/missile.png");
 AM.queueDownload("./assets/img/missile_explosion.png");
+
+AM.queueDownload("./assets/img/greenexplosion.png");
