@@ -22,7 +22,7 @@ document.onmousedown = function(e) {
 
     switch (e.which) {
         case 1:
-            // ship.shootLaser();
+            ship.shootLaser();
             mouse.isPressed = true;
             break;
         case 3:

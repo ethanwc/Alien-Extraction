@@ -101,9 +101,13 @@ class Ship {
 
                 land.play();
                 this.landed = true;
+
+
             }
 
-            if (this.vv > 4 || this.hv > 4 || !this.landingGear) this.landed = false;
+
+            if (this.landed && (this.vv > 2 || this.hv > 2)) this.landed = false;
+
 
 
             if ((gameEngine.timer.gameTime - this.landingStart) > this.waitTime) {
