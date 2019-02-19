@@ -17,6 +17,18 @@ class MineralMenu extends Menu {
         let r = new MenuItem(this, undefined, AM.getAsset("./assets/img/gold_bit.png"), this.x + 50, this.y + 80, 50, 50, this.sellGold, undefined);
         this.items.push(r);
 
+
+        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/blue_crystal_bit.png"), this.x + 50, this.y + 80 + 60, 50, 50, this.sellBlueCrystal, undefined);
+        this.items.push(r);
+
+        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/stone_bit.png"), this.x + 50, this.y + 80 + 60 * 2, 50, 50, this.sellStone, undefined);
+        this.items.push(r);
+
+        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/dirt_bit.png"), this.x + 50, this.y + 80 + 60 * 3, 50, 50, this.sellDirt, undefined);
+        this.items.push(r);
+
+        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/silver_bit.png"), this.x + 50, this.y + 80 + 60 * 4, 50, 50, this.sellSilver, undefined);
+        this.items.push(r);
     }
 
         update() {
@@ -39,10 +51,13 @@ class MineralMenu extends Menu {
 
             ctx.fillText(info.goldQuantity + "      $" + info.goldQuantity * info.goldValue, this.x + 180, this.y + this.w / 2 - 115, 300);
 
+            ctx.fillText(info.goldQuantity + "      $" + info.goldQuantity * info.goldValue, this.x + 180, this.y + this.w / 2 - 115 + 60, 300);
+            ctx.fillText(info.goldQuantity + "      $" + info.goldQuantity * info.goldValue, this.x + 180, this.y + this.w / 2 - 115 + 60*2, 300);
+            ctx.fillText(info.goldQuantity + "      $" + info.goldQuantity * info.goldValue, this.x + 180, this.y + this.w / 2 - 115 + 60*3, 300);
+            ctx.fillText(info.goldQuantity + "      $" + info.goldQuantity * info.goldValue, this.x + 180, this.y + this.w / 2 - 115 + 60*4, 300);
+
 
             ctx.font = "60px Arial";
-
-
             ctx.fillText("Sell All: " + this.totalValue(), this.x + 30, this.y + this.w / 2 + 400, 400);
         }
     }
@@ -71,4 +86,19 @@ class MineralMenu extends Menu {
         info.updateBalance(100);
     }
 
+    sellBlueCrystal() {
+
+    }
+
+    sellStone () {
+
+    }
+
+    sellDirt() {
+
+    }
+
+    sellSilver() {
+
+    }
 }

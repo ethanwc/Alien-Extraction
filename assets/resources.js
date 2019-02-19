@@ -19,7 +19,9 @@ AM.queueDownload("./assets/img/tile_stone_black.jpg");
 AM.queueDownload("./assets/img/tile_stone_cracked.jpg");
 
 
+AM.queueDownload("./assets/img/silver_bit.png");
 AM.queueDownload("./assets/img/dirt_bit.png");
+
 AM.queueDownload("./assets/img/stone.png");
 AM.queueDownload("./assets/img/stone_ore.png");
 AM.queueDownload("./assets/img/stone_black.jpg");
