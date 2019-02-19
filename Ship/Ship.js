@@ -15,7 +15,7 @@ class Ship {
         this.removeFromWorld = false;
 
         //landing, landed, taking off animations
-        this.maxspeed = 800;
+        this.maxspeed = 1000;
         this.landingSpeed = 200;
         this.speed = this.maxspeed;
         this.x = x;
@@ -96,7 +96,8 @@ class Ship {
         if (this.isAlive) {
 
 
-            let ship_btm = this.y + this.h / 2 - 45;
+            let ship_btm = this.y + this.h / 2 - 45 - 1500;
+            console.log(ship_btm);
             if (!this.landed && this.landingGear && (ship_btm < 2 && ship_btm > -2) && this.hv < 5) {
 
                 land.play();
@@ -158,6 +159,17 @@ class Ship {
 
             this.x += this.game.clockTick * this.hv;
             this.y += this.game.clockTick * this.vv;
+            if (this.x < 0) this.x = 1;
+            if (this.y < 0) this.y = 1;
+            //
+            // let r =   11200  + this.h/2;
+            //
+            // console.log(this.y, r);
+            //
+            // if (this.y > r) this.y = r - 1;
+
+
+            //TODO: bounce off walls, dont stick... inverse velocities
 
 
             for (let i = 0; i < gameEngine.entities.length; i++) {

@@ -1,20 +1,20 @@
+let tilesize = 150;
 function genworld (gameEngine, worldWidth, worldHeight, tiles) {
-    let tilesize = 200;
     for (let w = 0; w < worldWidth; w++) {
-        for (let h = -10; h < worldHeight - 10; h++) {
-            if (h < 0) {
+        for (let h = 0; h < worldHeight; h++) {
+            if (h < 10) {
                 tiles.push(new Sky(gameEngine, AM.getAsset("./assets/img/stars.jpg"), w * tilesize, h * tilesize, false));
             }
-            else if (h === 0) {
+            else if (h === 10) {
                 tiles.push(new Grass(gameEngine, AM.getAsset("./assets/img/grass.png"), w * tilesize, h * tilesize, true));
             }
-            else if (h < 5) {
+            else if (h < 15) {
                 tiles.push(new Dirt(gameEngine, AM.getAsset("./assets/img/dirt.png"), w * tilesize, h * tilesize, true));
             }
-            else if (h < 10) {
+            else if (h < 20) {
                 tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/stone.png"), w * tilesize, h * tilesize, true));
             }
-            else if (h < 20) {
+            else if (h < 30) {
                 tiles.push(new Stone(gameEngine, AM.getAsset("./assets/img/stone_black.jpg"), w * tilesize, h * tilesize, true));
             }
             else if (h < 40) {

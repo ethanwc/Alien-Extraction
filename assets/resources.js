@@ -9,8 +9,6 @@ AM.queueDownload("./assets/img/sky_2.png");
 AM.queueDownload("./assets/img/sky_3.png");
 AM.queueDownload("./assets/img/stars.jpg");
 AM.queueDownload("./assets/img/blackhole.png");
-AM.queueDownload("./assets/img/ufo.png");
-AM.queueDownload("./assets/img/ufo_beam.png");
 AM.queueDownload("./assets/img/grass.png");
 AM.queueDownload("./assets/img/dirt.png");
 AM.queueDownload("./assets/img/dirt_bit.png");

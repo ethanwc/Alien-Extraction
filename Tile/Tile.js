@@ -5,8 +5,8 @@ class Tile {
         this.removeFromWorld = false;
         this.x = x;
         this.y = y;
-        this.w = 200;
-        this.h = 200;
+        this.w = 150;
+        this.h = 150;
         this.foreground = foreground;
         this.health = 1000;
     }

@@ -60,7 +60,7 @@ function startGame()  {
         // assets.push(new Magnet(gameEngine, AM.getAsset("./assets/img/magnet.png"), 300, 0, 2));
 
 
-        ship = new AlienShip(gameEngine, AM.getAsset("./assets/img/ship_fly.png"), 600, -600);
+        ship = new AlienShip(gameEngine, AM.getAsset("./assets/img/ship_fly.png"), 0, 0);
 
 
         camera = new Camera(ship);
@@ -81,9 +81,9 @@ function startGame()  {
         for (let i = 0; i < assets.length; i++) {
             gameEngine.addEntity(assets[i]);
         }
-        let f = new FuelStore(AM.getAsset("./assets/img/store_fuel.png"), 400, -764, 840, 764);
-        let g = new UpgradeStore(AM.getAsset("./assets/img/store_upgrade.png"), 2800, -1169/2, 1255, 1169);
-        let h = new MineralStore(AM.getAsset("./assets/img/store_minerals.png"), 1300, -642/2, 1309, 642);
+        let f = new FuelStore(AM.getAsset("./assets/img/store_fuel.png"), 400, -764 + 10 * tilesize, 840, 764);
+        let g = new UpgradeStore(AM.getAsset("./assets/img/store_upgrade.png"), 2800, -1169/2 + 10 * tilesize, 1255, 1169);
+        let h = new MineralStore(AM.getAsset("./assets/img/store_minerals.png"), 1300, -642/2 + 10 * tilesize, 1309, 642);
 
         gameEngine.addEntity(f);
         gameEngine.addEntity(g);
