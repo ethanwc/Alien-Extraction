@@ -1,7 +1,7 @@
 class FuelMenu extends Menu {
     constructor(x, w) {
         super(AM.getAsset("./assets/img/menu_background.png"), x, w, width/2 - 940/2, height/2 - 1010/2, 940, 1010);
-        this.w = 940;
+        this.w = 940/2;
         this.h = 1010;
         this.x = width/2 - this.w/2;
         this.y = height/2 - this.h/2;
@@ -24,41 +24,21 @@ class FuelMenu extends Menu {
 
     createMenuItems() {
         let x = this.x + 15;
-        let temp;
-        let height = 200;
-        let width = (this.w/2 - 20);
-        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, this.y + 200 - 30, width, height, this.fullBuy);
-        this.items.push(temp);
-
-
+        let height = 140;
+        let width = (this.w - 20);
         for (let i = 0; i < 20; i++) this.text.push("test123");
 
+        let fill = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, this.y + height - 30, width, height, this.quarterRefuel, "25% Refill");
+        this.items.push(fill);
+        fill = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + height * 2 - 30), width, height, this.halfRefuel, "50% Refill");
+        this.items.push(fill);
+        fill = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + height * 3 - 30), width, height, this.threeQuarterRefuel, "75% Refill");
+        this.items.push(fill);
+        fill = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + height * 4 - 30), width, height, this.fullRefuel, "Full Refill");
+        this.items.push(fill);
 
-        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 2 - 30), width, height, this.refuel, "Refuel");
-        this.items.push(temp);
-        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 3 - 30), width, height, this.fullBuy);
-        this.items.push(temp);
-        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + 200 * 4 - 30), width, height, this.fullBuy);
-        this.items.push(temp);
-
-
-
-
-        x+= 10;
-
-        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 - 30, width, height, this.fullBuy);
-        this.items.push(temp);
-        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 * 2 - 30, width, height, this.fullBuy);
-        this.items.push(temp);
-        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 * 3 - 30, width, height, this.fullBuy);
-        this.items.push(temp);
-        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x + width, this.y + 200 * 4 - 30, width, height, this.fullBuy);
-        this.items.push(temp);
-
-
-        temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), this.x + this.w - 135, this.y + 20, 100, 100, this.exit);
-
-        this.items.push(temp);
+        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), this.x + width - 100, this.y, 100, 100, this.exit);
+        this.items.push(exit);
 
 
     }
@@ -73,9 +53,8 @@ class FuelMenu extends Menu {
             if (menuItem.text !== undefined) {
                 ctx.font = "60px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText(menuItem.text, menuItem.x + menuItem.w/4 , menuItem.y + menuItem.h/2, menuItem.w);
+                ctx.fillText(menuItem.text, menuItem.x + menuItem.w/4 - 20 , menuItem.y + menuItem.h/2 + 15, menuItem.w);
             }
-
         }
     }
 
@@ -83,12 +62,47 @@ class FuelMenu extends Menu {
         fuel.fuelLevel = 50;
     }
 
-    fullBuy() {
-        info.updateBalance(500);
+    quarterRefuel() {
+        let amount = fuel.fuelCapacity * .25;
+        let cost = (amount * fuelCost) | 0;
+        if (info.balance >= cost) {
+            fuel.addFuel(amount);
+            info.balance -= cost;
+            money.play();
+        } else error.play();
+    }
+
+    halfRefuel() {
+        let amount = fuel.fuelCapacity * .5;
+        let cost = (amount * fuelCost) | 0;
+        if (info.balance >= cost) {
+            fuel.addFuel(amount);
+            info.balance -= cost;
+            money.play();
+        } else error.play();
+    }
+
+    threeQuarterRefuel() {
+        let amount = fuel.fuelCapacity * .75;
+        let cost = (amount * fuelCost) | 0;
+        if (info.balance >= cost) {
+            fuel.addFuel(amount);
+            info.balance -= cost;
+            money.play();
+        } else error.play();
+    }
+
+    fullRefuel() {
+        let amount = fuel.fuelCapacity * 1;
+        let cost = (amount * fuelCost) | 0;
+        if (info.balance >= cost) {
+            fuel.addFuel(amount);
+            info.balance -= cost;
+            money.play();
+        } else error.play();
     }
 
     exit(menuItem) {
         menuItem.menu.setTime();
     }
-
 }

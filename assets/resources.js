@@ -59,6 +59,8 @@ AM.queueDownload("./assets/img/icon_info.png");
 AM.queueDownload("./assets/img/icon_ship.png");
 AM.queueDownload("./assets/img/icon_speed.png");
 AM.queueDownload("./assets/img/icon_upgrade.png");
+AM.queueDownload("./assets/img/icon_battery.png");
+AM.queueDownload("./assets/img/icon_battery_selected.png");
 
 AM.queueDownload("./assets/img/icon_armor_selected.png");
 AM.queueDownload("./assets/img/icon_damage_selected.png");

@@ -44,7 +44,7 @@ class UpgradeMenu extends Menu {
                 switch (row) {
                     case 0:
                         //upgrade fuel capacity
-                        icon = AM.getAsset("./assets/img/icon_ship.png");
+                        icon = AM.getAsset("./assets/img/icon_battery.png");
                         callback = this.handleFuel;
                         break;
                     case 1:
@@ -119,7 +119,8 @@ class UpgradeMenu extends Menu {
             menuItem.isUnlocked = true;
             fuelLevel++;
             fuelDrainRate /=2;
-            menuItem.img = AM.getAsset("./assets/img/icon_ship_selected.png");
+            menuItem.img = AM.getAsset("./assets/img/icon_battery_selected.png");
+            money.play();
         } else error.play();
     }
 
@@ -131,6 +132,7 @@ class UpgradeMenu extends Menu {
             hangarLevel++;
             info.cargoCapacity *= 2;
             menuItem.img = AM.getAsset("./assets/img/icon_hangar_selected.png");
+            money.play();
         } else error.play();
     }
 
@@ -142,6 +144,7 @@ class UpgradeMenu extends Menu {
             explosionLevel++;
             explosionRadius *= 1.5;
             menuItem.img = AM.getAsset("./assets/img/icon_dot2_selected.png");
+            money.play();
         } else error.play();
     }
 
@@ -153,6 +156,7 @@ class UpgradeMenu extends Menu {
             healthLevel++;
             healthDamageMultiplier /= 2;
             menuItem.img = AM.getAsset("./assets/img/icon_health_selected.png");
+            money.play();
         } else error.play();
     }
 
@@ -164,6 +168,7 @@ class UpgradeMenu extends Menu {
             speedLevel++;
             ship.maxSpeed+=200;
             menuItem.img = AM.getAsset("./assets/img/icon_speed_selected.png");
+            money.play();
         } else error.play();
     }
 
@@ -175,6 +180,7 @@ class UpgradeMenu extends Menu {
             menuItem.isUnlocked = true;
             absorbLevel++;
             menuItem.img = AM.getAsset("./assets/img/icon_dot1_selected.png");
+            money.play();
         } else error.play();
     }
 
@@ -188,6 +194,7 @@ class UpgradeMenu extends Menu {
             damageLevel++;
             laserDamage *= 2;
             menuItem.img = AM.getAsset("./assets/img/icon_damage_selected.png");
+            money.play();
         } else error.play();
     }
 

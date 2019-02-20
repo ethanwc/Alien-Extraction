@@ -24,6 +24,7 @@ let fuelLevel = 0;
 let absorbLevel = 0;
 let fuelDrainRate = 1;
 let healthDamageMultiplier = 1;
+let fuelCost = 1;
 
 let xcap = tilesize * worldWidth;
 let ycap = tilesize * worldHeight;

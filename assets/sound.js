@@ -13,3 +13,6 @@ full.src = "./assets/sound/ship_full.wav";
 
 let error = document.createElement("audio");
 error.src = "./assets/sound/menu_error.wav";
+
+let money = document.createElement("audio");
+money.src = "./assets/sound/money.mp3";

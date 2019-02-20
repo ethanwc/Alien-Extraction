@@ -17,6 +17,11 @@ class Fuel {
         this.handler.negate(toDrain);
     }
 
+    addFuel(toAdd) {
+        this.fuelLevel += toAdd;
+        if (this.fuelLevel > this.fuelCapacity) this.fuelLevel = this.fuelCapacity;
+    }
+
     setFuelLevel(newLevel) {
         this.fuelLevel = newLevel;
     }
