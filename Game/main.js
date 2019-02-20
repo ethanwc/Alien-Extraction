@@ -32,7 +32,7 @@ let copperValue = 4;
 let silverValue = 10;
 let goldValue = 20;
 let crystalValue = 50;
-
+let inMenu = false;
 let xcap = tilesize * worldWidth;
 let ycap = tilesize * worldHeight;
 let bitList;

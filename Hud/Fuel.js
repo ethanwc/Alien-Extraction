@@ -13,8 +13,11 @@ class Fuel {
     }
 
     drainFuel(toDrain) {
-        this.fuelLevel -= toDrain;
-        this.handler.negate(toDrain);
+        if (!inMenu) {
+            this.fuelLevel -= toDrain;
+            this.handler.negate(toDrain);
+        }
+
     }
 
     addFuel(toAdd) {

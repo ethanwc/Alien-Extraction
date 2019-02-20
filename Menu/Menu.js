@@ -20,15 +20,19 @@ class Menu {
             if (ship.landed && this.inBounds()) {
 
                 this.isEnabled = true;
-
+                inMenu = true;
             }
-
-
         }
 
-        else this.isEnabled = false;
+        else {
+            this.isEnabled = false;
+            inMenu = false;
+        }
 
-        if (!ship.landingGear || !ship.landed) this.isEnabled = false;
+        if (!ship.landingGear || !ship.landed) {
+            this.isEnabled = false;
+            inMenu = false;
+        }
 
     }
 
