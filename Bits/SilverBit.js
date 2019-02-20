@@ -5,4 +5,8 @@ class SilverBit extends Bits {
 
     update () {
     }
+
+    onAbsorb() {
+        bitList.silverBits++;
+    }
 }

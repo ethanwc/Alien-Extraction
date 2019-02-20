@@ -5,4 +5,7 @@ class StoneBit extends Bits {
 
     update () {
     }
+    onAbsorb() {
+        bitList.stoneBits++;
+    }
 }

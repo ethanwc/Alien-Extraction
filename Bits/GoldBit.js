@@ -5,4 +5,8 @@ class GoldBit extends Bits {
 
     update () {
     }
+
+    onAbsorb() {
+        bitList.goldBits++;
+    }
 }

@@ -5,4 +5,8 @@ class HappyBit extends Bits {
 
     update () {
     }
+
+    onAbsorb() {
+        bitList.happyBits++;
+    }
 }

@@ -5,4 +5,8 @@ class CopperBit extends Bits {
 
     update () {
     }
+
+    onAbsorb() {
+        bitList.copperBits++;
+    }
 }

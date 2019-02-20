@@ -25,9 +25,17 @@ let absorbLevel = 0;
 let fuelDrainRate = 1;
 let healthDamageMultiplier = 1;
 let fuelCost = 1;
+let happyValue = 1000;
+let dirtValue = 1;
+let stoneValue = 1;
+let copperValue = 4;
+let silverValue = 10;
+let goldValue = 20;
+let crystalValue = 50;
 
 let xcap = tilesize * worldWidth;
 let ycap = tilesize * worldHeight;
+let bitList;
 
 
 function temp() {
@@ -151,6 +159,8 @@ function startGame()  {
 
         let rrr = new MineralMenu(h.x, h.w);
         gameEngine.addEntity(rrr);
+
+        bitList = new BitList();
 
     });
 }

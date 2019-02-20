@@ -5,4 +5,8 @@ class DirtBit extends Bits {
 
     update () {
     }
+
+    onAbsorb() {
+        bitList.dirtBits++;
+    }
 }

@@ -14,24 +14,25 @@ class MineralMenu extends Menu {
         let temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), this.x + 10, this.y + this.w/2 + 335, 450, 101, this.sellAll, undefined);
         this.items.push(temp);
 
-        let r = new MenuItem(this, undefined, AM.getAsset("./assets/img/gold_bit.png"), this.x + 50, this.y + 80, 50, 50, this.sellGold, undefined);
+        let r = new MenuItem(this, undefined, AM.getAsset("./assets/img/dirt_bit.png"), this.x + 50, this.y + 80, 50, 50, this.sellGold, undefined);
+        this.items.push(r);
+        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/stone_bit.png"), this.x + 50, this.y + 80 + 60, 50, 50, this.sellBlueCrystal, undefined);
         this.items.push(r);
 
-
-        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/blue_crystal_bit.png"), this.x + 50, this.y + 80 + 60, 50, 50, this.sellBlueCrystal, undefined);
+        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/copper_bit.png"), this.x + 50, this.y + 80 + 60 * 2, 50, 50, this.sellStone, undefined);
         this.items.push(r);
 
-        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/stone_bit.png"), this.x + 50, this.y + 80 + 60 * 2, 50, 50, this.sellStone, undefined);
+        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/silver_bit.png"), this.x + 50, this.y + 80 + 60 * 3, 50, 50, this.sellDirt, undefined);
         this.items.push(r);
 
-        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/dirt_bit.png"), this.x + 50, this.y + 80 + 60 * 3, 50, 50, this.sellDirt, undefined);
+        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/gold_bit.png"), this.x + 50, this.y + 80 + 60 * 4, 50, 50, this.sellSilver, undefined);
         this.items.push(r);
 
-        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/silver_bit.png"), this.x + 50, this.y + 80 + 60 * 4, 50, 50, this.sellSilver, undefined);
+        r = new MenuItem(this, undefined, AM.getAsset("./assets/img/blue_crystal_bit.png"), this.x + 50, this.y + 80 + 60 * 5, 50, 50, this.sellSilver, undefined);
         this.items.push(r);
     }
 
-        update() {
+    update() {
         super.update();
     }
 
@@ -49,12 +50,13 @@ class MineralMenu extends Menu {
             ctx.fillText("Item:    Quantity:    Total Value:   ", this.x + this.w / 2 - 200, this.y + 55, 400);
 
 
-            ctx.fillText(info.goldQuantity + "      $" + info.goldQuantity * info.goldValue, this.x + 180, this.y + this.w / 2 - 115, 300);
+            ctx.fillText(bitList.dirtBits + "      $" + bitList.dirtBits * dirtValue, this.x + 180, this.y + this.w / 2 - 115, 300);
 
-            ctx.fillText(info.goldQuantity + "      $" + info.goldQuantity * info.goldValue, this.x + 180, this.y + this.w / 2 - 115 + 60, 300);
-            ctx.fillText(info.goldQuantity + "      $" + info.goldQuantity * info.goldValue, this.x + 180, this.y + this.w / 2 - 115 + 60*2, 300);
-            ctx.fillText(info.goldQuantity + "      $" + info.goldQuantity * info.goldValue, this.x + 180, this.y + this.w / 2 - 115 + 60*3, 300);
-            ctx.fillText(info.goldQuantity + "      $" + info.goldQuantity * info.goldValue, this.x + 180, this.y + this.w / 2 - 115 + 60*4, 300);
+            ctx.fillText(bitList.stoneBits + "      $" + bitList.stoneBits * stoneValue, this.x + 180, this.y + this.w / 2 - 115 + 60, 300);
+            ctx.fillText(bitList.copperBits + "      $" + bitList.copperBits * copperValue, this.x + 180, this.y + this.w / 2 - 115 + 60*2, 300);
+            ctx.fillText(bitList.silverBits + "      $" + bitList.silverBits * silverValue, this.x + 180, this.y + this.w / 2 - 115 + 60*3, 300);
+            ctx.fillText(bitList.goldBits + "      $" + bitList.goldBits * goldValue, this.x + 180, this.y + this.w / 2 - 115 + 60*4, 300);
+            ctx.fillText(bitList.crystalBits + "      $" + bitList.crystalBits * crystalValue, this.x + 180, this.y + this.w / 2 - 115 + 60*5, 300);
 
 
             ctx.font = "60px Arial";
@@ -78,12 +80,13 @@ class MineralMenu extends Menu {
         this.currentCost ++;
     }
 
-    totalValue() {
-        return "100000 Crystals";
+    sellAll() {
+        info.balance += (bitList.copperBits * copperValue + bitList.crystalBits * crystalValue + bitList.dirtBits * dirtValue + bitList.goldBits * goldValue + bitList.happyBits * happyValue + bitList.silverBits * silverValue + bitList.stoneBits * stoneValue);
+        bitList.reset();
     }
 
-    sellAll() {
-        info.updateBalance(100);
+    totalValue() {
+        return bitList.copperBits * copperValue + bitList.crystalBits * crystalValue + bitList.dirtBits * dirtValue + bitList.goldBits * goldValue + bitList.happyBits * happyValue + bitList.silverBits * silverValue + bitList.stoneBits * stoneValue;
     }
 
     sellBlueCrystal() {

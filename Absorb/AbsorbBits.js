@@ -31,10 +31,7 @@ class AbsorbBits {
 
         if (info.cargo < info.cargoCapacity) {
 
-            if (bit instanceof GoldBit) {
-                info.goldQuantity++;
-            }
-
+            bit.onAbsorb();
             info.cargo++;
             bit.removeFromWorld = true;
 
@@ -49,8 +46,6 @@ class AbsorbBits {
 
             full.play();
         }
-
-
     }
 
     moveBit(bit) {

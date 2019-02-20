@@ -5,4 +5,8 @@ class CrystalBit extends Bits {
 
     update () {
     }
+
+    onAbsorb() {
+        bitList.crystalBits++;
+    }
 }
