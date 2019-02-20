@@ -137,7 +137,7 @@ function startGame()  {
         y = windowoffset +  3 * ph/2;
 
         let img2 = new Icon(gameEngine, AM.getAsset("./assets/img/status_energy_table.png"), x, y, iw, ih);
-        fuel = new Fuel(ship, 50, img2.x + 6, img2.y - 32, pw, ph);
+        fuel = new Fuel(ship, 70, img2.x + 6, img2.y - 32, pw, ph);
 
         gameEngine.addEntity(img2);
         gameEngine.addEntity(fuel);

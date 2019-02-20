@@ -8,6 +8,7 @@ class Fuel {
         this.h = h;
         this.fuelLevel = initialFuel;
         this.fuelCapacity = 70;
+        this.fuelAlert = true;
         this.previousLevel = this.fuelLevel;
         this.handler = new ProgressbarHandler(ship, initialFuel, x, y, w, h, "transparent", "rgba(0,255,255,.3)");
     }
@@ -22,6 +23,7 @@ class Fuel {
 
     addFuel(toAdd) {
         this.fuelLevel += toAdd;
+        this.fuelAlert = true;
         if (this.fuelLevel > this.fuelCapacity) this.fuelLevel = this.fuelCapacity;
     }
 
@@ -36,6 +38,11 @@ class Fuel {
     update() {
         //die event
         //
+        if (this.fuelAlert && this.fuelLevel < 15) {
+            this.fuelAlert = !this.fuelAlert;
+            fuelAudio.play();
+        }
+
         this.handler.setCurrent(this.fuelLevel);
         if (this.fuelLevel < 0) {
             ship.die();

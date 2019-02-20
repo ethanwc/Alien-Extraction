@@ -16,3 +16,7 @@ error.src = "./assets/sound/menu_error.wav";
 
 let money = document.createElement("audio");
 money.src = "./assets/sound/money.mp3";
+
+
+let fuelAudio = document.createElement("audio");
+fuelAudio.src = "./assets/sound/alertFuel.wav";
