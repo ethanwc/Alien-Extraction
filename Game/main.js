@@ -1,6 +1,6 @@
 let gameEngine = undefined;
-let worldWidth = 50;
-let worldHeight = 100;
+let worldWidth = 55;
+let worldHeight = 55;
 let ship = undefined;
 let camera = undefined;
 let status = undefined;
@@ -24,6 +24,9 @@ let fuelLevel = 0;
 let absorbLevel = 0;
 let fuelDrainRate = 1;
 let healthDamageMultiplier = 1;
+
+let xcap = tilesize * worldWidth;
+let ycap = tilesize * worldHeight;
 
 
 function temp() {

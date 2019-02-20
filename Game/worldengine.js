@@ -48,7 +48,7 @@ function genworld (gameEngine, worldWidth, worldHeight, tiles) {
                 }
 
             }
-            else if (h < 80) {
+            else if (h < worldHeight) {
                 let r = ((Math.random() * tilesize) + 1);
 
                 if (r < 94) {

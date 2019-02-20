@@ -8,22 +8,15 @@ class Camera {
     }
 
     update() {
-        if (ship.x - this.w/2 + this.ship.w/4 > 0)
-            // &&
-            // ship.x - this.w/2 + this.ship.w/4 < tilesize * worldWidth - screen.width * screenScale)
+        if (ship.x - this.w/2 + this.ship.w/4 > 0 &&
+            ship.x - this.w/2 + this.ship.w/4 < tilesize * worldWidth - screen.width * screenScale)
             this.x = this.ship.x - this.w / 2 + this.ship.w / 4;
 
-        let v = ship.y - this.h/2 + this.ship.h/4 + this.h / 2;
-        let r = tilesize * worldHeight - (3 * screen.height * screenScale);
-        r = Math.ceil(r/100)*100;
+        if (ship.y - this.h/2 + this.ship.h/4 > 0 &&
+            ship.y - this.h/2 + this.ship.h/4 < tilesize * worldHeight - screen.height * screenScale)
+            this.y = this.ship.y - this.h / 2 + this.ship.h / 4;
 
-        // console.log(v, r);
-
-            if (ship.y - this.h/2 + this.ship.h/4 > 0)
-                // &&v < r) {
-                this.y = this.ship.y - this.h / 2 + this.ship.h / 4;
             }
-    // }
 
     draw(ctx) {
         // ctx.color = "#AA232d";

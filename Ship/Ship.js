@@ -127,7 +127,6 @@ class Ship {
                 }
 
                 else {
-                    //handle transition still :)
                     this.swapAnimation = !this.swapAnimation;
                     if (this.animation === this.landingDeploy) {
                         this.resetAnimation(this.landingDeploy);
@@ -156,17 +155,14 @@ class Ship {
             if (this.ha === 0) this.hv *= .97;
             if (this.va === 0) this.vv *= .97;
 
-
             this.x += this.game.clockTick * this.hv;
             this.y += this.game.clockTick * this.vv;
+
             if (this.x < 0) this.x = 1;
             if (this.y < 0) this.y = 1;
-            //
-            // let r =   11200  + this.h/2;
-            //
-            // console.log(this.y, r);
-            //
-            // if (this.y > r) this.y = r - 1;
+
+            if (this.x + this.w/2 > xcap) this.x = (xcap - this.w/2 - 1);
+            if (this.y + this.h/2 > ycap) this.y = (ycap - this.h/2 -1);
 
 
             //TODO: bounce off walls, dont stick... inverse velocities
