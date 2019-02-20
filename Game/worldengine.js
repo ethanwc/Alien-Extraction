@@ -33,6 +33,9 @@ function genworld (gameEngine, worldWidth, worldHeight, tiles) {
             else if (h < 35) {
                 tiles.push(new GlassCrystal(gameEngine, AM.getAsset("./assets/img/tile_crystal2.png"), w * tilesize, h * tilesize, true));
             }
+            else if (h < 38) {
+                tiles.push(new Copper(gameEngine, AM.getAsset("./assets/img/tile_copper.png"), w * tilesize, h * tilesize, true));
+            }
 
             else if (h < 40) {
                 let r = ((Math.random() * tilesize) + 1);

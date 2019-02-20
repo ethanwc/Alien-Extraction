@@ -35,6 +35,9 @@ AM.queueDownload("./assets/img/ship_fly.png");
 AM.queueDownload("./assets/img/ship_idle_1.png");
 AM.queueDownload("./assets/img/window_long.png");
 AM.queueDownload("./assets/img/blue_crystal_bit.png");
+AM.queueDownload("./assets/img/copper_bit.png");
+AM.queueDownload("./assets/img/tile_copper.png");
+
 
 AM.queueDownload("./assets/img/glass_crystal_bit.png");
 AM.queueDownload("./assets/img/tile_crystal2.png");
