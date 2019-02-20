@@ -10,6 +10,8 @@ class MineralMenu extends Menu {
         let x = this.x + 20;
         let y = this.y;
 
+        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), x + this.w - 120, this.y - 150, 100, 100, this.exit);
+        this.items.push(exit);
 
         let temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), this.x + 10, this.y + this.w/2 + 335, 450, 101, this.sellAll, undefined);
         this.items.push(temp);
@@ -61,6 +63,7 @@ class MineralMenu extends Menu {
 
             ctx.font = "60px Arial";
             ctx.fillText("Sell All: " + this.totalValue(), this.x + 30, this.y + this.w / 2 + 400, 400);
+
         }
     }
 
@@ -83,6 +86,7 @@ class MineralMenu extends Menu {
     sellAll() {
         info.balance += (bitList.copperBits * copperValue + bitList.crystalBits * crystalValue + bitList.dirtBits * dirtValue + bitList.goldBits * goldValue + bitList.happyBits * happyValue + bitList.silverBits * silverValue + bitList.stoneBits * stoneValue);
         bitList.reset();
+        info.cargo = 0;
     }
 
     totalValue() {
@@ -104,4 +108,9 @@ class MineralMenu extends Menu {
     sellSilver() {
 
     }
+
+    exit(menuItem) {
+        menuItem.menu.setTime();
+    }
+
 }

@@ -7,7 +7,7 @@ class Fuel {
         this.w = w;
         this.h = h;
         this.fuelLevel = initialFuel;
-        this.fuelCapacity = 50;
+        this.fuelCapacity = 70;
         this.previousLevel = this.fuelLevel;
         this.handler = new ProgressbarHandler(ship, initialFuel, x, y, w, h, "transparent", "rgba(0,255,255,.3)");
     }
