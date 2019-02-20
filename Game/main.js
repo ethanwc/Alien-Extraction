@@ -12,6 +12,18 @@ let height = undefined;
 let info;
 let canvas = undefined;
 let selectionPrice = 0;
+let explosionRadius = 300;
+let laserDamage = 20;
+let basePrice = 1000;
+let explosionLevel = 0;
+let damageLevel = 0;
+let speedLevel = 0;
+let hangarLevel = 0;
+let healthLevel = 0;
+let fuelLevel = 0;
+let absorbLevel = 0;
+let fuelDrainRate = 1;
+let healthDamageMultiplier = 1;
 
 
 function temp() {

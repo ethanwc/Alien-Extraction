@@ -88,6 +88,7 @@ class Ship {
             gameEngine.addEntity(new GreenExplosion(this.game, AM.getAsset("./assets/img/greenexplosion.png"), this.x-150, this.y-120));
             this.animation = this.dieAnimation;
             this.deathTime = gameEngine.timer.gameTime;
+            alarm.pause();
         }
     }
 
@@ -97,7 +98,6 @@ class Ship {
 
 
             let ship_btm = this.y + this.h / 2 - 45 - 1500;
-            console.log(ship_btm);
             if (!this.landed && this.landingGear && (ship_btm < 2 && ship_btm > -2) && this.hv < 5) {
 
                 land.play();

@@ -24,7 +24,7 @@ class Health {
         // this.previousHealth = this.health;
         // this.health -= damageTaken;
         // if (this.health < 0) this.health = 0;
-        this.handler.negate(damageTaken);
+        this.handler.negate(damageTaken * healthDamageMultiplier);
     }
 
     update() {

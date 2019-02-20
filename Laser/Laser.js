@@ -82,7 +82,7 @@ class Laser {
                     }
                 }
                 if (this.entityToHurt !== undefined) {
-                    this.entityToHurt.hitByLaser();
+                    this.entityToHurt.hitByLaser(laserDamage);
 
                     this.endx = this.newX - camera.x;
                     this.endy = this.newY - camera.y;

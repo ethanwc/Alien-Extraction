@@ -14,6 +14,7 @@ class MenuItem {
         this.level = 0;
         this.isClicked = false;
         this.level = level;
+        this.isUnlocked = false;
     }
     update() {
         if (this.menu.isEnabled)
@@ -42,6 +43,5 @@ class MenuItem {
                 }
             }
         }
-
     }
 }

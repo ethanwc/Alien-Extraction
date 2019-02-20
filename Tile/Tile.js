@@ -11,8 +11,8 @@ class Tile {
         this.health = 1000;
     }
 
-    hitByLaser() {
-        this.health-= 10;
+    hitByLaser(dmg) {
+        this.health-= dmg;
     }
 
     hitByExplosion() {

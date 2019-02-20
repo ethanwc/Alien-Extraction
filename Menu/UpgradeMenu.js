@@ -1,10 +1,9 @@
 class UpgradeMenu extends Menu {
     constructor(x, w) {
-        super(AM.getAsset("./assets/img/menu_background.png"), x, w, width/2 - 1190/2, height/2-1080/2, 1190, 1080);
+        super(AM.getAsset("./assets/img/menu_background.png"), x, w, width / 2 - 1190 / 2, height / 2 - 1080 / 2, 1190, 1080);
         this.img = undefined;
         this.items = [];
         this.text = [];
-        this.basePrice = 1000;
         this.startx = 0;
         this.ystart = 0;
         this.vspan = 0;
@@ -25,24 +24,24 @@ class UpgradeMenu extends Menu {
 
     createMenuItems() {
         let gap = 5;
-        let iconsize = (width - (8 * gap))/12;
+        let iconsize = (width - (8 * gap)) / 12;
         let span = (7 * iconsize + 8 * gap);
         this.vspan = (4 * iconsize + 3 * gap);
-        let x = (width - span)/2;
+        let x = (width - span) / 2;
         this.startx = x;
-        this.ystart = (height - this.vspan)/2;
+        this.ystart = (height - this.vspan) / 2;
         let header = new MenuItem(this, undefined, AM.getAsset("./assets/img/header_upgrade.png"), span - x, this.ystart - 100, 442, 59, this.dummyCallback);
         this.items.push(header);
-        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"),  x + span - 120, this.ystart -150, 100, 100, this.exit);
+        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), x + span - 120, this.ystart - 150, 100, 100, this.exit);
         this.items.push(exit);
 
 
-        for (let row = 0; row < 7; row ++) {
+        for (let row = 0; row < 7; row++) {
             let yo = this.ystart;
-            for (let column = 0; column < 4; column ++) {
+            for (let column = 0; column < 4; column++) {
                 let icon;
                 let callback;
-                switch(row) {
+                switch (row) {
                     case 0:
                         //upgrade fuel capacity
                         icon = AM.getAsset("./assets/img/icon_ship.png");
@@ -82,9 +81,9 @@ class UpgradeMenu extends Menu {
                 gameEngine.addEntity(new MenuItem(this, column, icon, x, yo, iconsize, iconsize, callback));
 
                 // this.items.push(new MenuItem(this, icon, x, yo, iconsize, iconsize, callback));
-                yo+= iconsize + 5;
+                yo += iconsize + 5;
             }
-            x+= iconsize + 5;
+            x += iconsize + 5;
         }
     }
 
@@ -114,57 +113,100 @@ class UpgradeMenu extends Menu {
     }
 
     handleFuel(menuItem) {
-        console.log("first call ", menuItem.level);
-
-        if (info.balance >= menuItem.level * 100000) menuItem.img = AM.getAsset("./assets/img/icon_ship_selected.png");
-        else  {
-            let error = document.createElement("audio");
-            error.src = "./assets/sound/menu_error.wav";
-            error.play();
-        }
-
+        let upgrade = menuItem.level === 0 ? basePrice : basePrice * (1 + menuItem.level);
+        if (menuItem.level <= fuelLevel && !menuItem.isUnlocked && info.balance >= upgrade) {
+            info.balance -= upgrade;
+            menuItem.isUnlocked = true;
+            fuelLevel++;
+            fuelDrainRate /=2;
+            menuItem.img = AM.getAsset("./assets/img/icon_ship_selected.png");
+        } else error.play();
     }
 
-    handleHangar() {
-
+    handleHangar(menuItem) {
+        let upgrade = menuItem.level === 0 ? basePrice : basePrice * (1 + menuItem.level);
+        if (menuItem.level <= hangarLevel && !menuItem.isUnlocked && info.balance >= upgrade) {
+            info.balance -= upgrade;
+            menuItem.isUnlocked = true;
+            hangarLevel++;
+            info.cargoCapacity *= 2;
+            menuItem.img = AM.getAsset("./assets/img/icon_hangar_selected.png");
+        } else error.play();
     }
 
-    handleExplosion () {
-
+    handleExplosion(menuItem) {
+        let upgrade = menuItem.level === 0 ? basePrice : basePrice * (1 + menuItem.level);
+        if (menuItem.level <= explosionLevel && !menuItem.isUnlocked && info.balance >= upgrade) {
+            info.balance -= upgrade;
+            menuItem.isUnlocked = true;
+            explosionLevel++;
+            explosionRadius *= 1.5;
+            menuItem.img = AM.getAsset("./assets/img/icon_dot2_selected.png");
+        } else error.play();
     }
 
-    handleHealth() {
-
+    handleHealth(menuItem) {
+        let upgrade = menuItem.level === 0 ? basePrice : basePrice * (1 + menuItem.level);
+        if (menuItem.level <= healthLevel && !menuItem.isUnlocked && info.balance >= upgrade) {
+            info.balance -= upgrade;
+            menuItem.isUnlocked = true;
+            healthLevel++;
+            healthDamageMultiplier /= 2;
+            menuItem.img = AM.getAsset("./assets/img/icon_health_selected.png");
+        } else error.play();
     }
 
-    handleSpeed() {
-
+    handleSpeed(menuItem) {
+        let upgrade = menuItem.level === 0 ? basePrice : basePrice * (1 + menuItem.level);
+        if (menuItem.level <= speedLevel && !menuItem.isUnlocked && info.balance >= upgrade) {
+            info.balance -= upgrade;
+            menuItem.isUnlocked = true;
+            speedLevel++;
+            ship.maxSpeed+=200;
+            menuItem.img = AM.getAsset("./assets/img/icon_speed_selected.png");
+        } else error.play();
     }
 
-    handleAbsorb() {
+    handleAbsorb(menuItem) {
+        //absorb speed and or radius???
+        let upgrade = menuItem.level === 0 ? basePrice : basePrice * (1 + menuItem.level);
+        if (menuItem.level <= absorbLevel && !menuItem.isUnlocked && info.balance >= upgrade) {
+            info.balance -= upgrade;
+            menuItem.isUnlocked = true;
+            absorbLevel++;
+            menuItem.img = AM.getAsset("./assets/img/icon_dot1_selected.png");
+        } else error.play();
+    }
 
+
+
+    handleDamage(menuItem) {
+        let upgrade = menuItem.level === 0 ? basePrice : basePrice * (1 + menuItem.level);
+        if (menuItem.level <= damageLevel && !menuItem.isUnlocked && info.balance >= upgrade) {
+            info.balance -= upgrade;
+            menuItem.isUnlocked = true;
+            damageLevel++;
+            laserDamage *= 2;
+            menuItem.img = AM.getAsset("./assets/img/icon_damage_selected.png");
+        } else error.play();
+    }
+
+    updateCost(level) {
+        if (level === 0) this.currentCost = '$' + basePrice;
+        else this.currentCost = '$' + basePrice * (1 + level);
+    }
+
+
+    exit(menuItem) {
+        menuItem.menu.setTime();
     }
 
     dummyCallback() {
 
     }
 
-    handleDamage() {
 
+    canBuy(upgrade, menuItem) {
+        return menuItem.level >= explosionLevel && !menuItem.isUnlocked && info.balance >= upgrade;
     }
-
-    updateCost(level) {
-        if (level === 0) this.currentCost = '$' + 1000000;
-        else this.currentCost = '$' + 1000000 * (1 +level);
-    }
-
-    playError() {
-
-    }
-
-    exit(menuItem) {
-        menuItem.menu.setTime();
-    }
-
-
 }

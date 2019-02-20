@@ -10,3 +10,6 @@ alarm.src = "./assets/sound/alarm.wav";
 
 let full = document.createElement("audio");
 full.src = "./assets/sound/ship_full.wav";
+
+let error = document.createElement("audio");
+error.src = "./assets/sound/menu_error.wav";

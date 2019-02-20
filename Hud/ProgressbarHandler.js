@@ -36,7 +36,6 @@ class ProgressbarHandler {
             this.current = 0;
             this.update();
             ship.die();
-            // alarm.pause();
         }
     }
 

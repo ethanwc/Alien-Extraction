@@ -5,7 +5,7 @@ class Model {
         this.cargoCapacity = 100;
         this.fuelCapacity = 50;
         this.elevation = 0;
-        this.balance = 10000;
+        this.balance = 10000000;
         this.string = null;
         this.dirtQuantity = 0;
         this.goldQuantity = 0;
@@ -13,7 +13,6 @@ class Model {
         this.drainSince = 0;
         this.drainTime = 1;
         this.fuelLevel = this.fuelCapacity;
-        this.drainRate = 1;
         // this.health = undefined;
         // this.fuel =
         // this.createModel();
@@ -53,7 +52,8 @@ class Model {
     checkFuel() {
         if (gameEngine.timer.gameTime - this.drainSince > this.drainTime) {
             this.drainSince = gameEngine.timer.gameTime;
-            fuel.drainFuel(this.drainRate);
+            console.log("draining: ", fuelDrainRate);
+            fuel.drainFuel(fuelDrainRate);
         }
     }
 }
