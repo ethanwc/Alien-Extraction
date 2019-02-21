@@ -36,6 +36,7 @@ let inMenu = false;
 let xcap = tilesize * worldWidth;
 let ycap = tilesize * worldHeight;
 let bitList;
+let argLoaded = 0;
 
 
 function temp() {
