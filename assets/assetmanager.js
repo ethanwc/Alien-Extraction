@@ -26,7 +26,6 @@ class AssetManager {
 
             img.addEventListener("load", function () {
                 // console.log("Loaded " + this.src);
-                console.log(argLoaded++);
                 self.successCount++;
                 if (self.isDone()) callback();
             });
