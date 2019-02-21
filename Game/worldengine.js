@@ -6,7 +6,10 @@ function genworld (gameEngine, worldWidth, worldHeight, tiles) {
                 tiles.push(new Sky(gameEngine, AM.getAsset("./assets/img/stars.jpg"), w * tilesize, h * tilesize, false));
             }
             else if (h === 10) {
-                tiles.push(new Grass(gameEngine, AM.getAsset("./assets/img/grass.png"), w * tilesize, h * tilesize, true));
+                let t = new Grass(gameEngine, AM.getAsset("./assets/img/grass.png"), w * tilesize, h * tilesize, true);
+                if ((w > 2 && w < 13) || (w > 18 && w < 23)) t.health = 10000000;
+                tiles.push(t);
+
             }
             else if (h < 15) {
                 let r = ((Math.random() * tilesize) + 1);

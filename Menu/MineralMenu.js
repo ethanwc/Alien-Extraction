@@ -84,9 +84,14 @@ class MineralMenu extends Menu {
     }
 
     sellAll() {
+        let oldBalance = info.balance;
         info.balance += (bitList.copperBits * copperValue + bitList.crystalBits * crystalValue + bitList.dirtBits * dirtValue + bitList.goldBits * goldValue + bitList.happyBits * happyValue + bitList.silverBits * silverValue + bitList.stoneBits * stoneValue);
-        bitList.reset();
-        info.cargo = 0;
+        if (info.balance > oldBalance) {
+            bitList.reset();
+            info.cargo = 0;
+            playMoney();
+        }
+
     }
 
     totalValue() {

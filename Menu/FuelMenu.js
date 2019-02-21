@@ -68,8 +68,8 @@ class FuelMenu extends Menu {
         if (info.balance >= cost) {
             fuel.addFuel(amount);
             info.balance -= cost;
-            money.play();
-        } else error.play();
+            playMoney();
+        } else playError();
     }
 
     halfRefuel() {
@@ -78,8 +78,8 @@ class FuelMenu extends Menu {
         if (info.balance >= cost) {
             fuel.addFuel(amount);
             info.balance -= cost;
-            money.play();
-        } else error.play();
+            playMoney();
+        } else playError();
     }
 
     threeQuarterRefuel() {
@@ -88,8 +88,8 @@ class FuelMenu extends Menu {
         if (info.balance >= cost) {
             fuel.addFuel(amount);
             info.balance -= cost;
-            money.play();
-        } else error.play();
+            playMoney();
+        } else playError();
     }
 
     fullRefuel() {
@@ -98,8 +98,8 @@ class FuelMenu extends Menu {
         if (info.balance >= cost) {
             fuel.addFuel(amount);
             info.balance -= cost;
-            money.play();
-        } else error.play();
+            playMoney();
+        } else playError();
     }
 
     exit(menuItem) {

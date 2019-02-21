@@ -22,6 +22,10 @@ class Menu {
                 this.isEnabled = true;
                 inMenu = true;
             }
+            else  {
+                this.isEnabled = false;
+                inMenu = false;
+            }
         }
 
         else {

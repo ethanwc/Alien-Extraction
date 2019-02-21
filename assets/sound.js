@@ -11,6 +11,9 @@ alarm.src = "./assets/sound/alarm.wav";
 let full = document.createElement("audio");
 full.src = "./assets/sound/ship_full.wav";
 
+let fuelAudio = document.createElement("audio");
+fuelAudio.src = "./assets/sound/alertFuel.wav";
+
 let error = document.createElement("audio");
 error.src = "./assets/sound/menu_error.wav";
 
@@ -18,5 +21,12 @@ let money = document.createElement("audio");
 money.src = "./assets/sound/money.mp3";
 
 
-let fuelAudio = document.createElement("audio");
-fuelAudio.src = "./assets/sound/alertFuel.wav";
+function playError() {
+    let sound = error.cloneNode();
+    sound.play();
+}
+
+function playMoney() {
+    let sound = money.cloneNode();
+    sound.play();
+}

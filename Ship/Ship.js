@@ -180,7 +180,6 @@ class Ship {
 
                         if (!this.landingGear) {
                             health.hurt(20);
-                            entity.removeFromWorld = true;
                             gameEngine.addEntity(new Boom(gameEngine, AM.getAsset("./assets/img/boom.png"),
                                 entity.x - 70, entity.y - 66));//c
 
