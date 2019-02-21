@@ -85,6 +85,7 @@ class Ship {
     die() {
         if (this.isAlive) {
             this.isAlive = 0;
+            if (this.isAbsorbing) this.isAbsorbing = false;
             gameEngine.addEntity(new GreenExplosion(this.game, AM.getAsset("./assets/img/greenexplosion.png"), this.x-150, this.y-120));
             this.animation = this.dieAnimation;
             this.deathTime = gameEngine.timer.gameTime;
@@ -180,6 +181,7 @@ class Ship {
 
                         if (!this.landingGear) {
                             health.hurt(20);
+                            entity.hitByShip();
                             gameEngine.addEntity(new Boom(gameEngine, AM.getAsset("./assets/img/boom.png"),
                                 entity.x - 70, entity.y - 66));//c
 

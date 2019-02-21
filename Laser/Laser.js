@@ -72,11 +72,6 @@ class Laser {
                                     this.newY = bottom[0] ? bottom[2] : this.newY;
                                 }
 
-
-
-
-                                console.log(this.newY, this.endy);
-
                             }
                         }
                     }

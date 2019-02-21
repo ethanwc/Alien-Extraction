@@ -23,6 +23,10 @@ class Tile {
         this.health -= 100;
     }
 
+    hitByShip() {
+        this.health -= 1000;
+    }
+
     update() {
 
     }
