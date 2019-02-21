@@ -7,7 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="315421f8-5cb9-4dcb-8305-2f3e371ac786" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/assets/assetmanager.js" afterPath="$PROJECT_DIR$/assets/assetmanager.js" />
+      <change beforePath="$PROJECT_DIR$/Game/main.js" afterPath="$PROJECT_DIR$/Game/main.js" />
+      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,8 +28,8 @@
             <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/index.html">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="200">
-                    <caret line="8" column="84" lean-forward="true" selection-start-line="8" selection-start-column="84" selection-end-line="8" selection-end-column="84" />
+                  <state relative-caret-position="353">
+                    <caret line="116" column="13" lean-forward="true" selection-start-line="116" selection-start-column="13" selection-end-line="116" selection-end-column="13" />
                     <folding>
                       <element signature="n#style#0;n#canvas#0;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     </folding>
@@ -66,8 +67,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Game/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="144" column="49" lean-forward="true" selection-start-line="144" selection-start-column="49" selection-end-line="144" selection-end-column="49" />
+            <state relative-caret-position="145">
+              <caret line="141" column="35" lean-forward="true" selection-start-line="141" selection-start-column="35" selection-end-line="141" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -96,7 +97,7 @@
       <file leaf-file-name="Menu.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Menu/Menu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
+            <state relative-caret-position="450">
               <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
               <folding />
             </state>
@@ -243,10 +244,10 @@
         <option value="$PROJECT_DIR$/Menu/Menu.js" />
         <option value="$PROJECT_DIR$/assets/sound.js" />
         <option value="$PROJECT_DIR$/Hud/Fuel.js" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/Game/main.js" />
         <option value="$PROJECT_DIR$/Model/Model.js" />
         <option value="$PROJECT_DIR$/assets/assetmanager.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/Game/main.js" />
       </list>
     </option>
   </component>
@@ -450,12 +451,12 @@
       <workItem from="1550619896961" duration="5387000" />
       <workItem from="1550684630312" duration="7895000" />
       <workItem from="1550693068438" duration="391000" />
-      <workItem from="1550715084147" duration="1713000" />
+      <workItem from="1550715084147" duration="2102000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="337657000" />
+    <option name="totallyTimeSpent" value="338046000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -758,14 +759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Menu/Menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hud/Fuel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -822,18 +815,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Menu/Menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Game/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="144" column="49" lean-forward="true" selection-start-line="144" selection-start-column="49" selection-end-line="144" selection-end-column="49" />
+        <state relative-caret-position="145">
+          <caret line="141" column="35" lean-forward="true" selection-start-line="141" selection-start-column="35" selection-end-line="141" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="84" lean-forward="true" selection-start-line="8" selection-start-column="84" selection-end-line="8" selection-end-column="84" />
+        <state relative-caret-position="353">
+          <caret line="116" column="13" lean-forward="true" selection-start-line="116" selection-start-column="13" selection-end-line="116" selection-end-column="13" />
           <folding>
             <element signature="n#style#0;n#canvas#0;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>

@@ -42,13 +42,13 @@ function temp() {
     alert('works');
 }
 
-// function startGame()  {
+function startGame()  {
 
 
 
     menu_start.play();
-    // let startImg = document.getElementById('startImg');
-    // startImg.parentNode.removeChild(startImg);
+    let startImg = document.getElementById('startImg');
+    startImg.parentNode.removeChild(startImg);
 
 
 
@@ -163,4 +163,4 @@ function temp() {
         bitList = new BitList();
 
     });
-// }
+}
