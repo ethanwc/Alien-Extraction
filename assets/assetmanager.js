@@ -7,7 +7,7 @@ class AssetManager {
     }
 
     queueDownload(path) {
-        console.log('Queueing ' + path);
+        // console.log('Queueing ' + path);
         this.downloadQueue.push(path);
     }
 
@@ -16,15 +16,17 @@ class AssetManager {
     }
 
     downloadAll(callback) {
-        for (let i = 0; i < this.downloadQueue.length; i++) {
+        let length = this.downloadQueue.length;
+        for (let i = 0; i < length; i++) {
             let img = new Image();
             let self = this;
 
             let path = this.downloadQueue[i];
-            console.log(path);
+            // console.log(path);
 
             img.addEventListener("load", function () {
-                console.log("Loaded " + this.src);
+                // console.log("Loaded " + this.src);
+                console.log((i+1/length) * 100 + "%");
                 self.successCount++;
                 if (self.isDone()) callback();
             });

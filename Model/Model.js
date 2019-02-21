@@ -52,7 +52,7 @@ class Model {
     checkFuel() {
         if (gameEngine.timer.gameTime - this.drainSince > this.drainTime) {
             this.drainSince = gameEngine.timer.gameTime;
-            console.log("draining: ", fuelDrainRate);
+            // console.log("draining: ", fuelDrainRate);
             fuel.drainFuel(fuelDrainRate);
         }
     }
