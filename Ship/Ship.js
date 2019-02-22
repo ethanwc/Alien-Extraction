@@ -85,7 +85,7 @@ class Ship {
         if (this.isAlive) {
             this.isAlive = 0;
             if (this.isAbsorbing) this.isAbsorbing = false;
-            gameEngine.addEntity(new GreenExplosion(this.game, AM.getAsset("./assets/img/greenexplosion.png"), this.x - 150/ship, this.y - 120));
+            gameEngine.addEntity(new GreenExplosion(this.game, AM.getAsset("./assets/img/greenexplosion.png"), this.x - 150 * shipscale, this.y - 120 * shipscale));
             this.animation = this.dieAnimation;
             this.deathTime = gameEngine.timer.gameTime;
             alarm.pause();
@@ -226,7 +226,7 @@ class Ship {
         if (!ship.landingGear)
             if (this.isAlive) {
                 gameEngine.addEntity(new EnergyBall(gameEngine, AM.getAsset("./assets/img/energyball.png"),
-                    ship.x - 15, ship.y));
+                    ship.x - 160 * shipscale, ship.y - 40));
                 let burst = document.createElement("audio");
                 burst.src = "./assets/sound/burst1.wav";
                 burst.play();

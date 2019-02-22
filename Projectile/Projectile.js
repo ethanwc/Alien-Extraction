@@ -8,6 +8,7 @@ class Projectile {
         this.y = ship.y - 300;
         this.initx = this.x;
         this.inity = this.y;
+        console.log(this.initx, this.inity);
         this.w = w;
         this.h = h;
     }
@@ -21,7 +22,7 @@ class Projectile {
 
             if (entity instanceof Tile && entity.foreground) {
 
-                let x1 = this.initx - this.w - 30, x2 = x1;
+                let x1 = this.initx - this.w - 70, x2 = x1;
                 let y1 = this.inity + this.h, y2 = this.y + ((this.h+230));
                 let rx = entity.x, ry = entity.y;
                 let rw = entity.w, rh = entity.h;
@@ -32,9 +33,8 @@ class Projectile {
                 let bottom = lineRect(x1, y1, x2, y2, rx, ry + rh, rx + rw, ry + rh)[0];
                 if (left || right || top || bottom) {
                     this.removeFromWorld = true;
-
                     let explosion = new Missile_Explosion(gameEngine, AM.getAsset("./assets/img/missile_explosion.png"),
-                        this.x-440, this.y + 400);
+                        this.x - 300, this.y + 600);
 
                     gameEngine.addEntity(explosion);
                 }
