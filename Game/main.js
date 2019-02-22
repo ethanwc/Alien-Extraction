@@ -37,6 +37,7 @@ let xcap = tilesize * worldWidth;
 let ycap = tilesize * worldHeight;
 let bitList;
 let argLoaded = 0;
+let shipscale = .5;
 
 
 function temp() {

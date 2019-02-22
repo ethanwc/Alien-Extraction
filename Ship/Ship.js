@@ -56,7 +56,6 @@ class Ship {
 
         if (this.isAlive) {
 
-
             if ((gameEngine.timer.gameTime - this.landingStart) > this.waitTime) {
 
                 //already checks if idle or move should occur? just need time in between other animations check
@@ -86,7 +85,7 @@ class Ship {
         if (this.isAlive) {
             this.isAlive = 0;
             if (this.isAbsorbing) this.isAbsorbing = false;
-            gameEngine.addEntity(new GreenExplosion(this.game, AM.getAsset("./assets/img/greenexplosion.png"), this.x-150, this.y-120));
+            gameEngine.addEntity(new GreenExplosion(this.game, AM.getAsset("./assets/img/greenexplosion.png"), this.x - 150/ship, this.y - 120));
             this.animation = this.dieAnimation;
             this.deathTime = gameEngine.timer.gameTime;
             alarm.pause();
@@ -174,8 +173,8 @@ class Ship {
                 let entity = gameEngine.entities[i];
 
                 if (entity instanceof Tile && entity.foreground) {
-                    if (RectCircleColliding(this.x + this.w * .25, this.y + this.h * .25,
-                            this.r, entity.x, entity.y, entity.w, entity.h)) {
+                    if (RectCircleColliding(this.x + this.w * .25 * shipscale, this.y + this.h * .25 * shipscale,
+                            this.r * shipscale, entity.x, entity.y, entity.w, entity.h)) {
                         this.x = this.prevx;
                         this.y = this.prevy;
 
@@ -215,8 +214,8 @@ class Ship {
         if (!ship.landingGear)
             if (this.isAlive) {
 
-            gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w / 3 + 55) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
-            gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w / 3 + 120) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
+            gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w / 3 + (55*shipscale)) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
+            gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w / 3 + (120*shipscale) + 40) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
             let laser_beam_fire = document.createElement("audio");
             laser_beam_fire.src = "./assets/sound/laser4.mp3";
             laser_beam_fire.play();
@@ -242,6 +241,6 @@ class Ship {
 
 
     draw(ctx) {
-        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1/2);
+        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1/2 * shipscale);
     }
 }

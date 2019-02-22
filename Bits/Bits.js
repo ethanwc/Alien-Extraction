@@ -13,7 +13,7 @@ class Bits {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.spritesheet, this.x - camera.x, this.y - camera.y, this.w, this.h);
+        ctx.drawImage(this.spritesheet, this.x - camera.x, this.y - camera.y, this.w * shipscale, this.h * shipscale);
     }
 }
 

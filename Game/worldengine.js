@@ -1,4 +1,4 @@
-let tilesize = 150;
+let tilesize = 100;
 function genworld (gameEngine, worldWidth, worldHeight, tiles) {
     for (let w = 0; w < worldWidth; w++) {
         for (let h = 0; h < worldHeight; h++) {

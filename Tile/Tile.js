@@ -5,8 +5,8 @@ class Tile {
         this.removeFromWorld = false;
         this.x = x;
         this.y = y;
-        this.w = 150;
-        this.h = 150;
+        this.w = 100;
+        this.h = 100;
         this.foreground = foreground;
         this.health = 1000;
     }
@@ -31,9 +31,7 @@ class Tile {
 
     }
 
-
     draw(ctx) {
         ctx.drawImage(this.spritesheet, this.x - camera.x, this.y - camera.y, this.w, this.h);
     }
 }
-

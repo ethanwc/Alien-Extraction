@@ -15,6 +15,6 @@ class Missile extends Projectile {
 
 
     draw(ctx) {
-        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x - this.w - 30, this.y - this.game.camera.y + this.h, 1/2);
+        this.animation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x - (this.w - 30)/shipscale, this.y - this.game.camera.y  * this.h, 1/2 * shipscale);
     }
 }

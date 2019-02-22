@@ -40,7 +40,7 @@ class Fuel {
         //
         if (ship.isAlive && this.fuelAlert && this.fuelLevel < 15) {
             this.fuelAlert = !this.fuelAlert;
-            fuelAudio.play();
+            // fuelAudio.play();
         }
 
         this.handler.setCurrent(this.fuelLevel);

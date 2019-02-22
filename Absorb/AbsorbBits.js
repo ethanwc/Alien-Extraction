@@ -12,8 +12,8 @@ class AbsorbBits {
 
                 if (entity instanceof Bits) {
                     //if a bit is ready to be absorbed
-                    if (RectCircleColliding(ship.x + ship.w * .25, ship.y + ship.h * .25,
-                            ship.r, entity.x, entity.y, entity.w, entity.h)) {
+                    if (RectCircleColliding(ship.x + ship.w * .25 * shipscale, ship.y + ship.h * .25 * shipscale,
+                            ship.r * shipscale, entity.x, entity.y, entity.w, entity.h)) {
                         this.handleAbsorb(entity);
 
                     }
