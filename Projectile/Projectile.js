@@ -23,7 +23,7 @@ class Projectile {
             if (entity instanceof Tile && entity.foreground) {
 
                 let x1 = this.initx - this.w + 45, x2 = x1;
-                let y1 = this.inity, y2 = this.y + this.h;
+                let y1 = this.inity + this.h - 5, y2 = this.y + this.h;
                 let rx = entity.x, ry = entity.y;
                 let rw = entity.w, rh = entity.h;
 

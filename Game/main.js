@@ -1,6 +1,6 @@
 let gameEngine = undefined;
 let worldWidth = 55;
-let worldHeight = 55;
+let worldHeight = 150;
 let ship = undefined;
 let camera = undefined;
 let status = undefined;

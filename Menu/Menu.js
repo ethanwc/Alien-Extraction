@@ -38,6 +38,11 @@ class Menu {
             inMenu = false;
         }
 
+        if ((this.y + this.h / 2 - 45 - 1500 + 376) > 4) {
+            this.isEnabled = false;
+            inMenu = false;
+        }
+
     }
 
     draw(ctx) {

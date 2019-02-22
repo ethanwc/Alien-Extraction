@@ -36,7 +36,8 @@ class FuelMenu extends Menu {
         this.items.push(fill);
         fill = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + height * 4 - 30), width, height, this.fullRefuel, "Full Refill");
         this.items.push(fill);
-
+        let health = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + height * 5 - 30), width, height, this.healthRepair, "Repair Ship");
+        this.items.push(health);
         let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), this.x + width - 100, this.y, 100, 100, this.exit);
         this.items.push(exit);
 
@@ -97,6 +98,16 @@ class FuelMenu extends Menu {
         let cost = (amount * fuelCost) | 0;
         if (info.balance >= cost) {
             fuel.addFuel(amount);
+            info.balance -= cost;
+            playMoney();
+        } else playError();
+    }
+
+    healthRepair() {
+        let amount = health.maxHealth - health.health;
+        let cost = amount;
+        if (info.balance >= cost) {
+            health.addHealth(amount);
             info.balance -= cost;
             playMoney();
         } else playError();

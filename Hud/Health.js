@@ -16,6 +16,11 @@ class Health {
         this.health = newHealth;
     }
 
+    addHealth(toAdd) {
+        this.health += toAdd;
+        this.handler.setCurrent(this.health);
+    }
+
     setMaxHealth(newMaxHealth) {
         this.maxHealth = newMaxHealth;
     }
@@ -28,7 +33,6 @@ class Health {
     }
 
     update() {
-        //die event
         this.handler.update();
         this.handleSound();
     }
