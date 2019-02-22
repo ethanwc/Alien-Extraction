@@ -4,11 +4,11 @@ class Projectile {
         this.animation = animation;
         this.removeFromWorld = false;
         this.speed = speed;
-        this.x = ship.x + ship.w/2;
-        this.y = ship.y - 300;
+        this.x = ship.x + ship.w/2 * shipscale + 25;
+        this.y = ship.y - 400;
         this.initx = this.x;
         this.inity = this.y;
-        console.log(this.initx, this.inity);
+        console.log("missile at: ", this.initx, this.inity);
         this.w = w;
         this.h = h;
     }
@@ -22,8 +22,8 @@ class Projectile {
 
             if (entity instanceof Tile && entity.foreground) {
 
-                let x1 = this.initx - this.w - 70, x2 = x1;
-                let y1 = this.inity + this.h, y2 = this.y + ((this.h+230));
+                let x1 = this.initx - this.w + 45, x2 = x1;
+                let y1 = this.inity, y2 = this.y + this.h;
                 let rx = entity.x, ry = entity.y;
                 let rw = entity.w, rh = entity.h;
 
@@ -34,7 +34,7 @@ class Projectile {
                 if (left || right || top || bottom) {
                     this.removeFromWorld = true;
                     let explosion = new Missile_Explosion(gameEngine, AM.getAsset("./assets/img/missile_explosion.png"),
-                        this.x - 300, this.y + 600);
+                        this.x - 200, this.y+350);
 
                     gameEngine.addEntity(explosion);
                 }
