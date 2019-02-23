@@ -44,7 +44,7 @@ class Ship {
         this.r = this.flySize;
         this.isAbsorbing = false;
         this.burstTime = 0;
-        this.burstCoolDown = 5;
+        this.burstCoolDown = 8;
         this.missileTime = 0;
         this.missileCoolDown = 3;
 
@@ -181,7 +181,7 @@ class Ship {
                         this.y = this.prevy;
 
                         if (!this.landingGear) {
-                            health.hurt(20);
+                            if (!(entity.health > 1000)) health.hurt(10);
                             entity.hitByShip();
                             gameEngine.addEntity(new Boom(gameEngine, AM.getAsset("./assets/img/boom.png"),
                                 entity.x - 70, entity.y - 66));//c

@@ -185,7 +185,6 @@ class UpgradeMenu extends Menu {
     }
 
 
-
     handleDamage(menuItem) {
         let upgrade = menuItem.level === 0 ? basePrice : basePrice * (1 + menuItem.level);
         if (menuItem.level <= damageLevel && !menuItem.isUnlocked && info.balance >= upgrade) {

@@ -38,9 +38,9 @@ class Fuel {
     update() {
         //die event
         //
-        if (ship.isAlive && this.fuelAlert && this.fuelLevel < 15) {
+        if (ship.isAlive && this.fuelAlert && this.fuelLevel < 25) {
             this.fuelAlert = !this.fuelAlert;
-            // fuelAudio.play();
+            fuelAudio.play();
         }
 
         this.handler.setCurrent(this.fuelLevel);
