@@ -43,7 +43,10 @@ class Ship {
         this.isAlive = 1;
         this.r = this.flySize;
         this.isAbsorbing = false;
-
+        this.burstTime = 0;
+        this.burstCoolDown = 5;
+        this.missileTime = 0;
+        this.missileCoolDown = 3;
 
     }
 
@@ -200,11 +203,16 @@ class Ship {
     shootMissile() {
         if (!ship.landingGear)
             if (this.isAlive) {
-
             if ((gameEngine.timer.gameTime - this.landingStart) > this.waitTime) {
-                gameEngine.addEntity(new Missile(gameEngine, mouse.x, mouse.y));
-                this.animation = this.fireAnimation;
-                this.shootstart = gameEngine.timer.gameTime;
+                if (gameEngine.timer.gameTime - this.missileTime > this.missileCoolDown) {
+                    gameEngine.addEntity(new Missile(gameEngine, mouse.x, mouse.y));
+                    this.animation = this.fireAnimation;
+                    this.shootstart = gameEngine.timer.gameTime;
+                    this.missileTime = gameEngine.timer.gameTime;
+                }
+                else {
+                    notyet.play();
+                }
             }
         }
     }
@@ -224,11 +232,18 @@ class Ship {
     burst() {
         if (!ship.landingGear)
             if (this.isAlive) {
-                gameEngine.addEntity(new EnergyBall(gameEngine, AM.getAsset("./assets/img/energyball.png"),
-                    ship.x - 160 * shipscale, ship.y - 40));
-                let burst = document.createElement("audio");
-                burst.src = "./assets/sound/burst1.wav";
-                burst.play();
+                if (gameEngine.timer.gameTime - this.burstTime > this.burstCoolDown) {
+                    gameEngine.addEntity(new EnergyBall(gameEngine, AM.getAsset("./assets/img/energyball.png"),
+                        ship.x - 160 * shipscale, ship.y - 40));
+                    let burst = document.createElement("audio");
+                    burst.src = "./assets/sound/burst1.wav";
+                    this.burstTime = gameEngine.timer.gameTime;
+                    burst.play();
+                }
+                else {
+                    //too soon for missile noise
+                    notyet.play();
+                }
             }
     }
 

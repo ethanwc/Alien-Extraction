@@ -52,6 +52,8 @@ function startGame()  {
     let startImg = document.getElementById('startImg');
     startImg.parentNode.removeChild(startImg);
 
+    document.getElementById('controls').remove();
+
 
 
     AM.downloadAll(function () {

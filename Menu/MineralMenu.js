@@ -90,7 +90,7 @@ class MineralMenu extends Menu {
             bitList.reset();
             info.cargo = 0;
             playMoney();
-        }
+        } else playError();
 
     }
 

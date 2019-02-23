@@ -20,11 +20,14 @@ error.src = "./assets/sound/menu_error.wav";
 let money = document.createElement("audio");
 money.src = "./assets/sound/money.mp3";
 
+let notyet = document.createElement("audio");
+notyet.src = "./assets/sound/lowDown.mp3";
 
 function playError() {
     let sound = error.cloneNode();
     sound.play();
 }
+
 
 function playMoney() {
     let sound = money.cloneNode();
