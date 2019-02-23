@@ -142,7 +142,7 @@ class UpgradeMenu extends Menu {
             info.balance -= upgrade;
             menuItem.isUnlocked = true;
             explosionLevel++;
-            explosionRadius *= 1.5;
+            explosionRadius *= 1.4;
             menuItem.img = AM.getAsset("./assets/img/icon_dot2_selected.png");
             playMoney();
         } else playError();

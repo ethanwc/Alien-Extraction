@@ -110,6 +110,7 @@ class FuelMenu extends Menu {
             health.addHealth(amount);
             info.balance -= cost;
             playMoney();
+            alarm.pause();
         } else playError();
     }
 
