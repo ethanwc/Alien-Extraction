@@ -4,26 +4,32 @@ class AbsorbBits {
     }
 
     update() {
-        if (ship.isAbsorbing) {
+            if (ship.isAbsorbing) {
+                if (info.cargo < info.cargoCapacity) {
 
-            for (let i = 0; i < gameEngine.entities.length; i++) {
+                for (let i = 0; i < gameEngine.entities.length; i++) {
 
-                let entity = gameEngine.entities[i];
+                    let entity = gameEngine.entities[i];
 
-                if (entity instanceof Bits) {
-                    //if a bit is ready to be absorbed
-                    if (RectCircleColliding(ship.x + ship.w * .25 * shipscale, ship.y + ship.h * .25 * shipscale,
-                            ship.r * shipscale, entity.x, entity.y, entity.w, entity.h)) {
-                        this.handleAbsorb(entity);
+                    if (entity instanceof Bits) {
+                        //if a bit is ready to be absorbed
+                        if (RectCircleColliding(ship.x + ship.w * .25 * shipscale, ship.y + ship.h * .25 * shipscale,
+                                ship.r * shipscale, entity.x, entity.y, entity.w, entity.h)) {
+                            this.handleAbsorb(entity);
 
-                    }
-                    //if not, move closer
-                    else {
-                        this.moveBit(entity);
+                        }
+                        //if not, move closer
+                        else {
+                            this.moveBit(entity);
+                        }
                     }
                 }
             }
+                else {
+                    full.play();
+                }
         }
+
         //ship isn't absorbing, bits fall with gravity
         // else {
         //     for (let i = 0; i < gameEngine.entities.length; i++) {
