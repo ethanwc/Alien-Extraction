@@ -13,7 +13,7 @@ let info;
 let canvas = undefined;
 let selectionPrice = 0;
 let explosionRadius = 300;
-let laserDamage = 20;
+let laserDamage = 100;
 let basePrice = 1000;
 let explosionLevel = 0;
 let damageLevel = 0;
