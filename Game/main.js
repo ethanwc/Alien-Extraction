@@ -52,9 +52,6 @@ function startGame()  {
     let startImg = document.getElementById('startImg');
     startImg.parentNode.removeChild(startImg);
 
-    document.getElementById('controls').remove();
-
-
 
     AM.downloadAll(function () {
         canvas = document.getElementById("gameWorld");
@@ -143,10 +140,15 @@ function startGame()  {
         let img2 = new Icon(gameEngine, AM.getAsset("./assets/img/status_energy_table.png"), x, y, iw, ih);
         fuel = new Fuel(ship, 70, img2.x + 6, img2.y - 32, pw, ph);
 
+
         gameEngine.addEntity(img2);
         gameEngine.addEntity(fuel);
 
         info = new Model(sw - iw - windowoffset);
+
+        let abc = new InfoMenu(AM.getAsset("./assets/img/icon_info.png"),sw - iw - windowoffset - 210/4 - 40, 40, 210/4, 210/4, img2.x + 6, img2.y + ph + 20);
+
+        gameEngine.addEntity(abc);
 
         gameEngine.addEntity(info);
 

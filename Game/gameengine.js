@@ -55,7 +55,6 @@ class GameEngine {
             if (typeof entity.update === "undefined") console.log("error: ", entity);
             if (entity.removeFromWorld) this.entities.splice(i, 1);
             else entity.update();
-
         }
     }
 
