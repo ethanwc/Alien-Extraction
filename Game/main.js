@@ -10,7 +10,7 @@ let screenScale = .9;
 let width = undefined;
 let height = undefined;
 let info;
-let deathMenu;
+let deathMenu = undefined;
 let canvas = undefined;
 let selectionPrice = 0;
 let explosionRadius = 300;

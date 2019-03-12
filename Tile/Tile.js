@@ -25,6 +25,7 @@ class Tile {
 
     hitByShip() {
         this.health -= 1000;
+        playHitSomething();
     }
 
     update() {

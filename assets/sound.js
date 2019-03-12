@@ -23,11 +23,34 @@ money.src = "./assets/sound/money.mp3";
 let notyet = document.createElement("audio");
 notyet.src = "./assets/sound/lowDown.mp3";
 
+let missilehit = document.createElement("audio");
+missilehit.src = "./assets/sound/rlaunch.wav";
+
+let shipdeath = document.createElement("audio");
+shipdeath.src = "./assets/sound/shipdeath.wav";
+
+let hitsomething = document.createElement("audio");
+hitsomething.src = "./assets/sound/hitsomething.mp3";
+
+function playHitSomething() {
+    hitsomething.play()
+}
+
+function playShipDeath() {
+    let sound = shipdeath.cloneNode();
+    sound.play()
+}
+
 function playError() {
     let sound = error.cloneNode();
     sound.play();
 }
 
+
+function playMissileHit() {
+    let sound = missilehit.cloneNode();
+    sound.play();
+}
 
 function playMoney() {
     let sound = money.cloneNode();

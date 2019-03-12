@@ -70,6 +70,7 @@ class GameEngine {
         for (let i = 0; i < this.entities.length; i++) {
             this.entities[i].draw(this.ctx);
         }
+        if (deathMenu !== undefined) deathMenu.draw(ctx);
         this.ctx.restore();
     }
 }

@@ -93,6 +93,7 @@ class Ship {
             this.deathTime = gameEngine.timer.gameTime;
             alarm.pause();
             deathMenu.isEnabled = true;
+            playShipDeath();
         }
     }
 
@@ -101,7 +102,7 @@ class Ship {
         if (this.isAlive) {
 
             let ship_btm = this.y + this.h / 2 - 45 - 1500 + 376;
-            if (!this.landed && this.landingGear && (ship_btm < 2 && ship_btm > -2) && this.hv < 5) {
+            if (!this.landed && this.landingGear && (ship_btm < 2 && ship_btm > -2) && this.hv < 1) {
 
                 land.play();
                 this.landed = true;
@@ -167,8 +168,6 @@ class Ship {
             if (this.x + this.w/2 * shipscale > xcap) this.x = (xcap - this.w/2 * shipscale - 1);
             if (this.y + this.h/2 *shipscale > ycap) this.y = (ycap - this.h/2 * shipscale -1);
 
-
-            //TODO: bounce off walls, dont stick... inverse velocities
 
 
             for (let i = 0; i < gameEngine.entities.length; i++) {
