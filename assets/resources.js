@@ -51,6 +51,7 @@ AM.queueDownload("./assets/img/menu_start.png");
 AM.queueDownload("./assets/img/menu_table1.png");
 
 AM.queueDownload("./assets/img/header_upgrade.png");
+AM.queueDownload("./assets/img/lose.png");
 
 AM.queueDownload("./assets/img/icon_armor.png");
 AM.queueDownload("./assets/img/icon_damage.png");

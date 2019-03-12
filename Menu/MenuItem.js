@@ -17,6 +17,10 @@ class MenuItem {
         this.isUnlocked = false;
     }
     update() {
+        if (this.text === "Try Again") {
+            console.log(this.checkSelected());
+        }
+
         if (this.menu.isEnabled)
         this.handleClick()
     }

@@ -92,6 +92,7 @@ class Ship {
             this.animation = this.dieAnimation;
             this.deathTime = gameEngine.timer.gameTime;
             alarm.pause();
+            deathMenu.isEnabled = true;
         }
     }
 
@@ -203,30 +204,30 @@ class Ship {
     shootMissile() {
         if (!ship.landingGear)
             if (this.isAlive) {
-            if ((gameEngine.timer.gameTime - this.landingStart) > this.waitTime) {
-                if (gameEngine.timer.gameTime - this.missileTime > this.missileCoolDown) {
-                    gameEngine.addEntity(new Missile(gameEngine, mouse.x, mouse.y));
-                    this.animation = this.fireAnimation;
-                    this.shootstart = gameEngine.timer.gameTime;
-                    this.missileTime = gameEngine.timer.gameTime;
-                }
-                else {
-                    notyet.play();
+                if ((gameEngine.timer.gameTime - this.landingStart) > this.waitTime) {
+                    if (gameEngine.timer.gameTime - this.missileTime > this.missileCoolDown) {
+                        gameEngine.addEntity(new Missile(gameEngine, mouse.x, mouse.y));
+                        this.animation = this.fireAnimation;
+                        this.shootstart = gameEngine.timer.gameTime;
+                        this.missileTime = gameEngine.timer.gameTime;
+                    }
+                    else {
+                        notyet.play();
+                    }
                 }
             }
-        }
     }
 
     shootLaser() {
         if (!ship.landingGear)
             if (this.isAlive) {
 
-            gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w / 3 + (55*shipscale)) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
-            gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w / 3 + (120*shipscale) + 40) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
-            let laser_beam_fire = document.createElement("audio");
-            laser_beam_fire.src = "./assets/sound/laser4.mp3";
-            laser_beam_fire.play();
-        }
+                gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w / 3 + (55*shipscale)) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
+                gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w / 3 + (120*shipscale) + 40) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
+                let laser_beam_fire = document.createElement("audio");
+                laser_beam_fire.src = "./assets/sound/laser4.mp3";
+                laser_beam_fire.play();
+            }
     }
 
     burst() {

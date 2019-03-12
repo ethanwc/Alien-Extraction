@@ -25,18 +25,18 @@ class UpgradeMenu extends Menu {
     createMenuItems() {
         let gap = 5;
         let iconsize = (width - (8 * gap)) / 12;
-        let span = (7 * iconsize + 8 * gap);
+        let span = (6 * iconsize + 8 * gap);
         this.vspan = (4 * iconsize + 3 * gap);
         let x = (width - span) / 2;
         this.startx = x;
         this.ystart = (height - this.vspan) / 2;
-        let header = new MenuItem(this, undefined, AM.getAsset("./assets/img/header_upgrade.png"), span - x, this.ystart - 100, 442, 59, this.dummyCallback);
+        let header = new MenuItem(this, undefined, AM.getAsset("./assets/img/header_upgrade.png"), span - x/2, this.ystart - 100, 442, 59, this.dummyCallback);
         this.items.push(header);
         let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), x + span - 120, this.ystart - 150, 100, 100, this.exit);
         this.items.push(exit);
 
 
-        for (let row = 0; row < 7; row++) {
+        for (let row = 0; row < 6; row++) {
             let yo = this.ystart;
             for (let column = 0; column < 4; column++) {
                 let icon;
@@ -63,16 +63,11 @@ class UpgradeMenu extends Menu {
                         callback = this.handleSpeed;
                         break;
                     case 4:
-                        //upgrade absorb range
-                        icon = AM.getAsset("./assets/img/icon_dot1.png");
-                        callback = this.handleAbsorb;
-                        break;
-                    case 5:
                         //upgrade explosion radius
                         icon = AM.getAsset("./assets/img/icon_dot2.png");
                         callback = this.handleExplosion;
                         break;
-                    case 6:
+                    case 5:
                         //upgrade laser damage
                         icon = AM.getAsset("./assets/img/icon_damage.png");
                         callback = this.handleDamage;
@@ -154,7 +149,7 @@ class UpgradeMenu extends Menu {
             info.balance -= upgrade;
             menuItem.isUnlocked = true;
             healthLevel++;
-            healthDamageMultiplier /= 2;
+            healthDamageMultiplier /= 1.2;
             menuItem.img = AM.getAsset("./assets/img/icon_health_selected.png");
             playMoney();
         } else playError();
@@ -166,7 +161,8 @@ class UpgradeMenu extends Menu {
             info.balance -= upgrade;
             menuItem.isUnlocked = true;
             speedLevel++;
-            ship.maxSpeed+=200;
+            ship.speed *= 1.2;
+            ship.maxSpeed *= 1.2;
             menuItem.img = AM.getAsset("./assets/img/icon_speed_selected.png");
             playMoney();
         } else playError();
