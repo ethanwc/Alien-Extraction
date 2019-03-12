@@ -64,7 +64,6 @@ class ProgressbarHandler {
     fakeDraw(ctx) {
         this.softReset(ctx);
         this.counter++;
-        this.bar.hue += 0.7;
 
         this.bar.widths += 2;
 

@@ -9,8 +9,7 @@ class Fuel {
         this.fuelLevel = initialFuel;
         this.fuelCapacity = 70;
         this.fuelAlert = true;
-        this.previousLevel = this.fuelLevel;
-        this.handler = new ProgressbarHandler(ship, initialFuel, x, y, w, h, "transparent", "rgba(0,255,255,.3)");
+        this.handler = new ProgressbarHandler(ship, initialFuel, x, y, w, h, "transparent", "rgba(0,255,0,.6)");
     }
 
     drainFuel(toDrain) {

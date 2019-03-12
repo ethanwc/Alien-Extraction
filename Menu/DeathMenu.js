@@ -29,6 +29,11 @@ class DeathMenu {
     update() {
         if (this.isEnabled)
             this.menuItem.update();
+
+        if (explosionLevel === 3 && damageLevel === 3 && speedLevel === 3 && hangarLevel === 3 && healthLevel === 3 && fuelLevel === 3) {
+
+        }
+
     }
 
     draw (ctx) {

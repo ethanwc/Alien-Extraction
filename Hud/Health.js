@@ -9,7 +9,7 @@ class Health {
         this.health = initialHealth;
         this.maxHealth = 100;
         this.previousHealth = this.health;
-        this.handler = new ProgressbarHandler(ship, initialHealth, x, y, w, h, "transparent", "rgba(0,255,255,.3)");
+        this.handler = new ProgressbarHandler(ship, initialHealth, x, y, w, h, "transparent", "rgba(255,0,0,.6)");
     }
 
     setHealth(newHealth) {
