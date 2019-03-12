@@ -5,7 +5,7 @@ class Model {
         this.cargoCapacity = 100;
         this.fuelCapacity = 50;
         this.elevation = 0;
-        this.balance = 1000000;
+        this.balance = 1000;
         this.string = null;
         this.dirtQuantity = 0;
         this.goldQuantity = 0;
