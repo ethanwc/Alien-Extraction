@@ -5,8 +5,6 @@ class DeathMenu {
         this.y = y;
         this.w = w;
         this.h = h;
-        // this.textx = textx;
-        // this.texty = texty;
         this.lastClick = 0;
         this.coolDown = .2;
         this.isUnlocked = false;
@@ -39,7 +37,7 @@ class DeathMenu {
             this.menuItem.draw(ctx);
             ctx.font = "50px Arial";
             ctx.fillStyle = "white";
-            ctx.fillText("Try Again", this.x + 100, this.y + 160, this.w);
+            ctx.fillText("Try Again", this.x + 120, this.y + 160, this.w);
         }
     }
 }
