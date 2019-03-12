@@ -32,8 +32,16 @@ shipdeath.src = "./assets/sound/shipdeath.wav";
 let hitsomething = document.createElement("audio");
 hitsomething.src = "./assets/sound/hitsomething.mp3";
 
+let watchit = document.createElement("audio");
+watchit.src = "./assets/sound/watchit.wav";
+
+let startclip = document.createElement("audio");
+startclip.src = "./assets/sound/startclip.wav";
+
+
 function playHitSomething() {
-    hitsomething.play()
+    hitsomething.play();
+    watchit.play();
 }
 
 function playShipDeath() {

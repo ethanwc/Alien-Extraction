@@ -1,4 +1,4 @@
-class DeathMenu {
+class WinMenu {
     constructor(img, x, y, w, h) {
         this.img = img;
         this.x = x;
@@ -18,19 +18,22 @@ class DeathMenu {
 
     init() {
         this.menuItem = new MenuItem(this, undefined,
-            AM.getAsset("./assets/img/menu_table1.png"), this.x, this.y + 100, this.w, this.h * 1.8, this.restartGame, "Try Again");
+            AM.getAsset("./assets/img/menu_table1.png"), this.x, this.y + 100, this.w, this.h * 1.8, this.restartGame, "Play Again?");
     }
 
     restartGame() {
         console.log("making it here");
+        this.isEnabled = false;
         restartGame();
     }
 
     update() {
+        if (explosionLevel === 4 && damageLevel === 4 && speedLevel === 4 && hangarLevel === 4 && healthLevel === 4 && fuelLevel === 4) {
+            this.isEnabled = true;
+        }
+
         if (this.isEnabled)
             this.menuItem.update();
-
-
 
     }
 
@@ -40,7 +43,7 @@ class DeathMenu {
             this.menuItem.draw(ctx);
             ctx.font = "50px Arial";
             ctx.fillStyle = "white";
-            ctx.fillText("Try Again", this.x + 120, this.y + 160, this.w);
+            ctx.fillText("Play Again?", this.x + 100, this.y + 160, this.w);
         }
     }
 }

@@ -11,8 +11,8 @@ let width = undefined;
 let height = undefined;
 let info;
 let deathMenu = undefined;
+let endMenu = undefined;
 let canvas = undefined;
-let selectionPrice = 0;
 let explosionRadius = 300;
 let laserDamage = 100;
 let basePrice = 1000;
@@ -48,6 +48,20 @@ function temp() {
 
 function restartGame() {
     menu_start.play();
+
+     explosionRadius = 300;
+     laserDamage = 100;
+     basePrice = 1000;
+     explosionLevel = 0;
+     damageLevel = 0;
+     speedLevel = 0;
+     hangarLevel = 0;
+     healthLevel = 0;
+     fuelLevel = 0;
+     absorbLevel = 0;
+     fuelDrainRate = 1;
+     healthDamageMultiplier = 1;
+     fuelCost = 1;
 
 
     gameEngine.entities = [];
@@ -122,9 +136,10 @@ function restartGame() {
 
     let abc = new InfoMenu(AM.getAsset("./assets/img/icon_info.png"),sw - iw - windowoffset - 210/4 - 40, 40, 210/4, 210/4, img2.x + 6, img2.y + ph + 20);
     deathMenu = new DeathMenu(AM.getAsset("./assets/img/lose.png"), sw/2 - 453/2, sh/2 - 60/2, 453, 60);
-
+    endMenu = new WinMenu(AM.getAsset("./assets/img/win.png"), sw/2 - 453/2, sh/2 - 60/2, 453, 60);
     gameEngine.addEntity(abc);
     gameEngine.addEntity(deathMenu);
+    gameEngine.addEntity(endMenu);
 
     gameEngine.addEntity(info);
 
@@ -143,6 +158,8 @@ function restartGame() {
     gameEngine.addEntity(rrr);
 
     bitList = new BitList();
+    startclip.play();
+
 }
 
 function startGame()  {
@@ -238,6 +255,8 @@ function startGame()  {
 
         let abc = new InfoMenu(AM.getAsset("./assets/img/icon_info.png"),sw - iw - windowoffset - 210/4 - 40, 40, 210/4, 210/4, img2.x + 6, img2.y + ph + 20);
         deathMenu = new DeathMenu(AM.getAsset("./assets/img/lose.png"), sw/2 - 453/2, sh/2 - 60/2, 453, 60);
+        endMenu = new WinMenu(AM.getAsset("./assets/img/win.png"), sw/2 - 453/2, sh/2 - 60/2, 453, 60);
+        gameEngine.addEntity(endMenu);
 
         gameEngine.addEntity(abc);
         gameEngine.addEntity(deathMenu);
@@ -259,6 +278,7 @@ function startGame()  {
         gameEngine.addEntity(rrr);
 
         bitList = new BitList();
+        startclip.play();
 
     });
 }
