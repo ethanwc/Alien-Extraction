@@ -71,6 +71,8 @@ class GameEngine {
             this.entities[i].draw(this.ctx);
         }
         if (deathMenu !== undefined) deathMenu.draw(ctx);
+        if (endMenu !== undefined) endMenu.draw(ctx);
+
         this.ctx.restore();
     }
 }
