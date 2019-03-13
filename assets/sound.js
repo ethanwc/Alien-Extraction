@@ -41,6 +41,7 @@ startclip.src = "./assets/sound/startclip.wav";
 let music = document.createElement("audio");
 music.src = "./assets/sound/music.mp3";
 music.loop = 1;
+music.volume = .5;
 
 function playHitSomething() {
     hitsomething.play();
