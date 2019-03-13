@@ -120,7 +120,7 @@ class UpgradeMenu extends Menu {
             info.balance -= upgrade;
             menuItem.isUnlocked = true;
             fuelLevel++;
-            fuelDrainRate /=2;
+            fuelDrainRate /=1.4;
             menuItem.img = AM.getAsset("./assets/img/icon_battery_selected.png");
             playMoney();
         } else playError();
@@ -156,7 +156,7 @@ class UpgradeMenu extends Menu {
             info.balance -= upgrade;
             menuItem.isUnlocked = true;
             healthLevel++;
-            healthDamageMultiplier /= 1.2;
+            healthDamageMultiplier /= 1.1;
             menuItem.img = AM.getAsset("./assets/img/icon_health_selected.png");
             playMoney();
         } else playError();
@@ -169,6 +169,7 @@ class UpgradeMenu extends Menu {
             menuItem.isUnlocked = true;
             speedLevel++;
             ship.maxSpeed *= 1.2;
+            ship.maxSpeedConstant *= 1.2;
             menuItem.img = AM.getAsset("./assets/img/icon_speed_selected.png");
             playMoney();
         } else playError();

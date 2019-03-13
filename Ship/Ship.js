@@ -18,6 +18,7 @@ class Ship {
         this.maxspeed = 1000;
         this.landingSpeed = 200;
         this.speed = this.maxspeed;
+        this.maxSpeedConstant = this.maxspeed;
         this.x = x;
         this.y = y;
         this.w = w;
