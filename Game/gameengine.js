@@ -56,6 +56,10 @@ class GameEngine {
             if (entity.removeFromWorld) this.entities.splice(i, 1);
             else entity.update();
         }
+
+        if (deathMenu !== undefined && endMenu !== undefined)
+        if (!deathMenu.isEnabled && !endMenu.isEnabled)
+            godMenu = false;
     }
 
     loop() {

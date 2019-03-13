@@ -35,11 +35,12 @@ class MineralMenu extends Menu {
     }
 
     update() {
-        super.update();
+        if (!godMenu)
+            super.update();
     }
 
     draw(ctx) {
-
+        if (!godMenu)
         if (this.isEnabled) {
             ctx.drawImage(this.background, this.x, this.y, this.w, this.h);
 

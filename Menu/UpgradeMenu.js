@@ -13,11 +13,13 @@ class UpgradeMenu extends Menu {
     }
 
     update() {
-        super.update();
+        if (!godMenu)
+            super.update();
     }
 
     draw(ctx) {
-        if (this.isEnabled) {
+        if (!godMenu)
+            if (this.isEnabled) {
             this.drawMenu(ctx);
         }
     }

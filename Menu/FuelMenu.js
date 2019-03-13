@@ -13,10 +13,12 @@ class FuelMenu extends Menu {
     }
 
     update() {
-        super.update();
+        if (!godMenu)
+            super.update();
     }
 
     draw(ctx) {
+        if (!godMenu)
         if (this.isEnabled) {
             this.drawMenu(ctx);
         }

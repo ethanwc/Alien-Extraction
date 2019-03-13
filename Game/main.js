@@ -7,6 +7,7 @@ let health = undefined;
 let fuel = undefined;
 let musicPause = false;
 let screenScale = 1;
+let godMenu = false;
 let width = undefined;
 let height = undefined;
 let info;
@@ -15,7 +16,7 @@ let endMenu = undefined;
 let canvas = undefined;
 let explosionRadius = 300;
 let laserDamage = 100;
-let basePrice = 1000;
+let basePrice = 500;
 let explosionLevel = 0;
 let damageLevel = 0;
 let speedLevel = 0;
@@ -51,7 +52,7 @@ function restartGame() {
 
      explosionRadius = 300;
      laserDamage = 100;
-     basePrice = 1000;
+     basePrice = 500;
      explosionLevel = 0;
      damageLevel = 0;
      speedLevel = 0;

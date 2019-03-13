@@ -32,9 +32,10 @@ class WinMenu {
             this.isEnabled = true;
         }
 
-        if (this.isEnabled)
+        if (this.isEnabled) {
             this.menuItem.update();
-
+            godMenu = true;
+        }
     }
 
     draw (ctx) {

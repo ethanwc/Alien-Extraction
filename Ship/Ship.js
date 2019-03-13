@@ -45,6 +45,8 @@ class Ship {
         this.burstCoolDown = 8;
         this.missileTime = 0;
         this.missileCoolDown = 3;
+        this.lastLandTime = 0;
+        this.landWaitTime = 5;
 
     }
 
@@ -102,7 +104,10 @@ class Ship {
             let ship_btm = this.y + this.h / 2 - 45 - 1500 + 376;
             if (!this.landed && this.landingGear && (ship_btm < 2 && ship_btm > -2) && this.hv < 1) {
 
-                land.play();
+                if ((gameEngine.timer.gameTime - this.lastLandTime) > this.landWaitTime) {
+                    land.play();
+                    this.lastLand = gameEngine.timer.gameTime;
+                }
                 this.landed = true;
 
 
