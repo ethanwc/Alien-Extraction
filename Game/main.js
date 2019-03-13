@@ -3,9 +3,9 @@ let worldWidth = 55;
 let worldHeight = 150;
 let ship = undefined;
 let camera = undefined;
-let status = undefined;
 let health = undefined;
 let fuel = undefined;
+let musicPause = false;
 let screenScale = .9;
 let width = undefined;
 let height = undefined;
@@ -135,12 +135,14 @@ function restartGame() {
     info = new Model(sw - iw - windowoffset);
 
     let abc = new InfoMenu(AM.getAsset("./assets/img/icon_info.png"),sw - iw - windowoffset - 210/4 - 40, 40, 210/4, 210/4, img2.x + 6, img2.y + ph + 20);
+    let musicMenu = new MusicMenu(AM.getAsset("./assets/img/music.png"), sw - iw - windowoffset - 210/4 - 40, 30 + 80, 210/4, 210/4, img2.x + 6, img2.y + ph + 20);
+
     deathMenu = new DeathMenu(AM.getAsset("./assets/img/lose.png"), sw/2 - 453/2, sh/2 - 60/2, 453, 60);
     endMenu = new WinMenu(AM.getAsset("./assets/img/win.png"), sw/2 - 453/2, sh/2 - 60/2, 453, 60);
     gameEngine.addEntity(abc);
     gameEngine.addEntity(deathMenu);
     gameEngine.addEntity(endMenu);
-
+    gameEngine.addEntity(musicMenu);
     gameEngine.addEntity(info);
 
 
@@ -253,10 +255,11 @@ function startGame()  {
         info = new Model(sw - iw - windowoffset);
 
         let abc = new InfoMenu(AM.getAsset("./assets/img/icon_info.png"),sw - iw - windowoffset - 210/4 - 40, 40, 210/4, 210/4, img2.x + 6, img2.y + ph + 20);
+        let musicMenu = new MusicMenu(AM.getAsset("./assets/img/music.png"), sw - iw - windowoffset - 210/4 - 40, 30 + 80, 210/4, 210/4, img2.x + 6, img2.y + ph + 20);
         deathMenu = new DeathMenu(AM.getAsset("./assets/img/lose.png"), sw/2 - 453/2, sh/2 - 60/2, 453, 60);
         endMenu = new WinMenu(AM.getAsset("./assets/img/win.png"), sw/2 - 453/2, sh/2 - 60/2, 453, 60);
         gameEngine.addEntity(endMenu);
-
+        gameEngine.addEntity(musicMenu);
         gameEngine.addEntity(abc);
         gameEngine.addEntity(deathMenu);
 
@@ -277,6 +280,8 @@ function startGame()  {
         gameEngine.addEntity(rrr);
 
         bitList = new BitList();
+
+        music.play();
 
     });
 }

@@ -1,5 +1,5 @@
 let AM = new AssetManager();
-
+AM.queueDownload("./assets/img/music.png");
 AM.queueDownload("./assets/img/energyball.png");
 AM.queueDownload("./assets/img/heart.png");
 AM.queueDownload("./assets/img/magnet.png");

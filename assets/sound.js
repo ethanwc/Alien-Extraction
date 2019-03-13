@@ -38,6 +38,9 @@ watchit.src = "./assets/sound/watchit.wav";
 let startclip = document.createElement("audio");
 startclip.src = "./assets/sound/startclip.wav";
 
+let music = document.createElement("audio");
+music.src = "./assets/sound/music.mp3";
+music.loop = 1;
 
 function playHitSomething() {
     hitsomething.play();
