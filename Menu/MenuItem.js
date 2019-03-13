@@ -17,9 +17,7 @@ class MenuItem {
         this.isUnlocked = false;
     }
     update() {
-        if (this.text === "Try Again") {
-            console.log(this.checkSelected());
-        }
+
 
         if (this.menu.isEnabled)
         this.handleClick()
@@ -39,6 +37,7 @@ class MenuItem {
         if (this.checkSelected()) {
             if (this.level !== undefined) {
                 this.menu.updateCost(this.level);
+                this.menu.updateType(this.text);
             }
             if (mouse.isPressed) {
                 if ((gameEngine.timer.gameTime - this.lastClick) > this.coolDown) {

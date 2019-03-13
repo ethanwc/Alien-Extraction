@@ -9,7 +9,7 @@ class UpgradeMenu extends Menu {
         this.vspan = 0;
         this.createMenuItems();
         this.currentCost = 0;
-
+        this.currentType = undefined;
     }
 
     update() {
@@ -41,41 +41,46 @@ class UpgradeMenu extends Menu {
             for (let column = 0; column < 4; column++) {
                 let icon;
                 let callback;
+                let type;
                 switch (row) {
                     case 0:
                         //upgrade fuel capacity
                         icon = AM.getAsset("./assets/img/icon_battery.png");
                         callback = this.handleFuel;
+                        type = "Battery Capacity";
                         break;
                     case 1:
                         //upgrade cargo capacity
                         icon = AM.getAsset("./assets/img/icon_hangar.png");
                         callback = this.handleHangar;
+                        type = "Hangar Capacity";
                         break;
                     case 2:
                         //upgrade health capacity
                         icon = AM.getAsset("./assets/img/icon_health.png");
                         callback = this.handleHealth;
+                        type = "Max Health";
                         break;
                     case 3:
                         //upgrade speed/acceleration
                         icon = AM.getAsset("./assets/img/icon_speed.png");
                         callback = this.handleSpeed;
+                        type = "Max Speed";
                         break;
                     case 4:
                         //upgrade explosion radius
                         icon = AM.getAsset("./assets/img/icon_dot2.png");
                         callback = this.handleExplosion;
+                        type = "Explosion Radius";
                         break;
                     case 5:
                         //upgrade laser damage
                         icon = AM.getAsset("./assets/img/icon_damage.png");
                         callback = this.handleDamage;
+                        type = "Laser Damage";
                         break;
                 }
-                gameEngine.addEntity(new MenuItem(this, column, icon, x, yo, iconsize, iconsize, callback));
-
-                // this.items.push(new MenuItem(this, icon, x, yo, iconsize, iconsize, callback));
+                gameEngine.addEntity(new MenuItem(this, column, icon, x, yo, iconsize, iconsize, callback, type));
                 yo += iconsize + 5;
             }
             x += iconsize + 5;
@@ -99,7 +104,7 @@ class UpgradeMenu extends Menu {
         ctx.font = "60px Arial";
         ctx.fillStyle = "white";
         ctx.fillText(this.currentCost, this.startx + 10, this.ystart - 50, 200);
-        ctx.fillText("Balance: " + info.balance, this.startx + 10, this.ystart + this.vspan + 50, 400);
+        ctx.fillText("Balance: " + info.balance + "                 " + this.currentType, this.startx + 10, this.ystart + this.vspan + 50, 800);
 
     }
 
@@ -161,7 +166,6 @@ class UpgradeMenu extends Menu {
             info.balance -= upgrade;
             menuItem.isUnlocked = true;
             speedLevel++;
-            ship.speed *= 1.2;
             ship.maxSpeed *= 1.2;
             menuItem.img = AM.getAsset("./assets/img/icon_speed_selected.png");
             playMoney();
@@ -198,6 +202,9 @@ class UpgradeMenu extends Menu {
         else this.currentCost = '$' + basePrice * (1 + level);
     }
 
+    updateType(type) {
+        this.currentType = type;
+    }
 
     exit(menuItem) {
         menuItem.menu.setTime();

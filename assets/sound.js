@@ -41,7 +41,6 @@ startclip.src = "./assets/sound/startclip.wav";
 
 function playHitSomething() {
     hitsomething.play();
-    watchit.play();
 }
 
 function playShipDeath() {

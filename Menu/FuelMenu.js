@@ -38,7 +38,7 @@ class FuelMenu extends Menu {
         this.items.push(fill);
         let health = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), x, (this.y + height * 5 - 30), width, height, this.healthRepair, "Repair Ship");
         this.items.push(health);
-        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), this.x + width - 100, this.y, 100, 100, this.exit);
+        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), this.x + width - 100 + 40, this.y + 40, 100/2, 100/2, this.exit);
         this.items.push(exit);
 
 

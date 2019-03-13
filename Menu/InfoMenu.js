@@ -31,8 +31,6 @@ class InfoMenu {
             ctx.fillText("Space to use Burst, M2 to use Rockets (Cooldowns)", this.textx, this.texty+30, 400);
             ctx.fillText("X to Absorb Particles", this.textx, this.texty+60, 400);
             ctx.fillText("Z to Deploy/Retract Weapons(To land at stores)", this.textx, this.texty+90, 400);
-            ctx.fillText("Upgrades: Fuel Capacity, Hangar Capacity, Max Health", this.textx, this.texty+120, 400);
-            ctx.fillText("Max Speed, Laser Damage, Rocket Damage", this.textx, this.texty+150, 400);
 
         }
     }

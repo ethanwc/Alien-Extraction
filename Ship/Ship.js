@@ -29,9 +29,7 @@ class Ship {
         this.prevx = 0;
         this.prevy = 0;
         this.move = 0;
-        this.shootime = 1;
         this.landingGear = 0;
-        this.shootstart = 0;
         this.landingStart = 0;
         this.swapAnimation = 0;
         this.waitTime = 10 * .1 - .1;
@@ -68,13 +66,13 @@ class Ship {
                 if (this.landingGear) {
                     this.r = this.landSize;
                     this.animation = this.landingRetract;
-                    this.speed = this.landingSpeed;
+                    this.maxspeed = this.landingSpeed;
                 }
 
                 else {
                     this.r = this.flySize;
                     this.animation = this.landingDeploy;
-                    this.speed = this.maxspeed;
+                    this.maxspeed = this.maxSpeedConstant;
 
                 }
 
@@ -150,11 +148,11 @@ class Ship {
             this.hv += this.game.clockTick * this.ha;
             this.vv += this.game.clockTick * this.va;
 
-            if (this.hv > this.speed) this.hv = this.speed;
-            if (this.hv < -1 * this.speed) this.hv = -1 * this.speed;
+            if (this.hv > this.maxspeed) this.hv = this.maxspeed;
+            if (this.hv < -1 * this.maxspeed) this.hv = -1 * this.maxspeed;
 
-            if (this.vv > this.speed) this.vv = this.speed;
-            if (this.vv < -1 * this.speed) this.vv = -1 * this.speed;
+            if (this.vv > this.maxspeed) this.vv = this.maxspeed;
+            if (this.vv < -1 * this.maxspeed) this.vv = -1 * this.maxspeed;
 
             if (this.ha === 0) this.hv *= .97;
             if (this.va === 0) this.vv *= .97;
@@ -181,7 +179,11 @@ class Ship {
                         this.y = this.prevy;
 
                         if (!this.landingGear) {
-                            if (!(entity.health > 1000)) health.hurt(10);
+                            if (!(entity.health > 1000)) {
+                                health.hurt(10);
+                                playHitSomething();
+                            }
+                            else ship.y -= 4;
                             entity.hitByShip();
                             gameEngine.addEntity(new Boom(gameEngine, AM.getAsset("./assets/img/boom.png"),
                                 entity.x - 70, entity.y - 66));//c
@@ -220,7 +222,6 @@ class Ship {
     shootLaser() {
         if (!ship.landingGear)
             if (this.isAlive) {
-
                 gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w / 3 + (55*shipscale)) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
                 gameEngine.addEntity(new Beam(gameEngine, ship.x + (ship.w / 3 + (120*shipscale) + 40) * ship.animation.scaleBy - camera.x, ship.y + ship.h * ship.animation.scaleBy - 20 - camera.y));
                 let laser_beam_fire = document.createElement("audio");

@@ -10,7 +10,7 @@ class MineralMenu extends Menu {
         let x = this.x + 20;
         let y = this.y;
 
-        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), x + this.w - 120, this.y - 150, 100, 100, this.exit);
+        let exit = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_exit.png"), x + this.w - 120, this.y - 110, 100, 100, this.exit);
         this.items.push(exit);
 
         let temp = new MenuItem(this, undefined, AM.getAsset("./assets/img/menu_table1.png"), this.x + 10, this.y + this.w/2 + 335, 450, 101, this.sellAll, undefined);
@@ -76,6 +76,10 @@ class MineralMenu extends Menu {
         }
     }
     updateCost() {
+
+    }
+
+    updateType() {
 
     }
 

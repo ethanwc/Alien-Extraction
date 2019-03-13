@@ -158,7 +158,6 @@ function restartGame() {
     gameEngine.addEntity(rrr);
 
     bitList = new BitList();
-    startclip.play();
 
 }
 
@@ -278,7 +277,6 @@ function startGame()  {
         gameEngine.addEntity(rrr);
 
         bitList = new BitList();
-        startclip.play();
 
     });
 }
