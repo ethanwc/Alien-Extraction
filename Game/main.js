@@ -6,7 +6,7 @@ let camera = undefined;
 let health = undefined;
 let fuel = undefined;
 let musicPause = false;
-let screenScale = .9;
+let screenScale = 1;
 let width = undefined;
 let height = undefined;
 let info;
