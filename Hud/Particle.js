@@ -1,5 +1,5 @@
 class Particle {
-    constructor(bar, xoff, yoff) {
+    constructor(bar, xoff, yoff, color) {
         this.bar = bar;
         this.x = bar.widths + xoff;
         this.y = yoff;
@@ -8,6 +8,7 @@ class Particle {
         this.g = 1 + Math.random() * 3;
         this.down = false;
         this.viewTime = 3;
+        this.color = color;
         this.initTime = gameEngine.timer.gameTime;
     }
 
@@ -17,7 +18,7 @@ class Particle {
     }
 
     draw(ctx) {
-        ctx.fillStyle = 'hsla(' + (this.bar.hue + 0.3) + ', 100%, 40%, 1)';
+        ctx.fillStyle = this.color;
         let size = Math.random() * 2;
         ctx.fillRect(this.x, this.y, size, size);
     }

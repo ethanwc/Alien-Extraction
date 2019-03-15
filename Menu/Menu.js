@@ -22,18 +22,16 @@ class Menu {
                 this.isEnabled = true;
                 inMenu = true;
             }
-            else  {
-                this.isEnabled = false;
-                inMenu = false;
-            }
+
         }
 
-        else {
+        else  {
             this.isEnabled = false;
             inMenu = false;
         }
 
-        if (!ship.landingGear || !ship.landed) {
+
+        if (!ship.landingGear || !ship.landed || ship.y - 876.51 > 2 || ship.y - 876.51 < -2) {
             this.isEnabled = false;
             inMenu = false;
         }

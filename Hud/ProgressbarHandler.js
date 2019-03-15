@@ -10,6 +10,7 @@ class ProgressbarHandler {
         this.y = y;
         this.w = w;
         this.h = h;
+        this.color = colorstop2;
         this.max = initial;
         this.current = initial;
         this.previous = this.current;
@@ -80,8 +81,8 @@ class ProgressbarHandler {
             } else this.bar.draw(ctx);
         } else {
             this.bar.draw(ctx);
-            for (let i = 0; i < 25; i += 10) {
-                this.particles.push(new Particle(this.bar, this.x, this.y + this.h / 2 - 10));
+            for (let i = 0; i < 5; i += 10) {
+                this.particles.push(new Particle(this.bar, this.x, this.y + this.h / 2 - 10, this.color));
             }
         }
         this.fakeUpdate(ctx);

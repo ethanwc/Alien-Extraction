@@ -108,7 +108,7 @@ class FuelMenu extends Menu {
     healthRepair() {
         let amount = health.maxHealth - health.health;
         let cost = amount;
-        if (info.balance >= cost) {
+        if (info.balance >= cost && cost > 0) {
             health.addHealth(amount);
             info.balance -= cost;
             playMoney();

@@ -15,11 +15,12 @@ class AbsorbBits {
                         //if a bit is ready to be absorbed
                         if (RectCircleColliding(ship.x + ship.w * .25 * shipscale, ship.y + ship.h * .25 * shipscale,
                                 ship.r * shipscale, entity.x, entity.y, entity.w, entity.h)) {
-                            this.handleAbsorb(entity);
+
+                                this.handleAbsorb(entity);
 
                         }
                         //if not, move closer
-                        else {
+                        else if (distance(ship.x, ship.y, entity.x, entity.y) < 500) {
                             this.moveBit(entity);
                         }
                     }
