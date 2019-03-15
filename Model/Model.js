@@ -37,7 +37,7 @@ class Model {
 
 
     update() {
-        this.elevation =150 + -1 * ((ship.y + ship.w * .5)/10 - 2 | 0);
+        this.elevation = 150 + -38 -1 * ((ship.y + ship.w * .5)/10 - 2 | 0);
         this.string = "Balance: " + this.balance + "  Elevation: " + this.elevation +
             "  Capacity: " + ((this.cargo / this.cargoCapacity) * 100 | 0) + "%";
         this.checkFuel();
